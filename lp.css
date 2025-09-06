@@ -701,3 +701,37 @@ body {
   font-size: 24px; /* Anda bisa sesuaikan ukurannya di sini */
   vertical-align: middle;
 }
+
+/* -- Animasi Statistik -- */
+
+/* Kondisi awal sebelum terlihat: transparan dan sedikit kecil */
+.stat-item {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Kondisi akhir saat terlihat: tampil penuh dengan ukuran normal */
+.stat-item.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Memberi jeda animasi antar item agar muncul satu per satu */
+.stat-item:nth-child(2) { transition-delay: 0.1s; }
+.stat-item:nth-child(3) { transition-delay: 0.2s; }
+.stat-item:nth-child(4) { transition-delay: 0.3s; }
+
+/* Menambahkan kursor berkedip untuk efek mengetik */
+.stat-text .typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: currentColor;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
