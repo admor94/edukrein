@@ -1,0 +1,238 @@
+/* ==============================================
+   WARNA MODIFIKASI: BUTTON
+   ============================================== */
+
+/* --- [MODIFIKASI] Tombol CTA Warna Orange --- */
+.btn-cta-wortel {
+  background-color: #e67e22 !important;
+  color: #ffffff !important;
+  border-color: #d35400 !important;
+  font-weight: 600;
+}
+
+/* Efek saat kursor menyentuh tombol */
+.btn-cta-wortel:hover {
+  background-color: #ffffff !important;
+  color: #d35400 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ==============================================
+   PERPUSTAKAAN ANIMASI GRADASI - EDUKREIN
+   ============================================== */
+
+/*
+   CATATAN PENTING:
+   - Sebagian besar animasi ini menggunakan variabel warna dari template Anda
+     (misal: var(--ds-blue), var(--ds-green), dll).
+   - Anda bisa mengatur kecepatan dengan mengubah nilai `animation-duration`.
+   - Gunakan efek ini secara bijak agar tidak memberatkan loading blog.
+*/
+
+/* ------------------------------------------- */
+/* 1. Gradasi Bergelombang (Wavy Gradient)     */
+/* ------------------------------------------- */
+@keyframes wavyGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.wavy-gradient {
+  background-image: linear-gradient(-45deg, var(--ds-purple), var(--ds-blue), var(--ds-green), var(--ds-yellow));
+  background-size: 400% 400%;
+  animation: wavyGradient 15s ease infinite;
+}
+
+/* ------------------------------------------- */
+/* 2. Sapuan Diagonal (Diagonal Sweep)         */
+/* ------------------------------------------- */
+@keyframes diagonalSweep {
+  0% { background-position: 0% 100%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 100%; }
+}
+
+.diagonal-sweep {
+  background: linear-gradient(135deg, var(--ds-primary), var(--ds-secondary), var(--ds-primary));
+  background-size: 300% 300%;
+  animation: diagonalSweep 10s ease infinite;
+}
+
+/* ------------------------------------------- */
+/* 3. Cahaya Berdenyut (Pulse Glow)            */
+/* ------------------------------------------- */
+@keyframes pulseGlow {
+  0% { background-size: 100% 100%; opacity: 1; }
+  50% { background-size: 250% 250%; opacity: 0.7; }
+  100% { background-size: 100% 100%; opacity: 1; }
+}
+
+.pulse-glow {
+  background: radial-gradient(circle, var(--ds-blue) 0%, var(--ds-primary) 100%);
+  animation: pulseGlow 8s ease-in-out infinite;
+}
+
+/* ------------------------------------------- */
+/* 4. Putaran Pelangi (Rainbow Loop)           */
+/* ------------------------------------------- */
+@keyframes rainbowLoop {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+
+.rainbow-loop {
+  background: linear-gradient(to right, var(--ds-red), var(--ds-orange), var(--ds-yellow), var(--ds-green), var(--ds-blue), var(--ds-purple), var(--ds-red));
+  background-size: 400% 100%;
+  animation: rainbowLoop 12s linear infinite;
+}
+
+/* ------------------------------------------- */
+/* 6. Riak Warna (Color Ripple)                */
+/* ------------------------------------------- */
+@keyframes colorRipple {
+  from { background-size: 0% 0%; opacity: 1; }
+  to { background-size: 250% 250%; opacity: 0; }
+}
+
+.color-ripple {
+  background-image: radial-gradient(circle, var(--ds-secondary) 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  animation: colorRipple 2s ease-out infinite;
+}
+
+/* ------------------------------------------- */
+/* 7. Aliran Neon (Neon Flow)                  */
+/* ------------------------------------------- */
+@keyframes neonFlow {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.neon-flow {
+  background: linear-gradient(90deg, transparent, var(--ds-pink), var(--ds-purple), transparent);
+  background-size: 200% 100%;
+  animation: neonFlow 5s linear infinite;
+}
+
+/* ------------------------------------------- */
+/* 8. Animasi Garis Diagonal (Diagonal Stripe) */
+/* ------------------------------------------- */
+@keyframes diagonalStripe {
+  0% { background-position: 0 0; }
+  100% { background-position: 56px 0; }
+}
+
+.diagonal-stripe {
+  background-color: var(--ds-primary);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.1) 10px,
+    rgba(255, 255, 255, 0.1) 20px
+  );
+  animation: diagonalStripe 2s linear infinite;
+}
+
+/* ------------------------------------------- */
+/* 9. Efek Berkilau (Shimmer Effect)           */
+/* ------------------------------------------- */
+@keyframes shimmerEffect {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+.shimmer-effect {
+  /* Efek ini bekerja paling baik di atas warna lain */
+  background-color: #777; /* Ganti dengan warna dasar Anda */
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  background-size: 200% 100%;
+  animation: shimmerEffect 1.5s infinite;
+}
+
+/* ------------------------------------------- */
+/* 10. Rotasi Gradasi (Gradient Rotation)      */
+/* ------------------------------------------- */
+@keyframes gradientRotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.gradient-rotation {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.gradient-rotation::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    var(--ds-purple),
+    var(--ds-pink),
+    var(--ds-orange),
+    var(--ds-yellow),
+    var(--ds-green),
+    var(--ds-blue),
+    var(--ds-purple)
+  );
+  animation: gradientRotation 8s linear infinite;
+}
+
+
+/* ==============================================
+   VARIAN EFEK AURORA - EDUKREIN
+   ============================================== */
+
+/* 1. Definisikan Animasi Gerakannya (Cukup Satu Kali) */
+@keyframes auroraEffect {
+  0% { background-position: 0% 50%, 50% 100%, 100% 50%; }
+  25% { background-position: 50% 0%, 100% 100%, 0% 0%; }
+  50% { background-position: 100% 50%, 50% 0%, 0% 50%; }
+  75% { background-position: 50% 100%, 0% 0%, 100% 100%; }
+  100% { background-position: 0% 50%, 50% 100%, 100% 50%; }
+}
+
+/* 2. Buat Kelas Dasar untuk Efek Aurora */
+.aurora-effect {
+  background-color: var(--ds-primary);
+  background-size: 200% 200%;
+  animation: auroraEffect 25s ease-in-out infinite;
+}
+
+/* 3. Buat Kelas Varian Warna */
+
+/* Varian 1: Dominan Ungu & Biru */
+.aurora-ungu {
+  background-image:
+    radial-gradient(at 0% 100%, var(--ds-purple) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, var(--ds-blue) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, var(--ds-green) 0px, transparent 50%);
+}
+
+/* Varian 2: Dominan Hijau & Ungu */
+.aurora-hijau {
+  background-image:
+    radial-gradient(at 0% 0%, var(--ds-green) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, var(--ds-blue) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, var(--ds-green) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, var(--ds-blue) 0px, transparent 50%);
+}
+
+/* Varian 3: Dominan Biru & Hijau */
+.aurora-biru {
+  background-image:
+    radial-gradient(at 0% 0%, var(--ds-blue) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, var(--ds-green) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, var(--ds-blue) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, var(--ds-green) 0px, transparent 50%);
+}
