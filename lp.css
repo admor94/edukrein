@@ -696,3 +696,8 @@ body {
     font-size: 1.2rem;
   }
 }
+
+.stat-icon .bi {
+  font-size: 24px; /* Anda bisa sesuaikan ukurannya di sini */
+  vertical-align: middle;
+}
