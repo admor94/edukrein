@@ -1,0 +1,235 @@
+/* ==============================================
+   TAMPILAN DI HOME: ACCORDIAN FAQ
+   ============================================== */
+
+/* Meratakan teks di dalam accordion ke kiri */
+.accordion-custom .accordion-body {
+  text-align: left;
+}
+
+/* Kontainer utama setiap item accordion */
+.accordion-custom .accordion-item {
+  background-color: transparent;
+  border: 1px solid var(--ds-primary);
+  border-radius: var(--ds-border-radius-lg) !important;
+  box-shadow: none;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.accordion-custom .accordion-item:first-of-type,
+.accordion-custom .accordion-item:last-of-type {
+  border-radius: var(--ds-border-radius-lg) !important;
+}
+
+/* Tombol header accordion (saat tertutup) */
+.accordion-custom .accordion-header .accordion-button {
+  background-color: transparent;
+  color: var(--ds-body-color);
+  padding: 0.5rem 0.75rem;
+}
+
+/* Tombol header accordion (saat terbuka) */
+.accordion-custom .accordion-button:not(.collapsed) {
+  background-color: transparent;
+  color: var(--ds-primary);
+  box-shadow: none;
+}
+
+/* Menghilangkan bayangan default saat tombol di-klik/focus */
+.accordion-custom .accordion-button:focus {
+  box-shadow: none;
+}
+
+
+/* --- [KODE BARU] Mengganti Ikon Accordion --- */
+
+/* Ikon (+) saat accordion tertutup (Mode Terang) */
+.accordion-custom .accordion-button::after {
+  content: '';
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M14.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5m-13 0a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5'/%3e%3cpath d='M6 13a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z'/%3e%3c/svg%3e");
+  transition: transform 0.2s ease-in-out;
+  transform: none;
+}
+
+/* Ikon (-) saat accordion terbuka (Mode Terang) */
+.accordion-custom .accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1 1.5a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 0-1h-13a.5.5 0 0 0-.5.5m0 13a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 0-1h-13a.5.5 0 0 0-.5.5'/%3e%3cpath d='M2 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z'/%3e%3c/svg%3e");
+  transform: none;
+}
+
+
+/* --- [KODE BARU] Perbaikan Final untuk Mode Gelap --- */
+
+/* Warna teks tombol saat TERTUTUP di mode gelap */
+[data-bs-theme="dark"] .accordion-custom .accordion-button.collapsed {
+  color: var(--ds-emphasis-color);
+}
+
+/* Warna teks tombol saat TERBUKA di mode gelap */
+[data-bs-theme="dark"] .accordion-custom .accordion-button:not(.collapsed) {
+  color: var(--ds-primary);
+}
+
+/* Ikon (+) menjadi warna terang di mode gelap */
+[data-bs-theme="dark"] .accordion-custom .accordion-button.collapsed::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M14.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5m-13 0a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5'/%3e%3cpath d='M6 13a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z'/%3e%3c/svg%3e");
+}
+
+/* Ikon (-) menjadi warna terang di mode gelap */
+[data-bs-theme="dark"] .accordion-custom .accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1 1.5a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 0-1h-13a.5.5 0 0 0-.5.5m0 13a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 0-1h-13a.5.5 0 0 0-.5.5'/%3e%3cpath d='M2 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z'/%3e%3c/svg%3e");
+}
+
+
+/* ==============================================
+   TAMPILAN DI HALAMAN STATIS: ANIMASI
+   ============================================== */
+
+/* Keyframes untuk animasi fade-in dari bawah */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.static-page-custom .card {
+  background-color: var(--ds-body-bg);
+  border: 1px solid var(--ds-border-color);
+  border-radius: var(--ds-border-radius-xl);
+  animation: fadeInUp 1.1s ease-out forwards !important;
+}
+
+/* Gaya untuk H3 PERTAMA (sebagai judul utama) */
+.static-page-custom h3:first-of-type {
+  font-size: calc(1.3rem + 0.6vw);
+  font-weight: 600;
+  color: var(--ds-body-color);
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1200px) {
+  .static-page-custom h3:first-of-type {
+    font-size: 1.75rem;
+  }
+}
+
+/* Gaya untuk H3 berikutnya (sebagai sub-judul) */
+.static-page-custom h3 {
+  font-weight: 600;
+  color: var(--ds-primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.static-page-custom p {
+  text-align: left;
+  line-height: 1.8;
+  color: var(--ds-secondary-color);
+}
+
+
+/* ==============================================
+   TAMPILAN DI LAMAN: MENYEMBUYIKAN TOMBOL SHARE
+   ============================================== */
+
+body.staticpage #article-share {
+  display: none !important;
+}
+
+
+/* ==============================================
+   TAMPILAN DI LAMAN: TABEL RESPONSIVE
+   ============================================== */
+
+/* --- Aturan Dasar untuk Tabel Responsif --- */
+.responsive-table {
+  overflow-x: auto;
+}
+
+/* --- Aturan Khusus untuk Tabel Dinamis di Peta Situs --- */
+#sitemap-accordion table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+#sitemap-accordion th,
+#sitemap-accordion td {
+  border: 1px solid #ddd;
+  padding: 6px;
+}
+
+#sitemap-accordion thead {
+  background: #f9f9f9;
+}
+
+/* --- Aturan Khusus untuk Tabel Statis --- */
+.static-page-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  border: 1px solid black;
+}
+
+.static-page-table th,
+.static-page-table td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.static-page-table thead {
+  background: #f2f2f2;
+}
+
+/* --- Aturan Tambahan untuk Accordion (Non-Bootstrap) --- */
+.accordion-section {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  background: #f2f2f2;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.accordion-content {
+  display: none;
+  padding: 10px;
+}
+
+
+/* ==============================================
+   TAMPILAN DI POSTINGAN: FOOTNOTE
+   ============================================== */
+
+/* Aturan untuk membuat angka footnote menjadi superscript */
+span[data-bs-toggle="tooltip"] {
+  vertical-align: super;
+  font-size: 0.7em;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0 2px;
+}
+
+/* Efek saat kursor diarahkan ke angka */
+span[data-bs-toggle="tooltip"]:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
