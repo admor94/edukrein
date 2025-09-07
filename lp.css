@@ -394,7 +394,7 @@ body {
 }
 
 #landingpage-edukrein .testi-card {
-  background-color: var(--ds-dark);
+  background-color: var(--ds-primary);
   color: var(--ds-white);
   border-radius: var(--ds-border-radius-xl);
   padding: 2.5rem;
@@ -489,8 +489,8 @@ body {
 
 /* 10. Testimoni Marquee Section */
 #landingpage-edukrein .testimoni-marquee-section {
-  padding: 4rem 0; /* lebih lega */
-  background-color: var(--ds-dark, #0f172a); /* sama seperti alasan */
+  padding: 2rem 0; /* lebih lega */
+  background-color: var(--ds-primary, #04202c); /* sama seperti alasan */
   border: none; /* biar bersih */
 }
 
@@ -513,6 +513,13 @@ body {
   color: rgba(255,255,255,0.85); /* teks lebih kontras di bg gelap */
   margin-bottom: 1rem;
   flex-grow: 1;
+}
+
+/* Container tetap untuk konten biar sejajar */
+#landingpage-edukrein .testimoni-marquee-section .container {
+  max-width: 1140px; /* atau biarkan default Bootstrap */
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 #landingpage-edukrein .testi-card-marquee .testi-name {
