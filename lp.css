@@ -30,6 +30,53 @@ body {
   font-weight: 800;
 }
 
+/* === CSS UNTUK HERO SECTION BARU === */
+
+.hero-no-code-section {
+  background-color: #10061e; /* Warna latar belakang gelap keunguan */
+  padding: 120px 0;
+  text-align: center;
+}
+
+.hero-no-code-section h1 {
+  font-size: clamp(2.5rem, 6vw, 3.5rem); /* Ukuran font responsif */
+}
+
+.hero-highlight-purple {
+  font-size: clamp(3rem, 8vw, 5rem); /* Ukuran font lebih besar dan responsif */
+  font-weight: 800;
+  color: #a855f7; /* Warna ungu yang menonjol */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.hero-no-code-section .lead {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-gradient-purple {
+  background-image: linear-gradient(to right, #a855f7, #6d28d9);
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-weight: bold;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-gradient-purple:hover {
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3) !important;
+}
+
+/* Penyesuaian ikon di dalam tombol jika Anda menggunakan Font Awesome */
+.btn-gradient-purple i {
+  vertical-align: middle;
+}
 
 /* 1. Navbar Section */
 #landingpage-edukrein .navbar-landing {
