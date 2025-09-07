@@ -117,6 +117,16 @@ body {
   color: var(--ds-secondary, #e67e22);
 }
 
+/* === Perbaikan untuk Menu Navigasi Mobile === */
+@media (max-width: 991.98px) {
+  #landingpage-edukrein .navbar-collapse {
+    background-color: #0f172a; /* Anda bisa ganti dengan warna lain */
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border-radius: var(--ds-border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
 
 /*=============================================
 =            SOCIAL PROOF SECTION             =
