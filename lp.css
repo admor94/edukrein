@@ -474,13 +474,19 @@ body {
 #landingpage-edukrein .testi-nav {
   display: flex;
   align-items: center;
-  gap: 0.75rem;  /* jarak antar tombol */
+  gap: 0.75rem; /* jarak antar tombol */
 }
 
 /* Tombol nav */
 #landingpage-edukrein .testi-nav .swiper-button-prev,
 #landingpage-edukrein .testi-nav .swiper-button-next {
-  position: relative !important; /* override default Swiper */
+  position: static !important;   /* reset default absolute */
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;    /* hilangkan translateY bawaan */
+  
   width: 36px;
   height: 36px;
   border-radius: 50%;
