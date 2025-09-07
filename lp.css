@@ -631,20 +631,10 @@ body {
 /* =========================
    Statistik Section (Scoped)
    ========================= */
-
 #landingpage-edukrein .statistik-section {
   padding: 3.5rem 0;
   background-color: var(--ds-dark, #0f172a);
   color: var(--ds-white, #ffffff);
-}
-
-/* Force row to center its columns so left/right margins seimbang */
-#landingpage-edukrein .statistik-section .row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* center columns horizontally */
-  align-items: stretch;
-  gap: 1.5rem; /* gap antar kolom (alternatif untuk .g-4) */
 }
 
 /* Card/item */
@@ -657,8 +647,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 120px; /* bantu keseragaman tinggi */
-  box-sizing: border-box;
+  min-height: 120px;
   opacity: 0;
   transform: translateY(30px);
 }
@@ -680,16 +669,6 @@ body {
   font-size: 2.25rem;
   color: var(--ds-secondary, #7c3aed);
   margin-bottom: 0.8rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* If using inline SVG icons */
-#landingpage-edukrein .stat-icon .svg-icon,
-#landingpage-edukrein .stat-icon svg {
-  width: 2.4rem;
-  height: 2.4rem;
 }
 
 /* Number */
@@ -699,29 +678,25 @@ body {
   font-weight: 800;
   margin: 0 0 0.45rem 0;
   line-height: 1;
-  letter-spacing: 0.2px;
   color: var(--ds-white, #fff);
 }
 
-/* Text label */
+/* Text */
 #landingpage-edukrein .stat-text {
   margin: 0;
   font-size: 1rem;
   color: rgba(255,255,255,0.85);
   text-align: center;
-  white-space: normal;
-  word-break: break-word;
 }
 
-/* Typing-cursor style: use light cursor so visible on dark bg */
+/* Typing-cursor style */
 #landingpage-edukrein .typing-effect {
   border-right: 2px solid rgba(255,255,255,0.85);
-  padding-right: 2px; /* prevent cursor overlapping last char */
+  padding-right: 2px;
 }
 
-/* Icon bounce animation */
-#landingpage-edukrein .stat-icon i,
-#landingpage-edukrein .stat-icon svg {
+/* Bounce animation */
+#landingpage-edukrein .stat-icon i {
   animation: stat-bounce 900ms ease both;
 }
 @keyframes stat-bounce {
@@ -729,39 +704,3 @@ body {
   60% { transform: scale(1.12); opacity: 1; }
   100% { transform: scale(1); opacity: 1; }
 }
-
-/* ========== Responsive tweaks ========== */
-
-/* Desktop (>= 992px): 4 kolom handled by Bootstrap col-lg-3 */
-/* Tablet (>=768 && <992): 2 kolom handled by col-md-6 */
-/* Small devices (<768px): paksa 2 kolom agar tidak jadi 1 column *4 rows* */
-@media (max-width: 767.98px) {
-  /* force every .col-sm-6 inside statistik row to be 50% width */
-  #landingpage-edukrein .statistik-section .row > .col-sm-6,
-  #landingpage-edukrein .statistik-section .row > [class*="col-"] {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  #landingpage-edukrein .stat-item {
-    padding: 0.85rem;
-    min-height: 110px;
-  }
-
-  #landingpage-edukrein .stat-number {
-    font-size: 1.6rem;
-  }
-
-  #landingpage-edukrein .stat-icon {
-    font-size: 1.9rem;
-  }
-
-  /* make sure text is centered on small screens */
-  #landingpage-edukrein .stat-text { text-align: center; }
-}
-
-/* small visual polish for medium screens */
-@media (min-width: 768px) and (max-width: 991.98px) {
-  #landingpage-edukrein .stat-number { font-size: 1.8rem; }
-}
-
