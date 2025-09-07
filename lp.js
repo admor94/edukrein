@@ -57,38 +57,39 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // === 7. Statistik Animasi ===
-  const statistikSection = document.getElementById('statistik');
+const statistikSection = document.getElementById('statistik');
 
-  function animateCounter(element) {
-    const target = +element.getAttribute('data-target');
-    const duration = 2000;
-    const frameRate = 1000 / 60;
-    const totalFrames = Math.round(duration / frameRate);
-    let currentFrame = 0;
+function animateCounter(element) {
+  const target = +element.getAttribute('data-target');
+  const duration = 2000;
+  const frameRate = 1000 / 60;
+  const totalFrames = Math.round(duration / frameRate);
+  let currentFrame = 0;
 
-    const counter = () => {
-      currentFrame++;
-      const progress = currentFrame / totalFrames;
-      const currentValue = Math.round(target * progress);
-      element.innerText = currentValue.toLocaleString('id-ID');
-      if (currentFrame < totalFrames) {
-        requestAnimationFrame(counter);
-      } else {
-        element.innerText = target.toLocaleString('id-ID');
-      }
-    };
-    requestAnimationFrame(counter);
-  }
+  const counter = () => {
+    currentFrame++;
+    const progress = currentFrame / totalFrames;
+    const currentValue = Math.round(target * progress);
+    element.textContent = currentValue.toLocaleString('id-ID');
+    if (currentFrame < totalFrames) {
+      requestAnimationFrame(counter);
+    } else {
+      element.textContent = target.toLocaleString('id-ID');
+    }
+  };
+  requestAnimationFrame(counter);
+}
 
 function animateTyping(element) {
-  const text = element.textContent.trim(); // ambil teks asli dengan spasi
+  const text = element.textContent.trim(); // ambil teks asli (dengan spasi)
   element.textContent = ''; // kosongkan dulu
   element.classList.add('typing-effect');
   let i = 0;
 
   const typing = setInterval(() => {
     if (i < text.length) {
-      element.textContent += text.charAt(i);
+      // jika spasi, pakai non-breaking space agar tidak collapse
+      element.innerHTML += (text[i] === ' ') ? '&nbsp;' : text[i];
       i++;
     } else {
       clearInterval(typing);
@@ -99,17 +100,28 @@ function animateTyping(element) {
   }, 75);
 }
 
-  if (statistikSection) {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          statistikSection.classList.add('is-visible');
-          statistikSection.querySelectorAll('.stat-number').forEach(num => animateCounter(num));
-          statistikSection.querySelectorAll('.stat-text').forEach(text => animateTyping(text));
-          obs.unobserve(statistikSection);
-        }
-      });
-    }, { threshold: 0.4 });
-    observer.observe(statistikSection);
-  }
+if (statistikSection) {
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        statistikSection.classList.add('is-visible');
+        statistikSection.querySelectorAll('.stat-number').forEach(num => animateCounter(num));
+        statistikSection.querySelectorAll('.stat-text').forEach(text => animateTyping(text));
+        obs.unobserve(statistikSection);
+      }
+    });
+  }, { threshold: 0.4 });
+  observer.observe(statistikSection);
+
+  // fallback kalau observer gagal (browser lama)
+  window.addEventListener('load', () => {
+    statistikSection.querySelectorAll('.stat-number').forEach(num => {
+      if (num.textContent.trim() === '0') {
+        num.textContent = num.getAttribute('data-target');
+      }
+    });
+  });
+}
+
+  
 });
