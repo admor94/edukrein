@@ -47,14 +47,22 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // === 6. Form Kontak ===
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Terima kasih! Pesan Anda akan segera kami proses.');
-      contactForm.reset();
-    });
-  }
+// === Form WhatsApp ===
+const waForm = document.getElementById('waForm');
+if (waForm) {
+  waForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const name = document.getElementById('waName').value.trim();
+    const message = document.getElementById('waMessage').value.trim();
+
+    const phoneNumber = "6281234567890"; // ganti nomor WA tujuan
+    const waUrl = `https://wa.me/${phoneNumber}?text=Halo, saya ${encodeURIComponent(name)}.%0A${encodeURIComponent(message)}`;
+
+    window.open(waUrl, '_blank');
+    waForm.reset();
+  });
+}
 
   // === 7. Statistik Animasi ===
 const statistikSection = document.getElementById('statistik');
