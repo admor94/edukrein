@@ -17,10 +17,10 @@ body {
 
 /* Wadah Utama Landing Page */
 #landingpage-edukrein {
-  padding-top: 80px; /* Tambahkan baris ini - sesuaikan nilainya jika perlu */
+  padding-top: 100px; /* Tambahkan baris ini - sesuaikan nilainya jika perlu */
   font-family: 'Roboto', sans-serif;
   color: var(--ds-body-color, #0f172a);
-  background-color: var(--ds-body-bg, #ffffff);
+  background-color: var(--ds-primary, #04202c);
   line-height: 1.6;
   width: 100%;
   overflow-x: hidden;
