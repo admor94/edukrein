@@ -461,28 +461,43 @@ body {
 }
 
 /* Geser navigasi ke dalam footer */
+/* Pastikan tombol nav ikut footer, bukan absolut */
 #landingpage-edukrein .testi-footer .swiper-button-prev,
 #landingpage-edukrein .testi-footer .swiper-button-next {
-  position: relative;        /* biar ikut flexbox, nggak mutlak */
-  margin-top: 0;           /* hilangkan offset */
-  margin-left: 0.25rem; /* jarak antar tombol */
+  position: relative !important;  /* override swiper default */
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  margin: 0 0 0 .5rem;            /* kasih jarak antar tombol */
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  flex-shrink: 0;                 /* biar ukurannya tetap */
 }
 
-/* Icon di dalam nav */
+/* Atur posisi tombol supaya rata kanan bawah */
+#landingpage-edukrein .testi-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#landingpage-edukrein .testi-footer .testi-user {
+  flex-grow: 1;  /* dorong tombol ke kanan */
+}
+
+/* Icon warna putih jelas */
 #landingpage-edukrein .testi-footer .swiper-button-prev .svg-icon,
 #landingpage-edukrein .testi-footer .swiper-button-next .svg-icon {
   width: 1.2rem;
   height: 1.2rem;
-  fill: #fff;  /* default putih */
-  opacity: 0.85;
+  fill: #fff !important;   /* paksa putih */
+  opacity: 0.9;
 }
 
 /* Hover efek */
@@ -493,10 +508,11 @@ body {
 
 #landingpage-edukrein .testi-footer .swiper-button-prev:hover .svg-icon,
 #landingpage-edukrein .testi-footer .swiper-button-next:hover .svg-icon {
-  fill: #fff;
+  fill: #fff !important;
   opacity: 1;
 }
 
+/* Ikon tidak muncul di tampilan layar kecil */
 @media (max-width: 576px) {
   #landingpage-edukrein .testi-footer .swiper-button-prev,
   #landingpage-edukrein .testi-footer .swiper-button-next {
