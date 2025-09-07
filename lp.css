@@ -628,120 +628,140 @@ body {
 }
 
 
-/* 12. Statistik Section */
+/* =========================
+   Statistik Section (Scoped)
+   ========================= */
+
 #landingpage-edukrein .statistik-section {
-  padding: 3rem 0;
-  background-color: var(--ds-dark);
-  color: var(--ds-white);
+  padding: 3.5rem 0;
+  background-color: var(--ds-dark, #0f172a);
+  color: var(--ds-white, #ffffff);
 }
 
-#landingpage-edukrein .stat-item {
+/* Force row to center its columns so left/right margins seimbang */
+#landingpage-edukrein .statistik-section .row {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* center columns horizontally */
+  align-items: stretch;
+  gap: 1.5rem; /* gap antar kolom (alternatif untuk .g-4) */
+}
+
+/* Card/item */
+#landingpage-edukrein .stat-item {
+  background: transparent;
+  padding: 1.1rem 1.25rem;
+  border-radius: 12px;
+  transition: transform .28s ease, box-shadow .28s ease, opacity .6s ease;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-#landingpage-edukrein .stat-icon {
-  flex-shrink: 0;
-  font-size: 2rem;
-  margin-right: 1rem;
-  color: var(--ds-secondary);
-}
-
-#landingpage-edukrein .stat-icon .svg-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
-#landingpage-edukrein .stat-number {
-  font-family: 'Nunito', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 0;
-  line-height: 1;
-}
-
-#landingpage-edukrein .stat-text {
-  margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
-
-/* === Aturan Responsif === */
-@media (max-width: 991.98px) {
-  #landingpage-edukrein .swiper-testimoni-wrapper .swiper-button-next,
-  #landingpage-edukrein .swiper-testimoni-wrapper .swiper-button-prev {
-    display: none;
-  }
-
-  #landingpage-edukrein .testimoni-section {
-    padding: 3rem 0;
-  }
-}
-
-@media (max-width: 767.98px) {
-  #landingpage-edukrein .stat-item {
-    justify-content: flex-start;
-  }
-}
-
-@media (min-width: 992px) {
-  #landingpage-edukrein .hero-section {
-    padding-top: 10rem;
-    padding-bottom: 6rem;
-  }
-
-  #landingpage-edukrein .hero-section .lead {
-    font-size: 1.2rem;
-  }
-}
-
-.stat-icon .bi {
-  font-size: 24px; /* Anda bisa sesuaikan ukurannya di sini */
-  vertical-align: middle;
-}
-
-/* === Statistik Section === */
-.statistik-section {
-  padding: 80px 0;
-}
-
-.stat-item {
+  min-height: 120px; /* bantu keseragaman tinggi */
+  box-sizing: border-box;
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.6s ease;
 }
 
-.statistik-section.is-visible .stat-item {
+/* Final visible state (triggered oleh JS) */
+#landingpage-edukrein .statistik-section.is-visible .stat-item {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Efek ikon (bounce) */
-.stat-icon i {
-  font-size: 3rem;
-  color: var(--keycolor, #4F46E5);
-  display: inline-block;
-  animation: bounceIn 1s ease;
+/* Hover effect */
+#landingpage-edukrein .stat-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(2,6,23,0.45);
 }
 
-@keyframes bounceIn {
-  0%   { transform: scale(0.5); opacity: 0; }
-  60%  { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); }
+/* Icon */
+#landingpage-edukrein .stat-icon {
+  font-size: 2.25rem;
+  color: var(--ds-secondary, #7c3aed);
+  margin-bottom: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Typing effect untuk teks */
-.typing-effect {
-  border-right: 2px solid #333;
-  white-space: nowrap;
-  overflow: hidden;
+/* If using inline SVG icons */
+#landingpage-edukrein .stat-icon .svg-icon,
+#landingpage-edukrein .stat-icon svg {
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
-@media (max-width: 767px) {
-  #statistik .col-sm-6 {
+/* Number */
+#landingpage-edukrein .stat-number {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 0.45rem 0;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  color: var(--ds-white, #fff);
+}
+
+/* Text label */
+#landingpage-edukrein .stat-text {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Typing-cursor style: use light cursor so visible on dark bg */
+#landingpage-edukrein .typing-effect {
+  border-right: 2px solid rgba(255,255,255,0.85);
+  padding-right: 2px; /* prevent cursor overlapping last char */
+}
+
+/* Icon bounce animation */
+#landingpage-edukrein .stat-icon i,
+#landingpage-edukrein .stat-icon svg {
+  animation: stat-bounce 900ms ease both;
+}
+@keyframes stat-bounce {
+  0% { transform: scale(.6); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ========== Responsive tweaks ========== */
+
+/* Desktop (>= 992px): 4 kolom handled by Bootstrap col-lg-3 */
+/* Tablet (>=768 && <992): 2 kolom handled by col-md-6 */
+/* Small devices (<768px): paksa 2 kolom agar tidak jadi 1 column *4 rows* */
+@media (max-width: 767.98px) {
+  /* force every .col-sm-6 inside statistik row to be 50% width */
+  #landingpage-edukrein .statistik-section .row > .col-sm-6,
+  #landingpage-edukrein .statistik-section .row > [class*="col-"] {
     flex: 0 0 50%;
     max-width: 50%;
   }
+
+  #landingpage-edukrein .stat-item {
+    padding: 0.85rem;
+    min-height: 110px;
+  }
+
+  #landingpage-edukrein .stat-number {
+    font-size: 1.6rem;
+  }
+
+  #landingpage-edukrein .stat-icon {
+    font-size: 1.9rem;
+  }
+
+  /* make sure text is centered on small screens */
+  #landingpage-edukrein .stat-text { text-align: center; }
 }
+
+/* small visual polish for medium screens */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  #landingpage-edukrein .stat-number { font-size: 1.8rem; }
+}
+
