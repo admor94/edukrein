@@ -606,7 +606,7 @@ body {
    Statistik Section (Scoped)
    ========================= */
 #landingpage-edukrein .statistik-section {
-  padding: 3.5rem 0;
+  padding: 2rem 0;
   background-color: var(--ds-dark, #0f172a);
   color: var(--ds-white, #ffffff);
 }
