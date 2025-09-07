@@ -738,3 +738,10 @@ body {
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media (max-width: 767px) {
+  #statistik .col-sm-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
