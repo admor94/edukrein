@@ -14,6 +14,21 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  // 2. Inisialisasi Swiper untuk Logo Slider
+  const swiperLogoSlider = new Swiper('.swiper-logo-slider', {
+    // Konfigurasi slider
+    loop: true, // Membuat slider berputar terus menerus
+    autoplay: {
+      delay: 0, // Tanpa jeda antar slide
+      disableOnInteraction: false,
+    },
+    speed: 4000, // Kecepatan pergerakan marquee
+    slidesPerView: 'auto', // Menampilkan slide sebanyak mungkin
+    spaceBetween: 60, // Jarak antar logo
+    grabCursor: false, // Nonaktifkan kursor grab
+    allowTouchMove: false, // Nonaktifkan interaksi sentuh
+  });
+  
   // === 3. Swiper Produk ===
   new Swiper('.swiper-produk', {
     loop: true,
