@@ -80,21 +80,24 @@ document.addEventListener("DOMContentLoaded", function() {
     requestAnimationFrame(counter);
   }
 
-  function animateTyping(element) {
-    const text = element.innerText;
-    element.innerText = '';
-    element.classList.add('typing-effect');
-    let i = 0;
-    const typing = setInterval(() => {
-      if (i < text.length) {
-        element.innerText += text.charAt(i);
-        i++;
-      } else {
-        clearInterval(typing);
-        setTimeout(() => element.classList.remove('typing-effect'), 1000);
-      }
-    }, 75);
-  }
+function animateTyping(element) {
+  const text = element.textContent.trim(); // ambil teks asli dengan spasi
+  element.textContent = ''; // kosongkan dulu
+  element.classList.add('typing-effect');
+  let i = 0;
+
+  const typing = setInterval(() => {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+    } else {
+      clearInterval(typing);
+      setTimeout(() => {
+        element.classList.remove('typing-effect');
+      }, 1000);
+    }
+  }, 75);
+}
 
   if (statistikSection) {
     const observer = new IntersectionObserver((entries, obs) => {
