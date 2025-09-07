@@ -32,8 +32,8 @@ body {
 
 /* === CSS UNTUK HERO SECTION BARU === *
 .hero-no-code-section {
-  background-color: #10061e; /* Warna latar belakang gelap keunguan */
-  padding: 120px 0;
+  padding-top: 160px;    /* Memberi jarak dari navbar */
+  padding-bottom: 120px; /* Memberi jarak ke section di bawahnya */
   text-align: center;
 }
 
