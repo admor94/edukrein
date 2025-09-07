@@ -459,33 +459,36 @@ body {
   font-size: 0.9rem;
 }
 
-#landingpage-edukrein .swiper-testimoni-wrapper .swiper-button-next,
-#landingpage-edukrein .swiper-testimoni-wrapper .swiper-button-prev {
-  color: var(--ds-white);
-  background-color: transparent;
-  width: 44px;
-  height: 44px;
-  margin-top: -22px;
+/* Geser navigasi ke dalam footer */
+#landingpage-edukrein .testi-footer .swiper-button-prev,
+#landingpage-edukrein .testi-footer .swiper-button-next {
+  position: static;        /* ikut alur flex */
+  margin-top: 0;           /* hilangkan offset */
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.25rem; /* jarak antar tombol */
+  cursor: pointer;
 }
 
-#landingpage-edukrein .swiper-testimoni-wrapper .swiper-button-next:after,
-#landingpage-edukrein .swiper-testimoni-wrapper .swiper-button-prev:after {
-  content: none;
-}
-
-#landingpage-edukrein .swiper-testimoni-wrapper .swiper-button-next .svg-icon,
-#landingpage-edukrein .swiper-testimoni-wrapper .swiper-button-prev .svg-icon {
-  width: 2rem;
-  height: 2rem;
+/* Icon di dalam nav */
+#landingpage-edukrein .testi-footer .swiper-button-prev .svg-icon,
+#landingpage-edukrein .testi-footer .swiper-button-next .svg-icon {
+  width: 1.2rem;
+  height: 1.2rem;
   fill: currentColor;
-  transition: color .2s;
 }
 
-#landingpage-edukrein .swiper-testimoni-wrapper .swiper-button-next:hover,
-#landingpage-edukrein .swiper-testimoni-wrapper .swiper-button-prev:hover {
-  color: var(--ds-secondary);
+/* Hover efek */
+#landingpage-edukrein .testi-footer .swiper-button-prev:hover,
+#landingpage-edukrein .testi-footer .swiper-button-next:hover {
+  background: var(--ds-secondary);
+  color: #fff;
 }
-
 
 /* 10. Testimoni Marquee Section */
 #landingpage-edukrein .testimoni-marquee-section {
