@@ -107,6 +107,46 @@ body {
   color: var(--ds-secondary, #e67e22);
 }
 
+/* === CSS UNTUK SOCIAL PROOF / LOGO SLIDER === */
+
+#social-proof-section {
+  padding: 80px 0;
+  background-color: #1a102a; /* Warna latar yang sedikit lebih terang dari hero */
+}
+
+#social-proof-section .lead {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-logo-slider {
+  width: 100%;
+  height: auto;
+  overflow: hidden; /* Penting untuk slider marquee */
+}
+
+.swiper-logo-slider .swiper-wrapper {
+  align-items: center; /* Membuat logo sejajar vertikal */
+  transition-timing-function: linear !important; /* Efek marquee yang mulus */
+}
+
+.swiper-logo-slider .swiper-slide {
+  width: auto; /* Agar lebar slide menyesuaikan konten (logo) */
+  text-align: center;
+}
+
+.swiper-logo-slider img {
+  max-height: 40px; /* Menyamakan tinggi logo */
+  width: auto;
+  filter: grayscale(100%) opacity(0.6); /* Efek grayscale dan sedikit transparan */
+  transition: filter 0.3s ease-in-out;
+}
+
+.swiper-logo-slider .swiper-slide:hover img {
+  filter: grayscale(0%) opacity(1); /* Kembali ke warna asli saat di-hover */
+}
 
 /* 2. Hero Section */
 #landingpage-edukrein .hero-section {
