@@ -1,7 +1,7 @@
 /*=============================================
 =            IMPORT & PENGATURAN DASAR            =
 =============================================*/
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900|Roboto:400,500');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Roboto:wght@400;500&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
 
 /* Sembunyikan Elemen Bawaan Tema */
@@ -19,18 +19,84 @@ body {
 
 /* Wadah Utama Landing Page */
 #landingpage-edukrein {
-  padding-top: 100px;
-  font-family: 'Roboto', sans-serif;
+  padding-top: 80px; /* Sedikit penyesuaian untuk navbar */
   color: var(--ds-body-color, #0f172a);
   background-color: var(--ds-primary, #04202c);
   line-height: 1.6;
   width: 100%;
   overflow-x: hidden;
+  /* Aturan Font Dasar */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400; /* Default untuk paragraf */
 }
 
-#landingpage-edukrein .section-title {
+
+/*=============================================
+=            SISTEM TIPOGRAFI GLOBAL            =
+=============================================*/
+/* Aturan ini akan menjadi dasar untuk seluruh teks di landing page */
+
+#landingpage-edukrein h1,
+#landingpage-edukrein h2,
+#landingpage-edukrein h3,
+#landingpage-edukrein h4,
+#landingpage-edukrein h5,
+#landingpage-edukrein h6,
+#landingpage-edukrein .section-title,
+#landingpage-edukrein .price-title,
+#landingpage-edukrein .stat-number {
   font-family: 'Nunito', sans-serif;
-  font-weight: 800;
+  line-height: 1.3;
+}
+
+#landingpage-edukrein h1,
+#landingpage-edukrein .display-3 {
+  font-weight: 900 !important;
+  font-size: clamp(2.5rem, 5vw + 1rem, 3.75rem); /* min, preferred, max */
+}
+
+#landingpage-edukrein h2,
+#landingpage-edukrein .section-title {
+  font-weight: 700 !important;
+  font-size: clamp(2rem, 4vw + 1rem, 3rem);
+}
+
+#landingpage-edukrein h3 {
+  font-weight: 400 !important;
+  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2rem);
+}
+
+#landingpage-edukrein h4,
+#landingpage-edukrein .card-title {
+  font-weight: 400 !important;
+  font-size: clamp(1.2rem, 2vw + 0.5rem, 1.5rem);
+}
+
+#landingpage-edukrein p,
+#landingpage-edukrein .lead,
+#landingpage-edukrein .card-text,
+#landingpage-edukrein .accordion-body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+#landingpage-edukrein .lead {
+    font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
+    font-weight: 400;
+}
+
+/* Elemen "Lainnya" */
+#landingpage-edukrein a,
+#landingpage-edukrein .btn,
+#landingpage-edukrein .nav-link,
+#landingpage-edukrein .badge,
+#landingpage-edukrein label,
+#landingpage-edukrein small,
+#landingpage-edukrein .testi-name,
+#landingpage-edukrein .testi-job,
+#landingpage-edukrein .alasan-text h5 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 }
 
 
@@ -44,25 +110,12 @@ body {
   text-align: center;
 }
 
-.hero-no-code-section h1 {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
-}
-
 .hero-highlight-purple {
-  font-size: clamp(3rem, 8vw, 5rem);
-  font-weight: 800;
+  font-size: clamp(3.25rem, 8vw, 5rem);
+  font-weight: 900; /* Menyesuaikan aturan H1 */
   color: #a855f7;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-}
-
-.hero-no-code-section .lead {
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .btn-gradient-purple {
@@ -70,9 +123,9 @@ body {
   color: white;
   border: none;
   padding: 0.8rem 2rem;
-  font-weight: bold;
   border-radius: 50px;
   transition: all 0.3s ease-in-out;
+  font-size: 1rem;
 }
 
 .btn-gradient-purple:hover {
@@ -81,13 +134,9 @@ body {
   box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3) !important;
 }
 
-.btn-gradient-purple i {
-  vertical-align: middle;
-}
-
 
 /*=============================================
-=            1. NAVBAR SECTION                =
+=                 NAVBAR SECTION                =
 =============================================*/
 
 #landingpage-edukrein .navbar-landing {
@@ -109,7 +158,7 @@ body {
 
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
+  font-weight: 500; /* Sesuai aturan "lainnya" */
 }
 
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link:hover,
@@ -117,16 +166,16 @@ body {
   color: var(--ds-secondary, #e67e22);
 }
 
-/* === Perbaikan untuk Menu Navigasi Mobile === */
 @media (max-width: 991.98px) {
   #landingpage-edukrein .navbar-collapse {
-    background-color: #0f172a; /* Anda bisa ganti dengan warna lain */
+    background-color: #0f172a;
     padding: 1rem;
     margin-top: 0.5rem;
-    border-radius: var(--ds-border-radius);
+    border-radius: 0.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
+
 
 /*=============================================
 =            SOCIAL PROOF SECTION             =
@@ -137,27 +186,9 @@ body {
   background-color: #1a102a;
 }
 
-#social-proof-section .lead {
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.swiper-logo-slider {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-}
-
 .swiper-logo-slider .swiper-wrapper {
   align-items: center;
   transition-timing-function: linear !important;
-}
-
-.swiper-logo-slider .swiper-slide {
-  width: auto;
-  text-align: center;
 }
 
 .swiper-logo-slider img {
@@ -173,24 +204,13 @@ body {
 
 
 /*=============================================
-=            2. HERO SECTION                  =
+=                 HERO SECTION                  =
 =============================================*/
 
 #landingpage-edukrein .hero-section {
   background-image: linear-gradient(45deg, var(--ds-primary, #04202c), #1f287d);
   color: var(--ds-white, #ffffff);
-  padding-top: 8rem;
-  padding-bottom: 4rem;
-}
-
-#landingpage-edukrein .hero-section .display-3 {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900;
-}
-
-#landingpage-edukrein .hero-section .lead {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  padding: 6rem 0;
 }
 
 #landingpage-edukrein .hero-section .btn-secondary {
@@ -200,7 +220,6 @@ body {
   --ds-btn-hover-border-color: #d35400;
   color: #000;
   padding: 0.75rem 1.5rem;
-  font-weight: bold;
 }
 
 #landingpage-edukrein .hero-image {
@@ -208,18 +227,13 @@ body {
 }
 
 @keyframes float-animation {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
 
 /*=============================================
-=            3. LAYANAN SECTION               =
+=               LAYANAN SECTION               =
 =============================================*/
 
 #landingpage-edukrein .layanan-section {
@@ -229,15 +243,14 @@ body {
 
 #landingpage-edukrein .service-card {
   border: none;
-  border-radius: var(--ds-border-radius-lg);
+  border-radius: 0.75rem;
   overflow: hidden;
-  position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #landingpage-edukrein .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: var(--ds-box-shadow-lg);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.1);
 }
 
 #landingpage-edukrein .service-card::after {
@@ -263,8 +276,7 @@ body {
 #landingpage-edukrein .service-icon {
   width: 60px;
   height: 60px;
-  background-color: var(--ds-green);
-  border-radius: var(--ds-border-radius);
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -278,39 +290,25 @@ body {
 
 #landingpage-edukrein .service-card .card-title {
   color: var(--ds-white);
-  font-family: 'Nunito', sans-serif;
 }
 
 
 /*=============================================
-=            4. CTA / QUOTE SECTION           =
+=             CTA / QUOTE SECTION             =
 =============================================*/
 
 #landingpage-edukrein .cta-section {
   padding: 5rem 0;
 }
 
-#landingpage-edukrein .cta-section h2 {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 800;
-}
-
 
 /*=============================================
-=            5. PRODUK SECTION                =
+=                PRODUK SECTION               =
 =============================================*/
 
 #landingpage-edukrein .produk-section {
   padding: 5rem 0;
   background-color: var(--ds-tertiary-bg, #f8f9fa);
-}
-
-#landingpage-edukrein .swiper-produk-wrapper {
-  position: relative;
-}
-
-#landingpage-edukrein .swiper-produk .swiper-slide {
-  height: auto;
 }
 
 #landingpage-edukrein .swiper-produk .card {
@@ -320,21 +318,12 @@ body {
 
 #landingpage-edukrein .swiper-produk .card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--ds-box-shadow-lg);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.15);
 }
 
 #landingpage-edukrein .swiper-produk .card-img-top {
   aspect-ratio: 1 / 1;
   object-fit: cover;
-}
-
-#landingpage-edukrein .swiper-produk .badge {
-  font-size: 0.7rem;
-  font-weight: 500;
-}
-
-#landingpage-edukrein .swiper-produk .swiper-pagination-bullet-active {
-  background-color: var(--ds-secondary, #e67e22) !important;
 }
 
 #landingpage-edukrein .swiper-button-next,
@@ -344,14 +333,13 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  box-shadow: var(--ds-box-shadow-sm);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   top: 45%;
 }
 
 #landingpage-edukrein .swiper-button-next:after,
 #landingpage-edukrein .swiper-button-prev:after {
   font-size: 1.2rem;
-  font-weight: bold;
 }
 
 @media (max-width: 767.98px) {
@@ -363,7 +351,7 @@ body {
 
 
 /*=============================================
-=            7. ALASAN SECTION                =
+=                ALASAN SECTION               =
 =============================================*/
 
 #landingpage-edukrein .alasan-section {
@@ -376,52 +364,40 @@ body {
   color: var(--ds-secondary, #e67e22);
 }
 
-#landingpage-edukrein .alasan-section .lead.text-muted {
-  color: rgba(255, 255, 255, 0.7) !important;
-}
-
-#landingpage-edukrein .alasan-list {
-  list-style: none;
-  padding: 0;
-}
-
 #landingpage-edukrein .alasan-list li {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 2rem;
+  gap: 1rem;
   padding-bottom: 2rem;
+  margin-bottom: 2rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #landingpage-edukrein .alasan-list li:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
   border-bottom: none;
+  margin-bottom: 0;
 }
 
 #landingpage-edukrein .alasan-icon {
   font-size: 1.5rem;
   color: var(--ds-secondary, #e67e22);
-  margin-right: 1rem;
-  line-height: 1.2;
 }
 
 #landingpage-edukrein .alasan-text h5 {
-  margin-bottom: 0.5rem;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
   color: var(--ds-white, #ffffff);
+  font-family: 'Nunito';
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 #landingpage-edukrein .alasan-text p {
-  margin-bottom: 0;
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.95rem;
 }
 
 
 /*=============================================
-=            8. HARGA SECTION                 =
+=                 HARGA SECTION               =
 =============================================*/
 
 #landingpage-edukrein .harga-section {
@@ -431,75 +407,41 @@ body {
 
 #landingpage-edukrein .price-card {
   border: none;
-  border-radius: var(--ds-border-radius-xl);
+  border-radius: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
 }
 
 #landingpage-edukrein .price-card:hover {
   transform: translateY(-10px);
-  box-shadow: var(--ds-box-shadow-lg) !important;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important;
 }
 
 #landingpage-edukrein .price-card .card-header {
-  background-color: var(--ds-dark);
   color: var(--ds-white);
-  border-bottom: 4px solid var(--ds-purple);
+  border-bottom-width: 4px;
 }
-
 #landingpage-edukrein .price-card.popular .card-header {
   background-color: var(--ds-green);
   border-bottom-color: var(--ds-yellow);
 }
 
-#landingpage-edukrein .price-card.professional .card-header {
-  background-color: var(--ds-dark);
-  border-bottom-color: var(--ds-red);
-}
-
-#landingpage-edukrein .price-title {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 800;
-}
-
-#landingpage-edukrein .price-subtitle {
-  color: rgba(255, 255, 255, 0.8);
-  min-height: 42px;
-}
-
-#landingpage-edukrein .price-tag {
-  color: var(--ds-heading-color);
-}
-
 #landingpage-edukrein .price-tag .price-original {
   display: block;
-  font-size: 1rem;
-  font-weight: 400;
   text-decoration: line-through;
   opacity: 0.7;
 }
 
 #landingpage-edukrein .price-tag .price {
   font-size: 2.5rem;
-  font-weight: 800;
   font-family: 'Nunito', sans-serif;
+  font-weight: 900; /* Dibuat lebih tebal agar menonjol */
   line-height: 1;
 }
 
 #landingpage-edukrein .price-tag .price-off {
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: .5rem;
-  border-radius: var(--ds-border-radius-sm);
   background-color: var(--ds-red-bg-subtle);
   color: var(--ds-red-text-emphasis);
-  line-height: 1;
-}
-
-#landingpage-edukrein .price-features {
-  padding: 0;
-  margin: 1.5rem 0;
-  text-align: left;
 }
 
 #landingpage-edukrein .price-features li {
@@ -509,21 +451,9 @@ body {
   margin-bottom: 0.75rem;
 }
 
-#landingpage-edukrein .price-features i {
-  font-size: 1.2rem;
-}
-
-#landingpage-edukrein .price-features .fa-check {
-  color: var(--ds-green);
-}
-
-#landingpage-edukrein .price-features .fa-times {
-  color: var(--ds-red);
-}
-
 
 /*=============================================
-=            9. TESTIMONI SECTION             =
+=               TESTIMONI SECTION             =
 =============================================*/
 
 #landingpage-edukrein .testimoni-section {
@@ -534,20 +464,15 @@ body {
 #landingpage-edukrein .testi-card {
   background-color: var(--ds-primary);
   color: var(--ds-white);
-  border-radius: var(--ds-border-radius-xl);
+  border-radius: 1rem;
   padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 #landingpage-edukrein .testi-quote {
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 1.5vw + 0.8rem, 1.25rem);
   font-style: italic;
-  margin-bottom: 2rem;
   position: relative;
   padding-left: 2rem;
-  flex-grow: 1;
 }
 
 #landingpage-edukrein .testi-quote::before {
@@ -558,19 +483,6 @@ body {
   font-size: 2.5rem;
   color: var(--ds-secondary);
   font-family: 'Nunito', sans-serif;
-  opacity: 0.8;
-}
-
-#landingpage-edukrein .testi-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-}
-
-#landingpage-edukrein .testi-user {
-  display: flex;
-  align-items: center;
 }
 
 #landingpage-edukrein .testi-user img {
@@ -578,116 +490,46 @@ body {
   height: 50px;
 }
 
-#landingpage-edukrein .testi-name {
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
 #landingpage-edukrein .testi-job {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
 }
 
-#landingpage-edukrein .testi-nav {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
 #landingpage-edukrein .testi-nav .swiper-button-prev,
 #landingpage-edukrein .testi-nav .swiper-button-next {
   position: static !important;
-  top: auto !important;
-  bottom: auto !important;
-  left: auto !important;
-  right: auto !important;
   transform: none !important;
   width: 36px;
   height: 36px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
 }
 
 #landingpage-edukrein .testi-nav i {
   font-size: 1.2rem;
   color: #fff;
-  opacity: 0.9;
-}
-
-#landingpage-edukrein .testi-nav .swiper-button-prev:hover,
-#landingpage-edukrein .testi-nav .swiper-button-next:hover {
-  background: var(--ds-secondary);
-}
-
-#landingpage-edukrein .testi-nav .swiper-button-prev:hover i,
-#landingpage-edukrein .testi-nav .swiper-button-next:hover i {
-  opacity: 1;
-}
-
-@media (max-width: 576px) {
-  #landingpage-edukrein .testi-footer {
-    justify-content: center;
-  }
-  #landingpage-edukrein .testi-nav {
-    display: none !important;
-  }
 }
 
 
 /*=============================================
-=            10. TESTIMONI MARQUEE            =
+=             TESTIMONI MARQUEE             =
 =============================================*/
 
 #landingpage-edukrein .testimoni-marquee-section {
   padding: 2rem 0;
   background-color: var(--ds-primary, #04202c);
-  border: none;
-}
-
-#landingpage-edukrein .swiper-testimoni-marquee {
-  padding: 1rem 0;
 }
 
 #landingpage-edukrein .testi-card-marquee {
-  display: flex;
-  flex-direction: column;
   padding: 1.5rem;
-  background-color: transparent;
-  border-radius: var(--ds-border-radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  height: 100%;
-}
-
-#landingpage-edukrein .testi-card-marquee .testi-quote {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 1rem;
-  flex-grow: 1;
-}
-
-#landingpage-edukrein .testimoni-marquee-section .container {
-  max-width: 1140px;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-#landingpage-edukrein .testi-card-marquee .testi-name {
-  color: #fff;
-  font-weight: 600;
-}
-
-#landingpage-edukrein .testi-card-marquee .testi-job {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
+  border-radius: 0.75rem;
 }
 
 
 /*=============================================
-=            11. FAQ & KONTAK SECTION         =
+=            FAQ & KONTAK SECTION             =
 =============================================*/
 
 #landingpage-edukrein .faq-kontak-section {
@@ -695,17 +537,10 @@ body {
   background-color: var(--ds-tertiary-bg);
 }
 
-/* FAQ Accordion */
-#landingpage-edukrein .accordion-item {
-  border: 0;
-  border-bottom: var(--ds-border-width) solid var(--ds-border-color);
-}
-
 #landingpage-edukrein .accordion-button {
-  padding: 1.25rem 1rem;
-  font-weight: 700;
   font-family: 'Nunito', sans-serif;
-  font-size: 1.05rem;
+  font-weight: 700;
+  font-size: 1.1rem;
   color: var(--ds-heading-color);
   background-color: transparent;
   box-shadow: none;
@@ -715,75 +550,26 @@ body {
   color: var(--ds-primary);
 }
 
-#landingpage-edukrein .accordion-button::after {
-  content: '+';
-  font-family: monospace;
-  font-size: 1.75rem;
-  font-weight: 500;
-  background-image: none;
-  transform: none;
-  transition: transform 0.2s ease-in-out;
-}
-
-#landingpage-edukrein .accordion-button:not(.collapsed)::after {
-  content: '-';
-  transform: rotate(180deg);
-}
-
-#landingpage-edukrein .accordion-body {
-  padding: 0 1rem 1.25rem;
-  line-height: 1.6;
-}
-
-/* Form Kontak */
-#landingpage-edukrein #waForm .form-control {
-  border-radius: 0.5rem;
-  border: 1px solid var(--ds-border-color);
-}
-
-#landingpage-edukrein #waForm .btn-success {
-  background-color: #25d366;
-  border: none;
-  font-weight: 600;
-}
-
-#landingpage-edukrein #waForm .btn-success:hover {
-  background-color: #1ebe5d;
-}
-
 
 /*=============================================
-=            12. STATISTIK SECTION            =
+=               STATISTIK SECTION             =
 =============================================*/
 
 #landingpage-edukrein .statistik-section {
-  padding: 2rem 0;
+  padding: 4rem 0;
   background-color: var(--ds-dark, #0f172a);
   color: var(--ds-white, #ffffff);
 }
 
 #landingpage-edukrein .stat-item {
-  background: transparent;
-  padding: 1.1rem 1.25rem;
-  border-radius: 12px;
-  transition: transform .28s ease, box-shadow .28s ease, opacity .6s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 120px;
   opacity: 0;
   transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 #landingpage-edukrein .statistik-section.is-visible .stat-item {
   opacity: 1;
   transform: translateY(0);
-}
-
-#landingpage-edukrein .stat-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.45);
 }
 
 #landingpage-edukrein .stat-icon {
@@ -793,41 +579,10 @@ body {
 }
 
 #landingpage-edukrein .stat-number {
-  font-family: 'Nunito', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 0 0 0.45rem 0;
-  line-height: 1;
-  color: var(--ds-white, #fff);
-}
-
-#landingpage-edukrein .stat-text {
-  margin: 0;
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.85);
-  text-align: center;
+  font-weight: 900; /* Dibuat lebih tebal */
+  font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
 #landingpage-edukrein .typing-effect {
   border-right: 2px solid rgba(255, 255, 255, 0.85);
-  padding-right: 2px;
-}
-
-#landingpage-edukrein .stat-icon i {
-  animation: stat-bounce 900ms ease both;
-}
-
-@keyframes stat-bounce {
-  0% {
-    transform: scale(.6);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.12);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
 }
