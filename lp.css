@@ -489,56 +489,42 @@ body {
 
 /* 10. Testimoni Marquee Section */
 #landingpage-edukrein .testimoni-marquee-section {
-  padding: 0;
-  background-color: var(--ds-primary);
-  border-top: 1px solid var(--ds-border-color);
-  border-bottom: 1px solid var(--ds-border-color);
-  overflow: hidden;
+  padding: 4rem 0; /* lebih lega */
+  background-color: var(--ds-dark, #0f172a); /* sama seperti alasan */
+  border: none; /* biar bersih */
 }
 
-#landingpage-edukrein .swiper-testimoni-marquee .swiper-slide {
-  height: auto;
+#landingpage-edukrein .swiper-testimoni-marquee {
+  padding: 1rem 0; /* spasi biar gak mepet */
 }
 
 #landingpage-edukrein .testi-card-marquee {
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-  background-color: var(--ds-body-bg);
+  background-color: transparent; /* Hapus warna kotak, biar ikut bg section */
   border-radius: var(--ds-border-radius-lg);
-  box-shadow: var(--ds-box-shadow);
-  border-left: 4px solid var(--ds-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* tipis aja biar rapih */
   height: 100%;
 }
 
 #landingpage-edukrein .testi-card-marquee .testi-quote {
-  font-size: 0.95rem;
-  color: var(--ds-body-color);
-  padding-left: 0;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85); /* teks lebih kontras di bg gelap */
   margin-bottom: 1rem;
-  font-style: normal;
-  white-space: normal;
   flex-grow: 1;
 }
 
-#landingpage-edukrein .testi-card-marquee .testi-quote::before {
-  display: none;
-}
-
-#landingpage-edukrein .testi-card-marquee .testi-user img {
-  width: 35px;
-  height: 35px;
-}
-
 #landingpage-edukrein .testi-card-marquee .testi-name {
-  color: var(--ds-body-color);
-  font-size: 0.9rem;
+  color: #fff;
+  font-weight: 600;
 }
 
 #landingpage-edukrein .testi-card-marquee .testi-job {
-  font-size: 0.8rem;
-  color: var(--ds-tertiary-color);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
 }
+
 
 /* 6+11. FAQ + Kontak Section */
 #landingpage-edukrein .faq-kontak-section {
