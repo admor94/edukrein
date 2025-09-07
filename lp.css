@@ -515,10 +515,14 @@ body {
   opacity: 1;
 }
 
-/* Hilangkan tombol di layar kecil */
+/* Device kecil: user info rata tengah */
 @media (max-width: 576px) {
+  #landingpage-edukrein .testi-footer {
+    justify-content: center; /* user info ke tengah */
+  }
+
   #landingpage-edukrein .testi-nav {
-    display: none !important;
+    display: none !important; /* tombol nav hilang */
   }
 }
 
