@@ -1,12 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // === 1. Pindahkan konten landing page ===
+
+  /*=============================================
+  =            INISIALISASI & SETUP AWAL          =
+  =============================================*/
+
+  // Memindahkan konten landing page ke awal <body> agar tidak terpengaruh oleh elemen tema lain.
   const landingPage = document.getElementById('landingpage-edukrein');
   if (landingPage) {
     document.body.prepend(landingPage);
     landingPage.style.visibility = 'visible';
   }
 
-  // === 2. Navbar Scroll ===
+  // Memberi efek scroll pada navbar.
   const navbar = document.querySelector('.navbar-landing');
   if (navbar) {
     window.addEventListener('scroll', () => {
@@ -14,137 +19,178 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // 2. Inisialisasi Swiper untuk Logo Slider
-  const swiperLogoSlider = new Swiper('.swiper-logo-slider', {
-    // Konfigurasi slider
-    loop: true, // Membuat slider berputar terus menerus
+  /*=============================================
+  =            INISIALISASI SWIPER SLIDERS      =
+  =============================================*/
+
+  // 1. Swiper untuk Logo Slider (Efek Marquee)
+  new Swiper('.swiper-logo-slider', {
+    loop: true,
     autoplay: {
-      delay: 0, // Tanpa jeda antar slide
+      delay: 0,
       disableOnInteraction: false,
     },
-    speed: 4000, // Kecepatan pergerakan marquee
-    slidesPerView: 'auto', // Menampilkan slide sebanyak mungkin
-    spaceBetween: 60, // Jarak antar logo
-    grabCursor: false, // Nonaktifkan kursor grab
-    allowTouchMove: false, // Nonaktifkan interaksi sentuh
+    speed: 4000,
+    slidesPerView: 'auto',
+    spaceBetween: 60,
+    grabCursor: false,
+    allowTouchMove: false,
   });
-  
-  // === 3. Swiper Produk ===
+
+  // 2. Swiper untuk Produk
   new Swiper('.swiper-produk', {
     loop: true,
     spaceBetween: 20,
-    pagination: { el: '.swiper-pagination', clickable: true },
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
     breakpoints: {
-      0: { slidesPerView: 1, spaceBetween: 20 },
-      640: { slidesPerView: 2, spaceBetween: 20 },
-      1024: { slidesPerView: 4, spaceBetween: 30 }
+      0: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 30
+      }
     }
   });
 
-  // === 4. Swiper Testimoni Main ===
+  // 3. Swiper untuk Testimoni Utama
   new Swiper('.swiper-testimoni-main', {
     loop: true,
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
   });
 
-  // === 5. Swiper Testimoni Marquee ===
+  // 4. Swiper untuk Testimoni Marquee
   new Swiper('.swiper-testimoni-marquee', {
     loop: true,
     spaceBetween: 20,
     centeredSlides: true,
     slidesPerView: 1.5,
-    autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
     breakpoints: {
-      768: { slidesPerView: 2, spaceBetween: 20 },
-      1024: { slidesPerView: 3, spaceBetween: 30 }
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30
+      }
     }
   });
 
-  // === 6. Form Kontak ===
-// === Form WhatsApp ===
-const waForm = document.getElementById('waForm');
-if (waForm) {
-  waForm.addEventListener('submit', e => {
-    e.preventDefault();
+  /*=============================================
+  =            FORM KONTAK WHATSAPP             =
+  =============================================*/
 
-    const name = document.getElementById('waName').value.trim();
-    const message = document.getElementById('waMessage').value.trim();
+  const waForm = document.getElementById('waForm');
+  if (waForm) {
+    waForm.addEventListener('submit', e => {
+      e.preventDefault();
 
-    const phoneNumber = "6281234567890"; // ganti nomor WA tujuan
-    const waUrl = `https://wa.me/${phoneNumber}?text=Halo, saya ${encodeURIComponent(name)}.%0A${encodeURIComponent(message)}`;
+      const name = document.getElementById('waName').value.trim();
+      const message = document.getElementById('waMessage').value.trim();
+      const phoneNumber = "6281234567890"; // Ganti dengan nomor WhatsApp tujuan Anda
 
-    window.open(waUrl, '_blank');
-    waForm.reset();
-  });
-}
+      const waUrl = `https://wa.me/${phoneNumber}?text=Halo, saya ${encodeURIComponent(name)}.%0A${encodeURIComponent(message)}`;
 
-  // === 7. Statistik Animasi ===
-const statistikSection = document.getElementById('statistik');
+      window.open(waUrl, '_blank');
+      waForm.reset();
+    });
+  }
 
-function animateCounter(element) {
-  const target = +element.getAttribute('data-target');
-  const duration = 2000;
-  const frameRate = 1000 / 60;
-  const totalFrames = Math.round(duration / frameRate);
-  let currentFrame = 0;
+  /*=============================================
+  =            ANIMASI SECTION STATISTIK        =
+  =============================================*/
 
-  const counter = () => {
-    currentFrame++;
-    const progress = currentFrame / totalFrames;
-    const currentValue = Math.round(target * progress);
-    element.textContent = currentValue.toLocaleString('id-ID');
-    if (currentFrame < totalFrames) {
+  const statistikSection = document.getElementById('statistik');
+
+  if (statistikSection) {
+    // Fungsi untuk animasi counter angka
+    function animateCounter(element) {
+      const target = +element.getAttribute('data-target');
+      const duration = 2000;
+      const frameRate = 1000 / 60;
+      const totalFrames = Math.round(duration / frameRate);
+      let currentFrame = 0;
+
+      const counter = () => {
+        currentFrame++;
+        const progress = currentFrame / totalFrames;
+        const currentValue = Math.round(target * progress);
+        element.textContent = currentValue.toLocaleString('id-ID');
+
+        if (currentFrame < totalFrames) {
+          requestAnimationFrame(counter);
+        } else {
+          element.textContent = target.toLocaleString('id-ID');
+        }
+      };
       requestAnimationFrame(counter);
-    } else {
-      element.textContent = target.toLocaleString('id-ID');
     }
-  };
-  requestAnimationFrame(counter);
-}
 
-function animateTyping(element) {
-  const text = element.textContent.trim(); // ambil teks asli (dengan spasi)
-  element.textContent = ''; // kosongkan dulu
-  element.classList.add('typing-effect');
-  let i = 0;
+    // Fungsi untuk animasi efek mengetik
+    function animateTyping(element) {
+      const text = element.textContent.trim();
+      element.textContent = '';
+      element.classList.add('typing-effect');
+      let i = 0;
 
-  const typing = setInterval(() => {
-    if (i < text.length) {
-      // jika spasi, pakai non-breaking space agar tidak collapse
-      element.innerHTML += (text[i] === ' ') ? '&nbsp;' : text[i];
-      i++;
-    } else {
-      clearInterval(typing);
-      setTimeout(() => {
-        element.classList.remove('typing-effect');
-      }, 1000);
+      const typing = setInterval(() => {
+        if (i < text.length) {
+          element.innerHTML += (text[i] === ' ') ? '&nbsp;' : text[i];
+          i++;
+        } else {
+          clearInterval(typing);
+          setTimeout(() => {
+            element.classList.remove('typing-effect');
+          }, 1000);
+        }
+      }, 75);
     }
-  }, 75);
-}
 
-if (statistikSection) {
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        statistikSection.classList.add('is-visible');
-        statistikSection.querySelectorAll('.stat-number').forEach(num => animateCounter(num));
-        statistikSection.querySelectorAll('.stat-text').forEach(text => animateTyping(text));
-        obs.unobserve(statistikSection);
-      }
+    // Observer untuk memicu animasi saat section terlihat
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          statistikSection.classList.add('is-visible');
+          statistikSection.querySelectorAll('.stat-number').forEach(num => animateCounter(num));
+          statistikSection.querySelectorAll('.stat-text').forEach(text => animateTyping(text));
+          obs.unobserve(statistikSection); // Hentikan observasi setelah animasi berjalan
+        }
+      });
+    }, {
+      threshold: 0.4
     });
-  }, { threshold: 0.4 });
-  observer.observe(statistikSection);
 
-  // fallback kalau observer gagal (browser lama)
-  window.addEventListener('load', () => {
-    statistikSection.querySelectorAll('.stat-number').forEach(num => {
-      if (num.textContent.trim() === '0') {
-        num.textContent = num.getAttribute('data-target');
-      }
+    observer.observe(statistikSection);
+
+    // Fallback untuk browser lama yang tidak mendukung IntersectionObserver
+    window.addEventListener('load', () => {
+      statistikSection.querySelectorAll('.stat-number').forEach(num => {
+        if (num.textContent.trim() === '0') {
+          num.textContent = num.getAttribute('data-target');
+        }
+      });
     });
-  });
-}
+  }
 
-  
 });
