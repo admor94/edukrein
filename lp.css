@@ -436,6 +436,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 #landingpage-edukrein .testi-user {
@@ -462,8 +463,9 @@ body {
 /* Geser navigasi ke dalam footer */
 #landingpage-edukrein .testi-footer .swiper-button-prev,
 #landingpage-edukrein .testi-footer .swiper-button-next {
-  position: static;        /* ikut alur flex */
+  position: relative;        /* biar ikut flexbox, nggak mutlak */
   margin-top: 0;           /* hilangkan offset */
+  margin-left: 0.25rem; /* jarak antar tombol */
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -471,7 +473,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 0.25rem; /* jarak antar tombol */
   cursor: pointer;
 }
 
@@ -480,14 +481,27 @@ body {
 #landingpage-edukrein .testi-footer .swiper-button-next .svg-icon {
   width: 1.2rem;
   height: 1.2rem;
-  fill: currentColor;
+  fill: #fff;  /* default putih */
+  opacity: 0.85;
 }
 
 /* Hover efek */
 #landingpage-edukrein .testi-footer .swiper-button-prev:hover,
 #landingpage-edukrein .testi-footer .swiper-button-next:hover {
   background: var(--ds-secondary);
-  color: #fff;
+}
+
+#landingpage-edukrein .testi-footer .swiper-button-prev:hover .svg-icon,
+#landingpage-edukrein .testi-footer .swiper-button-next:hover .svg-icon {
+  fill: #fff;
+  opacity: 1;
+}
+
+@media (max-width: 576px) {
+  #landingpage-edukrein .testi-footer .swiper-button-prev,
+  #landingpage-edukrein .testi-footer .swiper-button-next {
+    display: none !important;
+  }
 }
 
 /* 10. Testimoni Marquee Section */
