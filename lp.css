@@ -489,7 +489,7 @@ body {
 
 /* 10. Testimoni Marquee Section */
 #landingpage-edukrein .testimoni-marquee-section {
-  padding: 2.5rem 0;
+  padding: 0;
   background-color: var(--ds-primary);
   border-top: 1px solid var(--ds-border-color);
   border-bottom: 1px solid var(--ds-border-color);
