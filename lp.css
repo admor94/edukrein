@@ -17,6 +17,7 @@ body {
 
 /* Wadah Utama Landing Page */
 #landingpage-edukrein {
+  padding-top: 80px; /* Tambahkan baris ini - sesuaikan nilainya jika perlu */
   font-family: 'Roboto', sans-serif;
   color: var(--ds-body-color, #0f172a);
   background-color: var(--ds-body-bg, #ffffff);
@@ -32,8 +33,8 @@ body {
 
 /* === CSS UNTUK HERO SECTION BARU === *
 .hero-no-code-section {
-  padding-top: 160px;    /* Memberi jarak dari navbar */
-  padding-bottom: 120px; /* Memberi jarak ke section di bawahnya */
+  padding: 120px 0; /* Pastikan nilainya kembali seperti ini */
+  background-color: #10061e; 
   text-align: center;
 }
 
