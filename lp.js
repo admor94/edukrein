@@ -94,5 +94,74 @@ document.addEventListener("DOMContentLoaded", function() {
       contactForm.reset();
     });
   }
-  
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const statistikSection = document.getElementById('statistik');
+
+  // Animasi angka (efek lotere)
+  function animateCounter(element) {
+    const target = +element.getAttribute('data-target');
+    const duration = 2000;
+    const frameRate = 1000 / 60;
+    const totalFrames = Math.round(duration / frameRate);
+    let currentFrame = 0;
+
+    const counter = () => {
+      currentFrame++;
+      const progress = currentFrame / totalFrames;
+      const currentValue = Math.round(target * progress);
+
+      element.innerText = currentValue.toLocaleString('id-ID');
+
+      if (currentFrame < totalFrames) {
+        requestAnimationFrame(counter);
+      } else {
+        element.innerText = target.toLocaleString('id-ID');
+      }
+    };
+    requestAnimationFrame(counter);
+  }
+
+  // Animasi teks (efek mengetik)
+  function animateTyping(element) {
+    const text = element.innerText;
+    element.innerText = '';
+    element.classList.add('typing-effect');
+    let i = 0;
+
+    const typing = setInterval(() => {
+      if (i < text.length) {
+        element.innerText += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(typing);
+        setTimeout(() => {
+          element.classList.remove('typing-effect');
+        }, 1000);
+      }
+    }, 75);
+  }
+
+  // Observer untuk memicu animasi saat muncul di layar
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        statistikSection.classList.add('is-visible');
+
+        const statNumbers = statistikSection.querySelectorAll('.stat-number');
+        const statTexts = statistikSection.querySelectorAll('.stat-text');
+
+        statNumbers.forEach(num => animateCounter(num));
+        statTexts.forEach(text => animateTyping(text));
+
+        obs.unobserve(statistikSection);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  if (statistikSection) {
+    observer.observe(statistikSection);
+  }
 });
