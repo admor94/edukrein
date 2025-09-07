@@ -1,7 +1,10 @@
+/*=============================================
+=            IMPORT & PENGATURAN DASAR            =
+=============================================*/
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900|Roboto:400,500');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
 
-/* === Sembunyikan Elemen Bawaan Tema === */
+/* Sembunyikan Elemen Bawaan Tema */
 #header,
 #navfloat,
 #chat,
@@ -14,10 +17,9 @@ body {
   overflow-x: hidden;
 }
 
-
 /* Wadah Utama Landing Page */
 #landingpage-edukrein {
-  padding-top: 100px; /* Tambahkan baris ini - sesuaikan nilainya jika perlu */
+  padding-top: 100px;
   font-family: 'Roboto', sans-serif;
   color: var(--ds-body-color, #0f172a);
   background-color: var(--ds-primary, #04202c);
@@ -31,23 +33,27 @@ body {
   font-weight: 800;
 }
 
-/* === CSS UNTUK HERO SECTION BARU === *
+
+/*=============================================
+=            HERO NO-CODE SECTION             =
+=============================================*/
+
 .hero-no-code-section {
-  padding: 120px 0; /* Pastikan nilainya kembali seperti ini */
-  background-color: #10061e; 
+  padding: 120px 0;
+  background-color: #10061e;
   text-align: center;
 }
 
 .hero-no-code-section h1 {
   font-family: 'Nunito', sans-serif;
   font-weight: 900;
-  font-size: clamp(2.5rem, 6vw, 3.5rem); /* Ukuran font responsif */
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
 }
 
 .hero-highlight-purple {
-  font-size: clamp(3rem, 8vw, 5rem); /* Ukuran font lebih besar dan responsif */
+  font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 800;
-  color: #a855f7; /* Warna ungu yang menonjol */
+  color: #a855f7;
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
@@ -75,12 +81,15 @@ body {
   box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3) !important;
 }
 
-/* Penyesuaian ikon di dalam tombol jika Anda menggunakan Font Awesome */
 .btn-gradient-purple i {
   vertical-align: middle;
 }
 
-/* 1. Navbar Section */
+
+/*=============================================
+=            1. NAVBAR SECTION                =
+=============================================*/
+
 #landingpage-edukrein .navbar-landing {
   padding: 1rem 0;
   transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
@@ -108,11 +117,14 @@ body {
   color: var(--ds-secondary, #e67e22);
 }
 
-/* === CSS UNTUK SOCIAL PROOF / LOGO SLIDER === */
+
+/*=============================================
+=            SOCIAL PROOF SECTION             =
+=============================================*/
 
 #social-proof-section {
   padding: 80px 0;
-  background-color: #1a102a; /* Warna latar yang sedikit lebih terang dari hero */
+  background-color: #1a102a;
 }
 
 #social-proof-section .lead {
@@ -125,31 +137,35 @@ body {
 .swiper-logo-slider {
   width: 100%;
   height: auto;
-  overflow: hidden; /* Penting untuk slider marquee */
+  overflow: hidden;
 }
 
 .swiper-logo-slider .swiper-wrapper {
-  align-items: center; /* Membuat logo sejajar vertikal */
-  transition-timing-function: linear !important; /* Efek marquee yang mulus */
+  align-items: center;
+  transition-timing-function: linear !important;
 }
 
 .swiper-logo-slider .swiper-slide {
-  width: auto; /* Agar lebar slide menyesuaikan konten (logo) */
+  width: auto;
   text-align: center;
 }
 
 .swiper-logo-slider img {
-  max-height: 40px; /* Menyamakan tinggi logo */
+  max-height: 40px;
   width: auto;
-  filter: grayscale(100%) opacity(0.6); /* Efek grayscale dan sedikit transparan */
+  filter: grayscale(100%) opacity(0.6);
   transition: filter 0.3s ease-in-out;
 }
 
 .swiper-logo-slider .swiper-slide:hover img {
-  filter: grayscale(0%) opacity(1); /* Kembali ke warna asli saat di-hover */
+  filter: grayscale(0%) opacity(1);
 }
 
-/* 2. Hero Section */
+
+/*=============================================
+=            2. HERO SECTION                  =
+=============================================*/
+
 #landingpage-edukrein .hero-section {
   background-image: linear-gradient(45deg, var(--ds-primary, #04202c), #1f287d);
   color: var(--ds-white, #ffffff);
@@ -182,12 +198,20 @@ body {
 }
 
 @keyframes float-animation {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 
-/* 3. Layanan Section */
+/*=============================================
+=            3. LAYANAN SECTION               =
+=============================================*/
+
 #landingpage-edukrein .layanan-section {
   padding: 5rem 0;
   background-color: var(--ds-tertiary-bg, #f8f9fa);
@@ -248,7 +272,10 @@ body {
 }
 
 
-/* 4. CTA / Quote Section */
+/*=============================================
+=            4. CTA / QUOTE SECTION           =
+=============================================*/
+
 #landingpage-edukrein .cta-section {
   padding: 5rem 0;
 }
@@ -259,7 +286,10 @@ body {
 }
 
 
-/* 5. Produk Section (Slider) */
+/*=============================================
+=            5. PRODUK SECTION                =
+=============================================*/
+
 #landingpage-edukrein .produk-section {
   padding: 5rem 0;
   background-color: var(--ds-tertiary-bg, #f8f9fa);
@@ -322,7 +352,10 @@ body {
 }
 
 
-/* 7. Alasan Memilih Kami Section */
+/*=============================================
+=            7. ALASAN SECTION                =
+=============================================*/
+
 #landingpage-edukrein .alasan-section {
   padding: 5rem 0;
   background-color: var(--ds-primary, #04202c);
@@ -377,7 +410,10 @@ body {
 }
 
 
-/* 8. Harga Section */
+/*=============================================
+=            8. HARGA SECTION                 =
+=============================================*/
+
 #landingpage-edukrein .harga-section {
   padding: 5rem 0;
   background-color: var(--ds-tertiary-bg, #f8f9fa);
@@ -476,7 +512,10 @@ body {
 }
 
 
-/* 9. Testimoni Section */
+/*=============================================
+=            9. TESTIMONI SECTION             =
+=============================================*/
+
 #landingpage-edukrein .testimoni-section {
   padding: 5rem 0;
   overflow: hidden;
@@ -512,7 +551,6 @@ body {
   opacity: 0.8;
 }
 
-/* Footer: user info + nav */
 #landingpage-edukrein .testi-footer {
   display: flex;
   align-items: center;
@@ -540,42 +578,20 @@ body {
   font-size: 0.9rem;
 }
 
-/* Footer testimoni: user kiri, nav kanan */
-#landingpage-edukrein .testi-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1rem;
-}
-
-/* User info */
-#landingpage-edukrein .testi-user {
-  display: flex;
-  align-items: center;
-}
-
-#landingpage-edukrein .testi-user img {
-  width: 50px;
-  height: 50px;
-}
-
-/* Navigasi */
 #landingpage-edukrein .testi-nav {
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* jarak antar tombol */
+  gap: 0.75rem;
 }
 
-/* Tombol nav */
 #landingpage-edukrein .testi-nav .swiper-button-prev,
 #landingpage-edukrein .testi-nav .swiper-button-next {
-  position: static !important;   /* reset default absolute */
+  position: static !important;
   top: auto !important;
   bottom: auto !important;
   left: auto !important;
   right: auto !important;
-  transform: none !important;    /* hilangkan translateY bawaan */
-  
+  transform: none !important;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -586,14 +602,12 @@ body {
   cursor: pointer;
 }
 
-/* Ikon */
 #landingpage-edukrein .testi-nav i {
   font-size: 1.2rem;
   color: #fff;
   opacity: 0.9;
 }
 
-/* Hover */
 #landingpage-edukrein .testi-nav .swiper-button-prev:hover,
 #landingpage-edukrein .testi-nav .swiper-button-next:hover {
   background: var(--ds-secondary);
@@ -604,48 +618,49 @@ body {
   opacity: 1;
 }
 
-/* Device kecil: user info rata tengah */
 @media (max-width: 576px) {
   #landingpage-edukrein .testi-footer {
-    justify-content: center; /* user info ke tengah */
+    justify-content: center;
   }
-
   #landingpage-edukrein .testi-nav {
-    display: none !important; /* tombol nav hilang */
+    display: none !important;
   }
 }
 
-/* 10. Testimoni Marquee Section */
+
+/*=============================================
+=            10. TESTIMONI MARQUEE            =
+=============================================*/
+
 #landingpage-edukrein .testimoni-marquee-section {
-  padding: 2rem 0; /* lebih lega */
-  background-color: var(--ds-primary, #04202c); /* sama seperti alasan */
-  border: none; /* biar bersih */
+  padding: 2rem 0;
+  background-color: var(--ds-primary, #04202c);
+  border: none;
 }
 
 #landingpage-edukrein .swiper-testimoni-marquee {
-  padding: 1rem 0; /* spasi biar gak mepet */
+  padding: 1rem 0;
 }
 
 #landingpage-edukrein .testi-card-marquee {
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-  background-color: transparent; /* Hapus warna kotak, biar ikut bg section */
+  background-color: transparent;
   border-radius: var(--ds-border-radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* tipis aja biar rapih */
+  border: 1px solid rgba(255, 255, 255, 0.1);
   height: 100%;
 }
 
 #landingpage-edukrein .testi-card-marquee .testi-quote {
   font-size: 1rem;
-  color: rgba(255,255,255,0.85); /* teks lebih kontras di bg gelap */
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 1rem;
   flex-grow: 1;
 }
 
-/* Container tetap untuk konten biar sejajar */
 #landingpage-edukrein .testimoni-marquee-section .container {
-  max-width: 1140px; /* atau biarkan default Bootstrap */
+  max-width: 1140px;
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -657,11 +672,14 @@ body {
 
 #landingpage-edukrein .testi-card-marquee .testi-job {
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 
-/* 6+11. FAQ + Kontak Section */
+/*=============================================
+=            11. FAQ & KONTAK SECTION         =
+=============================================*/
+
 #landingpage-edukrein .faq-kontak-section {
   padding: 5rem 0;
   background-color: var(--ds-tertiary-bg);
@@ -707,7 +725,7 @@ body {
   line-height: 1.6;
 }
 
-/* Form */
+/* Form Kontak */
 #landingpage-edukrein #waForm .form-control {
   border-radius: 0.5rem;
   border: 1px solid var(--ds-border-color);
@@ -723,16 +741,17 @@ body {
   background-color: #1ebe5d;
 }
 
-/* =========================
-   Statistik Section (Scoped)
-   ========================= */
+
+/*=============================================
+=            12. STATISTIK SECTION            =
+=============================================*/
+
 #landingpage-edukrein .statistik-section {
   padding: 2rem 0;
   background-color: var(--ds-dark, #0f172a);
   color: var(--ds-white, #ffffff);
 }
 
-/* Card/item */
 #landingpage-edukrein .stat-item {
   background: transparent;
   padding: 1.1rem 1.25rem;
@@ -747,26 +766,22 @@ body {
   transform: translateY(30px);
 }
 
-/* Final visible state (triggered oleh JS) */
 #landingpage-edukrein .statistik-section.is-visible .stat-item {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Hover effect */
 #landingpage-edukrein .stat-item:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(2,6,23,0.45);
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.45);
 }
 
-/* Icon */
 #landingpage-edukrein .stat-icon {
   font-size: 2.25rem;
   color: var(--ds-secondary, #7c3aed);
   margin-bottom: 0.8rem;
 }
 
-/* Number */
 #landingpage-edukrein .stat-number {
   font-family: 'Nunito', sans-serif;
   font-size: 2rem;
@@ -776,26 +791,33 @@ body {
   color: var(--ds-white, #fff);
 }
 
-/* Text */
 #landingpage-edukrein .stat-text {
   margin: 0;
   font-size: 1rem;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.85);
   text-align: center;
 }
 
-/* Typing-cursor style */
 #landingpage-edukrein .typing-effect {
-  border-right: 2px solid rgba(255,255,255,0.85);
+  border-right: 2px solid rgba(255, 255, 255, 0.85);
   padding-right: 2px;
 }
 
-/* Bounce animation */
 #landingpage-edukrein .stat-icon i {
   animation: stat-bounce 900ms ease both;
 }
+
 @keyframes stat-bounce {
-  0% { transform: scale(.6); opacity: 0; }
-  60% { transform: scale(1.12); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
