@@ -233,52 +233,6 @@ body {
 }
 
 
-/* 6. FAQ Section */
-#landingpage-edukrein .faq-section {
-  padding: 5rem 0;
-}
-
-#landingpage-edukrein .accordion-item {
-  border: 0;
-  border-bottom: var(--ds-border-width) solid var(--ds-border-color);
-}
-
-#landingpage-edukrein .accordion-button {
-  padding: 1.5rem 1rem;
-  font-weight: 700;
-  font-family: 'Nunito', sans-serif;
-  font-size: 1.1rem;
-  color: var(--ds-heading-color);
-  background-color: transparent;
-  box-shadow: none;
-}
-
-#landingpage-edukrein .accordion-button:not(.collapsed) {
-  color: var(--ds-primary);
-  background-color: transparent;
-}
-
-#landingpage-edukrein .accordion-button::after {
-  content: '+';
-  font-family: monospace;
-  font-size: 2rem;
-  font-weight: 500;
-  background-image: none;
-  transform: none;
-  transition: transform 0.2s ease-in-out;
-}
-
-#landingpage-edukrein .accordion-button:not(.collapsed)::after {
-  content: '-';
-  transform: rotate(180deg);
-}
-
-#landingpage-edukrein .accordion-body {
-  padding: 0 1rem 1.5rem;
-  line-height: 1.7;
-}
-
-
 /* 7. Alasan Memilih Kami Section */
 #landingpage-edukrein .alasan-section {
   padding: 5rem 0;
@@ -586,47 +540,67 @@ body {
   color: var(--ds-tertiary-color);
 }
 
-
-/* 11. Kontak Section */
-#landingpage-edukrein .kontak-section {
+/* 6+11. FAQ + Kontak Section */
+#landingpage-edukrein .faq-kontak-section {
   padding: 5rem 0;
   background-color: var(--ds-tertiary-bg);
 }
 
-#landingpage-edukrein .contact-info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
-  margin-bottom: 1.5rem;
+/* FAQ Accordion */
+#landingpage-edukrein .accordion-item {
+  border: 0;
+  border-bottom: var(--ds-border-width) solid var(--ds-border-color);
 }
 
-#landingpage-edukrein .contact-info-item .icon-wrapper {
-  flex-shrink: 0;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: var(--ds-primary-bg-subtle);
-  color: var(--ds-primary-text-emphasis);
+#landingpage-edukrein .accordion-button {
+  padding: 1.25rem 1rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.05rem;
+  color: var(--ds-heading-color);
+  background-color: transparent;
+  box-shadow: none;
 }
 
-#landingpage-edukrein .contact-info-item .svg-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-#landingpage-edukrein .social-icon {
-  color: var(--ds-secondary-color);
-  transition: color .2s, transform .2s;
-}
-
-#landingpage-edukrein .social-icon:hover {
+#landingpage-edukrein .accordion-button:not(.collapsed) {
   color: var(--ds-primary);
-  transform: translateY(-3px);
 }
 
+#landingpage-edukrein .accordion-button::after {
+  content: '+';
+  font-family: monospace;
+  font-size: 1.75rem;
+  font-weight: 500;
+  background-image: none;
+  transform: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+#landingpage-edukrein .accordion-button:not(.collapsed)::after {
+  content: '-';
+  transform: rotate(180deg);
+}
+
+#landingpage-edukrein .accordion-body {
+  padding: 0 1rem 1.25rem;
+  line-height: 1.6;
+}
+
+/* Form */
+#landingpage-edukrein #waForm .form-control {
+  border-radius: 0.5rem;
+  border: 1px solid var(--ds-border-color);
+}
+
+#landingpage-edukrein #waForm .btn-success {
+  background-color: #25d366;
+  border: none;
+  font-weight: 600;
+}
+
+#landingpage-edukrein #waForm .btn-success:hover {
+  background-color: #1ebe5d;
+}
 
 /* =========================
    Statistik Section (Scoped)
