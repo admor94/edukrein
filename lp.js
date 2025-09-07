@@ -193,4 +193,27 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+/*=============================================
+=      PENUTUP NAVBAR SAAT KLIK DI LUAR       =
+=============================================*/
+
+const landingNav = document.getElementById('landingNav');
+const navToggler = document.querySelector('.navbar-toggler');
+
+document.addEventListener('click', function (event) {
+  // Cek apakah menu sedang terbuka
+  const isNavOpen = landingNav.classList.contains('show');
+  
+  // Target elemen yang di-klik
+  const targetElement = event.target;
+
+  // Cek apakah klik terjadi di luar area navbar dan bukan pada tombol toggler
+  const isClickOutside = !landingNav.contains(targetElement) && !navToggler.contains(targetElement);
+
+  if (isNavOpen && isClickOutside) {
+    // Jika semua kondisi terpenuhi, tutup navbar
+    navToggler.click();
+  }
+});
+  
 });
