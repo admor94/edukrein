@@ -216,19 +216,26 @@ document.addEventListener('click', function (event) {
   }
 });
 
-  /* ============================================= */
-/* BARU: Perbaikan Tombol & Link FAQ di Navbar     */
-/* ============================================= */
+/* =================================================================== */
+/* REVISI: Perbaikan Tombol & Link FAQ di Navbar (Versi Lebih Kuat) */
+/* =================================================================== */
 window.addEventListener('load', function() {
-  try {
-    // Cari link 'FAQ' secara spesifik di dalam navbar landing page
-    const faqLink = document.querySelector('#landingpage-edukrein .navbar-nav a[href="#faq-kontak"]');
+  let attempts = 0;
+  const maxAttempts = 50; // Mencoba selama 5 detik (50 x 100ms)
 
+  // Terus jalankan fungsi ini setiap 100ms
+  const fixTheFaqLink = setInterval(function() {
+    attempts++;
+
+    // Cari link FAQ yang SUDAH diubah menjadi tombol oleh skrip tema
+    const faqLink = document.querySelector('#landingpage-edukrein .navbar-nav a.btn[href="#faq-kontak"]');
+
+    // Jika linknya sudah ditemukan...
     if (faqLink) {
-      // 1. Perbaiki Masalah Perilaku (Open New Tab)
+      // 1. Hapus atribut 'target' agar tidak membuka tab baru
       faqLink.removeAttribute('target');
 
-      // 2. Perbaiki Masalah Tampilan (Tombol)
+      // 2. Hapus kelas 'btn' yang membuatnya jadi tombol
       faqLink.classList.remove('btn');
       faqLink.removeAttribute('role');
 
@@ -237,11 +244,16 @@ window.addEventListener('load', function() {
       if (svgIcon) {
         svgIcon.remove();
       }
+      
+      // 4. HENTIKAN PENCARIAN KARENA SUDAH BERHASIL
+      clearInterval(fixTheFaqLink);
     }
-  } catch (e) {
-    console.error('Gagal memodifikasi link FAQ:', e);
-  }
-});
 
+    // Berhenti mencoba setelah 5 detik untuk mencegah loop tak terbatas
+    if (attempts >= maxAttempts) {
+      clearInterval(fixTheFaqLink);
+    }
+  }, 100); // Interval pengecekan
+});
   
 });
