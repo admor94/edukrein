@@ -171,25 +171,53 @@ body {
 }
 
 /* ============================================= */
-/* BARU: Override untuk Tombol FAQ Bawaan Template */
+/* REVISI: Override untuk Tombol FAQ Bawaan Template */
 /* ============================================= */
+
+/* Menargetkan link FAQ secara spesifik menggunakan atribut href-nya */
 #landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"] {
- background: transparent !important;
+  /* Reset semua gaya tombol */
+  background: transparent !important;
   border: none !important;
   border-radius: 0 !important;
-  padding: 0 !important;
+  padding: 0 0 0 1rem !important; /* Hapus padding vertikal & padding kiri, sesuaikan jika perlu */
   margin: 0 !important;
+  
+  /* Kembalikan warna teks seperti link lain */
   color: rgba(255, 255, 255, 0.8) !important;
+  
+  /* Pastikan tidak ada dekorasi teks lain yang tersisa */
+  text-decoration: none !important;
+  display: flex !important; /* Menggunakan flex untuk mengontrol ikon jika muncul */
+  align-items: center !important;
+  gap: 0.25rem !important; /* Memberikan sedikit jarak jika ada teks atau elemen lain */
 }
 
+/* Mengembalikan gaya hover-nya juga */
 #landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"]:hover {
   color: var(--ds-secondary, #e67e22) !important;
   background: transparent !important; /* Pastikan tidak ada background saat di-hover */
 }
 
-#landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"] svg {
-  display: none !important;
+/* Menyembunyikan ikon SVG yang ditambahkan oleh skrip dengan lebih kuat */
+#landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"] svg.svg-icon {
+  display: none !important; /* Targetkan class svg-icon secara spesifik */
+  width: 0 !important; /* Pastikan tidak memakan ruang */
+  height: 0 !important; /* Pastikan tidak memakan ruang */
+  visibility: hidden !important; /* Tambahan untuk memastikan tersembunyi */
 }
+
+/* Penyesuaian untuk nav-item terakhir agar tidak ada margin ekstra */
+#landingpage-edukrein .navbar-nav .nav-item:last-child {
+  margin-left: 0 !important; /* Hapus margin kiri bawaan jika ada */
+  padding-left: 0 !important; /* Hapus padding kiri bawaan jika ada */
+}
+
+/* Pastikan semua nav-item memiliki jarak yang konsisten antar menu */
+#landingpage-edukrein .navbar-nav .nav-item {
+  margin-left: 1rem; /* Sesuaikan jarak antar menu jika diperlukan */
+}
+
 
 /*=============================================
 =            SOCIAL PROOF SECTION             =
