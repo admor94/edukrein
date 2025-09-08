@@ -173,27 +173,9 @@ body {
 /* ============================================= */
 /* BARU: Override untuk Tombol FAQ Bawaan Template */
 /* ============================================= */
-
-/* Menargetkan link FAQ secara spesifik menggunakan atribut href-nya */
 #landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"] {
-  /* Reset semua gaya tombol */
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  
-  /* Kembalikan warna teks seperti link lain */
-  color: rgba(255, 255, 255, 0.8) !important;
+  /* ...properti reset... */
 }
-
-/* Mengembalikan gaya hover-nya juga */
-#landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"]:hover {
-  color: var(--ds-secondary, #e67e22) !important;
-  background: transparent !important; /* Pastikan tidak ada background saat di-hover */
-}
-
-/* Menyembunyikan ikon SVG yang ditambahkan oleh skrip */
 #landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"] svg {
   display: none !important;
 }
