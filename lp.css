@@ -164,6 +164,12 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
+
+/* BARU: Memastikan semua item menu sejajar vertikal */
+#landingpage-edukrein .navbar-nav {
+  align-items: center;
+}
+
 /* BARU: Aturan untuk menyejajarkan vertikal menu & logo */
 #landingpage-edukrein .navbar-landing > .container {
   display: flex;
