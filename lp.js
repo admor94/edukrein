@@ -215,5 +215,33 @@ document.addEventListener('click', function (event) {
     navToggler.click();
   }
 });
+
+  /* ============================================= */
+/* BARU: Perbaikan Tombol & Link FAQ di Navbar     */
+/* ============================================= */
+window.addEventListener('load', function() {
+  try {
+    // Cari link 'FAQ' secara spesifik di dalam navbar landing page
+    const faqLink = document.querySelector('#landingpage-edukrein .navbar-nav a[href="#faq-kontak"]');
+
+    if (faqLink) {
+      // 1. Perbaiki Masalah Perilaku (Open New Tab)
+      faqLink.removeAttribute('target');
+
+      // 2. Perbaiki Masalah Tampilan (Tombol)
+      faqLink.classList.remove('btn');
+      faqLink.removeAttribute('role');
+
+      // 3. Hapus ikon SVG di dalamnya
+      const svgIcon = faqLink.querySelector('svg');
+      if (svgIcon) {
+        svgIcon.remove();
+      }
+    }
+  } catch (e) {
+    console.error('Gagal memodifikasi link FAQ:', e);
+  }
+});
+
   
 });
