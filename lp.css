@@ -247,6 +247,93 @@ body {
 }
 
 
+/* ============================================= */
+/* STYLING SECTION PROFESI             */
+/* ============================================= */
+#profesi-section {
+  padding: 6rem 0;
+  background-color: var(--ek-bg-soft, #F9FAFB); /* Menggunakan warna abu terang */
+}
+
+#profesi-section .highlight-accent {
+  color: var(--ek-accent, #F2994A); /* Warna oranye untuk highlight */
+  font-weight: 700;
+}
+
+.profession-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Jarak antar item profesi */
+}
+
+.profession-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--ek-white, #FFFFFF);
+  padding: 1.5rem;
+  border-radius: var(--ek-border-radius-lg, 0.75rem);
+  border: 1px solid var(--ek-border-color, #E0E0E0);
+  box-shadow: var(--ek-box-shadow, 0 4px 12px rgba(0, 0, 0, 0.08));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profession-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--ek-box-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
+}
+
+.profession-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Membuat ikon menjadi bulat */
+  background-color: rgba(47, 128, 237, 0.1); /* Latar belakang biru transparan */
+  color: var(--ek-primary, #2F80ED); /* Warna ikon biru */
+}
+
+.profession-icon i {
+  font-size: 1.75rem; /* Ukuran ikon */
+  line-height: 1;
+}
+
+.profession-text h5 {
+  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
+  font-weight: 700 !important;
+  color: var(--ek-text-main, #333333);
+  margin-bottom: 0.5rem;
+}
+
+.profession-text ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  color: var(--ek-text-body, #4F4F4F);
+}
+
+.profession-text ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.profession-text ul li:not(:last-child) {
+  margin-bottom: 0.25rem;
+}
+
+/* Menambahkan ikon centang kecil sebelum list */
+.profession-text ul li::before {
+  content: '\2713'; /* Kode untuk ikon centang */
+  position: absolute;
+  left: 0;
+  top: 1px;
+  color: var(--ek-primary, #2F80ED);
+  font-weight: 700;
+}
+
 /*=============================================
 =                 HERO SECTION                  =
 =============================================*/
