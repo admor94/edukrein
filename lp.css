@@ -1,127 +1,132 @@
 /*=============================================
-=            SISTEM DESAIN BARU (TEMA TERANG)             =
-=============================================*/
-:root {
-  /* 🎨 Palet Warna Profesional */
-  --ek-primary: #2F80ED;      /* Biru Elektrik (Untuk Teks Penting, Ikon) */
-  --ek-accent: #F2994A;       /* Oranye Terang (Untuk Tombol CTA & Highlight) */
-  --ek-bg-soft: #F9FAFB;      /* Abu Sangat Terang (Latar Belakang Lembut) */
-  --ek-white: #FFFFFF;        /* Putih (Latar Utama & Kartu) */
-  
-  /* 🎨 Warna Teks */
-  --ek-text-main: #333333;   /* Hitam Abu (Judul Utama) */
-  --ek-text-body: #4F4F4F;    /* Abu Gelap (Paragraf & Teks Sekunder) */
-
-  /* 📐 Properti UI */
-  --ek-border-color: #E0E0E0; /* Warna Border yang Halus */
-  --ek-border-radius: 0.75rem; /* Radius Sudut yang Konsisten */
-  --ek-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Bayangan yang Lembut */
-  --ek-box-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-  
-  /* ✒️ Tipografi */
-  --ek-font-nunito: 'Nunito', sans-serif;
-  --ek-font-roboto: 'Roboto', sans-serif;
-}
-
-
-/*=============================================
 =            IMPORT & PENGATURAN DASAR            =
 =============================================*/
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Roboto:wght@400;500&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 
 /* Sembunyikan Elemen Bawaan Tema */
-#header, #navfloat, #chat, #footer, #main {
+#header,
+#navfloat,
+#chat,
+#footer,
+#main {
   display: none !important;
 }
 
 body {
   overflow-x: hidden;
-  background-color: var(--ek-white); /* Latar diubah menjadi putih */
 }
 
+/* Wadah Utama Landing Page */
 #landingpage-edukrein {
   padding-top: 80px;
-  font-family: var(--ek-font-roboto);
-  font-weight: 400;
-  color: var(--ek-text-body); /* Warna teks default diubah */
-  background-color: var(--ek-white); /* Latar utama diubah */
+  color: var(--ds-body-color, #0f172a);
+  background-color: var(--ds-primary, #04202c);
   line-height: 1.6;
   width: 100%;
   overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }
-
 
 /*=============================================
-=            SISTEM TIPOGRAFI GLOBAL            =
+=            SISTEM TIPOGRAFI GLOBAL (REVISI)            =
 =============================================*/
-#landingpage-edukrein h1, #landingpage-edukrein h2, #landingpage-edukrein h3, #landingpage-edukrein h4, #landingpage-edukrein h5, #landingpage-edukrein h6, #landingpage-edukrein .section-title {
-  font-family: var(--ek-font-nunito);
+/* --- Aturan Dasar untuk Semua Judul --- */
+#landingpage-edukrein h1,
+#landingpage-edukrein h2,
+#landingpage-edukrein h3,
+#landingpage-edukrein h4,
+#landingpage-edukrein h5,
+#landingpage-edukrein h6,
+#landingpage-edukrein .section-title,
+#landingpage-edukrein .price-title,
+#landingpage-edukrein .stat-number {
+  font-family: 'Nunito', sans-serif;
   line-height: 1.3;
-  color: var(--ek-text-main); /* Warna judul diubah */
 }
-#landingpage-edukrein h1, #landingpage-edukrein .display-3 {
+/* --- Hierarki Ukuran & Berat Judul --- */
+#landingpage-edukrein h1,
+#landingpage-edukrein .display-3 {
   font-weight: 900 !important;
   font-size: clamp(2.5rem, 5vw + 1rem, 3.75rem);
 }
-#landingpage-edukrein h2, #landingpage-edukrein .section-title {
+#landingpage-edukrein h2,
+#landingpage-edukrein .section-title {
   font-weight: 700 !important;
   font-size: clamp(2rem, 4vw + 1rem, 3rem);
+}
+#landingpage-edukrein h3 {
+  font-weight: 400 !important;
+  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2rem);
+}
+#landingpage-edukrein h4,
+#landingpage-edukrein .card-title {
+  font-weight: 400 !important;
+  font-size: clamp(1.2rem, 2vw + 0.5rem, 1.5rem);
 }
 #landingpage-edukrein h5 {
     font-weight: 700 !important;
     font-size: clamp(1.1rem, 1.5vw + 0.5rem, 1.25rem);
 }
-#landingpage-edukrein p, #landingpage-edukrein .lead {
-  line-height: 1.7; /* Menambah spasi antar baris */
+#landingpage-edukrein h6 {
+    font-weight: 700 !important;
+    font-size: clamp(1rem, 1.2vw + 0.5rem, 1.1rem);
+}
+/* --- Aturan untuk Paragraf & Teks Isi --- */
+#landingpage-edukrein p,
+#landingpage-edukrein .lead,
+#landingpage-edukrein .card-text,
+#landingpage-edukrein .accordion-body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
 }
 #landingpage-edukrein .lead {
   font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
-  color: var(--ek-text-body);
 }
-#landingpage-edukrein a, #landingpage-edukrein .btn, #landingpage-edukrein .nav-link, #landingpage-edukrein .badge, #landingpage-edukrein label, #landingpage-edukrein small, #landingpage-edukrein .testi-name, #landingpage-edukrein .testi-job {
-  font-family: var(--ek-font-roboto);
+/* --- Aturan untuk Elemen Lainnya (Interaktif & Detail) --- */
+#landingpage-edukrein a,
+#landingpage-edukrein .btn,
+#landingpage-edukrein .nav-link,
+#landingpage-edukrein .badge,
+#landingpage-edukrein label,
+#landingpage-edukrein small,
+#landingpage-edukrein .testi-name,
+#landingpage-edukrein .testi-job {
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
 
 
 /*=============================================
-=            KOMPONEN & TOMBOL GLOBAL           =
+=            HERO NO-CODE SECTION             =
 =============================================*/
-.btn {
-  border-radius: 50px;
+.hero-no-code-section {
+  padding: 120px 0;
+  background-color: #10061e;
+  text-align: center;
+}
+.hero-highlight-purple {
+  font-size: clamp(3.25rem, 8vw, 5rem); /* Dibuat lebih besar untuk penekanan visual */
+  font-weight: 900;
+  color: #a855f7;
+  text-transform: uppercase; /* Dikembalikan ke uppercase untuk dampak maksimal */
+  letter-spacing: 1.5px;
+}
+.btn-gradient-purple {
+  background-image: linear-gradient(to right, #a855f7, #6d28d9);
+  color: white;
+  border: none;
   padding: 0.8rem 2rem;
-  font-weight: 500;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+  font-size: 1rem;
 }
-.btn:hover {
+.btn-gradient-purple:hover {
+  color: white;
   transform: translateY(-3px);
-  box-shadow: var(--ek-box-shadow);
-}
-
-/* Tombol Aksen (CTA Utama) */
-.btn-accent {
-  background-color: var(--ek-accent);
-  color: var(--ek-white);
-}
-.btn-accent:hover {
-  background-color: #ffad6a; /* Oranye sedikit lebih terang */
-  color: var(--ek-white);
-}
-
-/* Tombol Outline */
-.btn-outline-primary {
-  border-color: var(--ek-primary);
-  color: var(--ek-primary);
-  background-color: transparent;
-}
-.btn-outline-primary:hover {
-  background-color: var(--ek-primary);
-  color: var(--ek-white);
+  box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3) !important;
 }
 
 
@@ -130,222 +135,431 @@ body {
 =============================================*/
 #landingpage-edukrein .navbar-landing {
   padding: 1rem 0;
-  transition: all 0.3s ease;
-  background-color: var(--ek-white);
-  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
 #landingpage-edukrein .navbar-landing.scrolled {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(15, 23, 42, 0.9);
   padding: 0.5rem 0;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--ek-border-color);
-  box-shadow: var(--ek-box-shadow);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#landingpage-edukrein .navbar-brand img {
+  height: 40px;
 }
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link {
-  color: var(--ek-text-body);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
 }
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link:hover,
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link.active {
-  color: var(--ek-primary);
-}
-.navbar-toggler {
-    border-color: var(--ek-border-color);
-}
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2851, 51, 51, 0.7%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  color: var(--ds-secondary, #e67e22);
 }
 @media (max-width: 991.98px) {
   #landingpage-edukrein .navbar-collapse {
-    background-color: var(--ek-white);
+    background-color: #0f172a;
     padding: 1rem;
     margin-top: 0.5rem;
-    border-radius: var(--ek-border-radius);
-    border: 1px solid var(--ek-border-color);
-    box-shadow: var(--ek-box-shadow-lg);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
 
 /*=============================================
-=            HERO & SOCIAL PROOF SECTION        =
+=            SOCIAL PROOF SECTION             =
 =============================================*/
-.hero-no-code-section {
-  padding: 100px 0;
-  background-color: var(--ek-bg-soft);
-  text-align: center;
-}
-.hero-highlight-purple { /* Nama kelas tetap, tapi warnanya diubah */
-  color: var(--ek-primary); /* Menggunakan warna biru elektrik */
-  text-transform: uppercase;
-}
 #social-proof-section {
-  padding: 80px 0;
-  background-color: var(--ek-white);
+  padding: 6rem 0; /* Spasi diseragamkan */
+  background-color: #1a102a;
+}
+.swiper-logo-slider .swiper-wrapper {
+  align-items: center;
+  transition-timing-function: linear !important;
 }
 .swiper-logo-slider img {
   max-height: 40px;
   width: auto;
-  filter: grayscale(100%) opacity(0.5);
-  transition: filter 0.3s ease;
+  filter: grayscale(100%) opacity(0.6);
+  transition: filter 0.3s ease-in-out;
 }
 .swiper-logo-slider .swiper-slide:hover img {
-  filter: none;
-  opacity: 1;
+  filter: grayscale(0%) opacity(1);
 }
 
 
 /*=============================================
-=               LAYANAN & PRODUK SECTION        =
+=                 HERO SECTION                  =
 =============================================*/
-.layanan-section, .produk-section {
+#landingpage-edukrein .hero-section {
+  background-image: linear-gradient(45deg, var(--ds-primary, #04202c), #1f287d);
+  color: var(--ds-white, #ffffff);
   padding: 6rem 0;
-  background-color: var(--ek-white);
 }
-.layanan-section {
-    background-color: var(--ek-bg-soft);
+#landingpage-edukrein .hero-image {
+  animation: float-animation 4s ease-in-out infinite;
 }
-.service-card, .swiper-produk .card {
-  border: 1px solid var(--ek-border-color);
-  border-radius: var(--ek-border-radius-lg);
-  background-color: var(--ek-white);
-  transition: all 0.3s ease;
-  height: 100%;
+@keyframes float-animation {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
-.service-card:hover, .swiper-produk .card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--ek-box-shadow-lg);
+
+
+/*=============================================
+=               LAYANAN SECTION               =
+=============================================*/
+#landingpage-edukrein .layanan-section {
+  padding: 6rem 0; /* Spasi diseragamkan */
+  background-color: var(--ds-tertiary-bg, #f8f9fa);
 }
-.service-card .card-header {
-  background-color: transparent;
+#landingpage-edukrein .service-card {
   border: none;
-  padding: 2rem 1.5rem 1rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.service-card .card-body {
-    padding-top: 0;
+#landingpage-edukrein .service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.1);
 }
-.service-icon {
+#landingpage-edukrein .service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: var(--ds-secondary, #e67e22); /* KONSISTENSI WARNA */
+}
+#landingpage-edukrein .service-card .card-header {
+  background-color: var(--ds-dark, #0f172a);
+  border-bottom: none;
+  padding: 1.5rem;
+}
+#landingpage-edukrein .service-icon {
   width: 60px;
   height: 60px;
-  border-radius: var(--ek-border-radius);
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ek-white);
+  color: white;
   font-size: 1.75rem;
-  background-color: var(--ek-primary); /* Ikon kini berwarna biru */
+  background-color: var(--ds-secondary, #e67e22); /* KONSISTENSI WARNA */
 }
-.swiper-produk .card-img-top {
+#landingpage-edukrein .service-card .card-title {
+  color: var(--ds-white);
+}
+
+
+/*=============================================
+=             CTA / QUOTE SECTION             =
+=============================================*/
+#landingpage-edukrein .cta-section {
+  padding: 6rem 0; /* Spasi diseragamkan */
+}
+
+
+/*=============================================
+=                PRODUK SECTION               =
+=============================================*/
+#landingpage-edukrein .produk-section {
+  padding: 6rem 0; /* Spasi diseragamkan */
+  background-color: var(--ds-tertiary-bg, #f8f9fa);
+}
+#landingpage-edukrein .swiper-produk .card {
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 0.75rem; /* Konsistensi radius */
+}
+#landingpage-edukrein .swiper-produk .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.15);
+}
+#landingpage-edukrein .swiper-produk .card-img-top {
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
-.swiper-produk .swiper-pagination-bullet-active {
-  background-color: var(--ek-accent) !important;
+#landingpage-edukrein .swiper-button-next,
+#landingpage-edukrein .swiper-button-prev {
+  color: var(--ds-primary);
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  top: 45%;
+}
+#landingpage-edukrein .swiper-button-next:after,
+#landingpage-edukrein .swiper-button-prev:after {
+  font-size: 1.2rem;
+}
+@media (max-width: 767.98px) {
+  #landingpage-edukrein .swiper-button-next,
+  #landingpage-edukrein .swiper-button-prev {
+    display: none;
+  }
 }
 
 
 /*=============================================
-=                 HARGA SECTION                 =
+=                ALASAN SECTION               =
 =============================================*/
-.harga-section {
-  padding: 6rem 0;
-  background-color: var(--ek-bg-soft);
+#landingpage-edukrein .alasan-section {
+  padding: 6rem 0; /* Spasi diseragamkan */
+  background-color: var(--ds-primary, #04202c);
+  color: var(--ds-white, #ffffff);
 }
-.price-card {
-  background-color: var(--ek-white);
-  border: 2px solid var(--ek-border-color);
-  border-radius: var(--ek-border-radius-lg);
-  transition: all 0.3s ease;
+#landingpage-edukrein .alasan-section .section-title {
+  color: var(--ds-secondary, #e67e22);
 }
-.price-card:hover {
+#landingpage-edukrein .alasan-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#landingpage-edukrein .alasan-list li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+#landingpage-edukrein .alasan-icon {
+  font-size: 1.5rem;
+  color: var(--ds-secondary, #e67e22);
+}
+#landingpage-edukrein .alasan-text h5 {
+  color: var(--ds-white, #ffffff);
+  font-family: 'Nunito';
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+#landingpage-edukrein .alasan-text p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+
+/*=============================================
+=                 HARGA SECTION               =
+=============================================*/
+#landingpage-edukrein .harga-section {
+  padding: 6rem 0; /* Spasi diseragamkan */
+  background-color: var(--ds-tertiary-bg, #f8f9fa);
+}
+#landingpage-edukrein .price-card {
+  border: 2px solid transparent;
+  border-radius: 0.75rem; /* Konsistensi radius */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+}
+#landingpage-edukrein .price-card:hover {
   transform: translateY(-10px);
-  box-shadow: var(--ek-box-shadow-lg);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important;
 }
-.price-card.popular {
-  border-color: var(--ek-accent);
-  transform: scale(1.05);
+#landingpage-edukrein .price-card.popular {
+  border-color: var(--ds-secondary, #e67e22);
+  transform: scale(1.03);
 }
-.price-tag .price {
-  font-family: var(--ek-font-nunito);
+#landingpage-edukrein .price-card.popular:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+#landingpage-edukrein .price-card .card-header {
+  color: var(--ds-white);
+  border-bottom-width: 4px;
+}
+#landingpage-edukrein .price-card.popular .card-header {
+  background-color: var(--ds-green);
+  border-bottom-color: var(--ds-yellow);
+}
+#landingpage-edukrein .price-tag .price-original {
+  display: block;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+#landingpage-edukrein .price-tag .price {
+  font-size: 2.5rem;
+  font-family: 'Nunito', sans-serif;
   font-weight: 900;
-  font-size: 2.75rem;
-  color: var(--ek-text-main);
+  line-height: 1;
 }
-.price-features .fa-check { color: #28a745; }
-.price-features .fa-times { color: #828282; }
+#landingpage-edukrein .price-tag .price-off {
+  background-color: var(--ds-red-bg-subtle);
+  color: var(--ds-red-text-emphasis);
+}
+#landingpage-edukrein .price-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
 
 
 /*=============================================
-=               TESTIMONI & STATISTIK           =
+=            STANDARISASI GAYA TOMBOL (BUTTON)          =
 =============================================*/
-.testimoni-section {
-  padding: 6rem 0;
-  background-color: var(--ek-white);
+#landingpage-edukrein .btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
-.testi-card {
-  background-color: var(--ek-bg-soft);
-  border-radius: var(--ek-border-radius-lg);
-  padding: 2rem;
-  border: 1px solid var(--ek-border-color);
+#landingpage-edukrein .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
-.testi-quote {
+/* Tombol Utama (Solid) */
+#landingpage-edukrein .hero-section .btn-secondary,
+#landingpage-edukrein .price-card .btn-primary {
+  background-color: var(--ds-secondary, #e67e22);
+  border-color: var(--ds-secondary, #e67e22);
+  color: #000;
+}
+#landingpage-edukrein .hero-section .btn-secondary:hover,
+#landingpage-edukrein .price-card .btn-primary:hover {
+  background-color: #d35400;
+  border-color: #d35400;
+  color: #000;
+  box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+}
+/* Tombol Sekunder (Outline) */
+#landingpage-edukrein .price-card .btn-outline-primary {
+  background-color: transparent;
+  border-color: var(--ds-secondary, #e67e22);
+  color: var(--ds-secondary, #e67e22);
+}
+#landingpage-edukrein .price-card .btn-outline-primary:hover {
+  background-color: var(--ds-secondary, #e67e22);
+  color: #000;
+}
+/* Tombol Profesional */
+#landingpage-edukrein .price-card.professional .btn-secondary {
+    background-color: #1F287D;
+    border-color: #1F287D;
+    color: #fff;
+}
+#landingpage-edukrein .price-card.professional .btn-secondary:hover {
+    background-color: #151c56;
+    border-color: #151c56;
+}
+
+
+/*=============================================
+=               TESTIMONI SECTION             =
+=============================================*/
+#landingpage-edukrein .testimoni-section {
+  padding: 6rem 0; /* Spasi diseragamkan */
+  overflow: hidden;
+}
+#landingpage-edukrein .testi-card {
+  background-color: var(--ds-primary);
+  color: var(--ds-white);
+  border-radius: 0.75rem; /* Konsistensi radius */
+  padding: 2.5rem;
+}
+#landingpage-edukrein .testi-quote {
+  font-size: clamp(1.1rem, 1.5vw + 0.8rem, 1.25rem);
   font-style: italic;
-  color: var(--ek-text-body);
+  position: relative;
+  padding-left: 2rem;
 }
-.statistik-section {
-  padding: 6rem 0;
-  background-color: var(--ek-bg-soft);
-}
-.stat-icon {
+#landingpage-edukrein .testi-quote::before {
+  content: '“';
+  position: absolute;
+  left: 0;
+  top: -0.2rem;
   font-size: 2.5rem;
-  color: var(--ek-primary);
+  color: var(--ds-secondary);
+  font-family: 'Nunito', sans-serif;
 }
-.stat-number {
-  font-family: var(--ek-font-nunito);
-  font-weight: 900;
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  color: var(--ek-primary);
+#landingpage-edukrein .testi-user img {
+  width: 50px;
+  height: 50px;
+}
+#landingpage-edukrein .testi-job {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+#landingpage-edukrein .testi-nav .swiper-button-prev,
+#landingpage-edukrein .testi-nav .swiper-button-next {
+  position: static !important;
+  transform: none !important;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+#landingpage-edukrein .testi-nav i {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+
+/*=============================================
+=             TESTIMONI MARQUEE             =
+=============================================*/
+#landingpage-edukrein .testimoni-marquee-section {
+  padding: 3rem 0; /* Spasi disesuaikan untuk section minor */
+  background-color: var(--ds-primary, #04202c);
+}
+#landingpage-edukrein .testi-card-marquee {
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
 }
 
 
 /*=============================================
 =            FAQ & KONTAK SECTION             =
 =============================================*/
-.faq-kontak-section {
-  padding: 6rem 0;
-  background-image: linear-gradient(180deg, var(--ek-primary) 0%, var(--ek-bg-soft) 70%);
+#landingpage-edukrein .faq-kontak-section {
+  padding: 6rem 0; /* Spasi diseragamkan */
+  background-color: var(--ds-tertiary-bg);
 }
-.faq-kontak-section .section-title {
-    color: var(--ek-white);
-}
-.accordion-item {
-  border: 1px solid var(--ek-border-color);
-  border-radius: var(--ek-border-radius);
-  margin-bottom: 1rem;
-  background-color: var(--ek-white);
-}
-.accordion-button {
+#landingpage-edukrein .accordion-button {
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
-  color: var(--ek-text-main);
-  background-color: var(--ek-white);
+  font-size: 1.1rem;
+  color: var(--ds-heading-color);
+  background-color: transparent;
   box-shadow: none;
 }
-.accordion-button:not(.collapsed) {
-  color: var(--ek-primary);
-  background-color: #f0f6ff;
+#landingpage-edukrein .accordion-button:not(.collapsed) {
+  color: var(--ds-primary);
 }
-#waForm .card {
-  background-color: var(--ek-white);
-  border: none;
-  box-shadow: var(--ek-box-shadow-lg);
-  border-radius: var(--ek-border-radius-lg);
+
+
+/*=============================================
+=               STATISTIK SECTION             =
+=============================================*/
+#landingpage-edukrein .statistik-section {
+  padding: 6rem 0; /* Spasi diseragamkan */
+  background-color: var(--ds-dark, #0f172a);
+  color: var(--ds-white, #ffffff);
 }
-#waForm .form-control {
-  background-color: var(--ek-bg-soft);
-  border: 1px solid var(--ek-border-color);
-  color: var(--ek-text-main);
+#landingpage-edukrein .stat-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
-#waForm .form-control:focus {
-  border-color: var(--ek-primary);
-  box-shadow: 0 0 0 0.25rem rgba(47, 128, 237, 0.25);
+#landingpage-edukrein .statistik-section.is-visible .stat-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+#landingpage-edukrein .stat-icon {
+  font-size: 2.25rem;
+  color: var(--ds-secondary, #7c3aed);
+  margin-bottom: 0.8rem;
+}
+#landingpage-edukrein .stat-number {
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+}
+#landingpage-edukrein .typing-effect {
+  border-right: 2px solid rgba(255, 255, 255, 0.85);
 }
