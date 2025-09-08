@@ -173,7 +173,7 @@ body {
 /* BARU: Aturan untuk menyejajarkan vertikal menu & logo */
 #landingpage-edukrein .navbar-landing > .container {
   display: flex;
-  align-items: center;
+  align-items: justify;
 }
 
 /* ============================================= */
