@@ -237,13 +237,13 @@ body {
   transition-timing-function: linear !important;
 }
 .swiper-logo-slider img {
-  max-height: 40px;
+  max-height: 64px;
   width: auto;
-  filter: grayscale(100%) opacity(0.6);
+  filter: grayscale(50%) opacity(0.6);
   transition: filter 0.3s ease-in-out;
 }
 .swiper-logo-slider .swiper-slide:hover img {
-  filter: grayscale(0%) opacity(1);
+  filter: grayscale(50%) opacity(1);
 }
 
 
