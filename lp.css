@@ -108,7 +108,7 @@ body {
   text-align: center;
 }
 .hero-highlight-purple {
-  font-size: clamp(3.25rem, 8vw, 5rem); /* Dibuat lebih besar untuk penekanan visual */
+  font-size: clamp(2.5rem, 5vw + 1rem, 3.75rem); /* Dibuat lebih besar untuk penekanan visual */
   font-weight: 900;
   color: #a855f7;
   text-transform: none; /* Dikembalikan ke uppercase untuk dampak maksimal */
