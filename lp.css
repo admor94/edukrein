@@ -111,7 +111,7 @@ body {
   font-size: clamp(3.25rem, 8vw, 5rem); /* Dibuat lebih besar untuk penekanan visual */
   font-weight: 900;
   color: #a855f7;
-  text-transform: uppercase; /* Dikembalikan ke uppercase untuk dampak maksimal */
+  text-transform: none; /* Dikembalikan ke uppercase untuk dampak maksimal */
   letter-spacing: 1.5px;
 }
 .btn-gradient-purple {
