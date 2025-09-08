@@ -1,62 +1,79 @@
 /*=============================================
+=            CUSTOM CSS VARIABLES (SISTEM DESAIN)            =
+=============================================*/
+:root {
+  /* Palet Warna Utama */
+  --ek-primary: #16213e;    /* Biru Dongker Gelap (Latar Utama) */
+  --ek-secondary: #0f3460;  /* Biru Gelap (Untuk Kartu / Kontras) */
+  --ek-dark: #1a1a2e;        /* Sangat Gelap (Untuk Kontras Lebih Dalam) */
+  --ek-accent: #e94560;      /* Merah-Pink (Tombol, Link, Aksen Utama) */
+
+  /* Warna Teks */
+  --ek-heading-color: #ffffff;
+  --ek-body-color: #e0e0e0;     /* Putih keabuan (Nyaman dibaca) */
+  --ek-text-muted: #a0a0a0;   /* Abu-abu untuk teks sekunder */
+
+  /* Warna Fungsional */
+  --ek-white: #ffffff;
+  --ek-link-hover-color: #ff6b8a; /* Warna hover untuk aksen */
+  --ek-border-color: rgba(255, 255, 255, 0.1);
+
+  /* Properti UI */
+  --ek-border-radius: 0.5rem;
+  --ek-border-radius-lg: 0.75rem;
+  --ek-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --ek-box-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
+
+  /* Tipografi */
+  --ek-font-nunito: 'Nunito', sans-serif;
+  --ek-font-roboto: 'Roboto', sans-serif;
+}
+
+
+/*=============================================
 =            IMPORT & PENGATURAN DASAR            =
 =============================================*/
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Roboto:wght@400;500&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 
 /* Sembunyikan Elemen Bawaan Tema */
-#header,
-#navfloat,
-#chat,
-#footer,
-#main {
+#header, #navfloat, #chat, #footer, #main {
   display: none !important;
 }
 
 body {
   overflow-x: hidden;
+  background-color: var(--ek-primary); /* Pastikan body mengikuti tema gelap */
 }
 
-/* Wadah Utama Landing Page */
 #landingpage-edukrein {
-  padding-top: 80px; /* Sedikit penyesuaian untuk navbar */
-  color: var(--ds-body-color, #0f172a);
-  background-color: var(--ds-primary, #04202c);
+  padding-top: 80px;
+  font-family: var(--ek-font-roboto);
+  font-weight: 400;
+  color: var(--ek-body-color);
+  background-color: var(--ek-primary);
   line-height: 1.6;
   width: 100%;
   overflow-x: hidden;
-  /* Aturan Font Dasar */
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400; /* Default untuk paragraf */
 }
 
 
 /*=============================================
 =            SISTEM TIPOGRAFI GLOBAL            =
 =============================================*/
-/* Aturan ini akan menjadi dasar untuk seluruh teks di landing page */
-
-#landingpage-edukrein h1,
-#landingpage-edukrein h2,
-#landingpage-edukrein h3,
-#landingpage-edukrein h4,
-#landingpage-edukrein h5,
-#landingpage-edukrein h6,
-#landingpage-edukrein .section-title,
-#landingpage-edukrein .price-title,
-#landingpage-edukrein .stat-number {
-  font-family: 'Nunito', sans-serif;
+#landingpage-edukrein h1, #landingpage-edukrein h2, #landingpage-edukrein h3, #landingpage-edukrein h4, #landingpage-edukrein h5, #landingpage-edukrein h6, #landingpage-edukrein .section-title, #landingpage-edukrein .price-title, #landingpage-edukrein .stat-number {
+  font-family: var(--ek-font-nunito);
   line-height: 1.3;
+  color: var(--ek-heading-color);
 }
 
-#landingpage-edukrein h1,
-#landingpage-edukrein .display-3 {
+#landingpage-edukrein h1, #landingpage-edukrein .display-3 {
   font-weight: 900 !important;
-  font-size: clamp(2.5rem, 5vw + 1rem, 3.75rem); /* min, preferred, max */
+  font-size: clamp(2.5rem, 5vw + 1rem, 3.75rem);
 }
 
-#landingpage-edukrein h2,
-#landingpage-edukrein .section-title {
+#landingpage-edukrein h2, #landingpage-edukrein .section-title {
   font-weight: 700 !important;
   font-size: clamp(2rem, 4vw + 1rem, 3rem);
 }
@@ -66,70 +83,77 @@ body {
   font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2rem);
 }
 
-#landingpage-edukrein h4,
-#landingpage-edukrein .card-title {
+#landingpage-edukrein h4, #landingpage-edukrein .card-title {
   font-weight: 400 !important;
   font-size: clamp(1.2rem, 2vw + 0.5rem, 1.5rem);
 }
 
-#landingpage-edukrein p,
-#landingpage-edukrein .lead,
-#landingpage-edukrein .card-text,
-#landingpage-edukrein .accordion-body {
-  font-family: 'Roboto', sans-serif;
+#landingpage-edukrein p, #landingpage-edukrein .lead, #landingpage-edukrein .card-text, #landingpage-edukrein .accordion-body {
+  font-family: var(--ek-font-roboto);
   font-weight: 400;
 }
 
 #landingpage-edukrein .lead {
-    font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
-    font-weight: 400;
+  font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
+  color: var(--ek-text-muted);
 }
 
-/* Elemen "Lainnya" */
-#landingpage-edukrein a,
-#landingpage-edukrein .btn,
-#landingpage-edukrein .nav-link,
-#landingpage-edukrein .badge,
-#landingpage-edukrein label,
-#landingpage-edukrein small,
-#landingpage-edukrein .testi-name,
-#landingpage-edukrein .testi-job,
-#landingpage-edukrein .alasan-text h5 {
-  font-family: 'Roboto', sans-serif;
+#landingpage-edukrein a, #landingpage-edukrein .btn, #landingpage-edukrein .nav-link, #landingpage-edukrein .badge, #landingpage-edukrein label, #landingpage-edukrein small, #landingpage-edukrein .testi-name, #landingpage-edukrein .testi-job, #landingpage-edukrein .alasan-text h5 {
+  font-family: var(--ek-font-roboto);
   font-weight: 500;
+}
+
+/* Tombol Global */
+#landingpage-edukrein .btn {
+  border-radius: var(--ek-border-radius);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+}
+#landingpage-edukrein .btn-primary {
+  background-color: var(--ek-accent);
+  color: var(--ek-white);
+}
+#landingpage-edukrein .btn-primary:hover {
+  background-color: var(--ek-link-hover-color);
+  transform: translateY(-2px);
+  box-shadow: var(--ek-box-shadow);
+}
+#landingpage-edukrein .btn-outline-primary {
+  border: 1px solid var(--ek-accent);
+  color: var(--ek-accent);
+}
+#landingpage-edukrein .btn-outline-primary:hover {
+  background-color: var(--ek-accent);
+  color: var(--ek-white);
 }
 
 
 /*=============================================
 =            HERO NO-CODE SECTION             =
 =============================================*/
-
 .hero-no-code-section {
   padding: 120px 0;
-  background-color: #10061e;
+  background-color: var(--ek-dark);
   text-align: center;
+  color: var(--ek-white);
 }
 
 .hero-highlight-purple {
   font-size: clamp(3.25rem, 8vw, 5rem);
-  font-weight: 900; /* Menyesuaikan aturan H1 */
+  font-weight: 900;
   color: #a855f7;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+  text-transform: none;
 }
 
 .btn-gradient-purple {
   background-image: linear-gradient(to right, #a855f7, #6d28d9);
-  color: white;
-  border: none;
-  padding: 0.8rem 2rem;
+  color: var(--ek-white);
   border-radius: 50px;
-  transition: all 0.3s ease-in-out;
-  font-size: 1rem;
 }
-
 .btn-gradient-purple:hover {
-  color: white;
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3) !important;
 }
@@ -138,18 +162,18 @@ body {
 /*=============================================
 =                 NAVBAR SECTION                =
 =============================================*/
-
 #landingpage-edukrein .navbar-landing {
   padding: 1rem 0;
-  transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+  transition: background-color 0.3s ease, padding 0.3s ease;
+  background-color: var(--ek-primary);
 }
 
 #landingpage-edukrein .navbar-landing.scrolled {
-  background-color: rgba(15, 23, 42, 0.9);
+  background-color: rgba(26, 26, 46, 0.9);
   padding: 0.5rem 0;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--ek-border-color);
 }
 
 #landingpage-edukrein .navbar-brand img {
@@ -157,432 +181,253 @@ body {
 }
 
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link {
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500; /* Sesuai aturan "lainnya" */
+  color: var(--ek-body-color);
 }
 
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link:hover,
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link.active {
-  color: var(--ds-secondary, #e67e22);
+  color: var(--ek-accent);
 }
 
 @media (max-width: 991.98px) {
   #landingpage-edukrein .navbar-collapse {
-    background-color: #0f172a;
+    background-color: var(--ek-dark);
     padding: 1rem;
     margin-top: 0.5rem;
-    border-radius: 0.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--ek-border-radius);
+    border: 1px solid var(--ek-border-color);
   }
 }
 
 
 /*=============================================
-=            SOCIAL PROOF SECTION             =
+=            SOCIAL PROOF & HERO SECTION        =
 =============================================*/
-
-#social-proof-section {
+#social-proof-section, #landingpage-edukrein .hero-section {
   padding: 80px 0;
-  background-color: #1a102a;
-}
-
-.swiper-logo-slider .swiper-wrapper {
-  align-items: center;
-  transition-timing-function: linear !important;
+  background-color: var(--ek-dark);
 }
 
 .swiper-logo-slider img {
   max-height: 40px;
   width: auto;
-  filter: grayscale(100%) opacity(0.6);
-  transition: filter 0.3s ease-in-out;
+  filter: grayscale(100%) opacity(0.5);
+  transition: filter 0.3s ease;
 }
 
 .swiper-logo-slider .swiper-slide:hover img {
   filter: grayscale(0%) opacity(1);
 }
 
-
-/*=============================================
-=                 HERO SECTION                  =
-=============================================*/
-
-#landingpage-edukrein .hero-section {
-  background-image: linear-gradient(45deg, var(--ds-primary, #04202c), #1f287d);
-  color: var(--ds-white, #ffffff);
-  padding: 6rem 0;
-}
-
 #landingpage-edukrein .hero-section .btn-secondary {
-  --ds-btn-bg: var(--ds-secondary, #e67e22);
-  --ds-btn-border-color: var(--ds-secondary, #e67e22);
-  --ds-btn-hover-bg: #d35400;
-  --ds-btn-hover-border-color: #d35400;
-  color: #000;
-  padding: 0.75rem 1.5rem;
+  background-color: var(--ek-accent);
+  color: var(--ek-white);
 }
 
 #landingpage-edukrein .hero-image {
   animation: float-animation 4s ease-in-out infinite;
 }
-
 @keyframes float-animation {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-10px); }
 }
 
 
 /*=============================================
-=               LAYANAN SECTION               =
+=               LAYANAN & PRODUK SECTION        =
 =============================================*/
-
-#landingpage-edukrein .layanan-section {
+#landingpage-edukrein .layanan-section,
+#landingpage-edukrein .produk-section {
   padding: 5rem 0;
-  background-color: var(--ds-tertiary-bg, #f8f9fa);
+  background-color: var(--ek-secondary);
 }
 
-#landingpage-edukrein .service-card {
-  border: none;
-  border-radius: 0.75rem;
+.service-card, .swiper-produk .card {
+  border: 1px solid var(--ek-border-color);
+  border-radius: var(--ek-border-radius-lg);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--ek-primary);
+  color: var(--ek-body-color);
+  height: 100%;
 }
 
-#landingpage-edukrein .service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 1rem 3rem rgba(0,0,0,0.1);
+.service-card:hover, .swiper-produk .card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--ek-box-shadow-lg);
 }
 
-#landingpage-edukrein .service-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-}
-
-#landingpage-edukrein .service-card-1::after { background-color: var(--ds-green); }
-#landingpage-edukrein .service-card-2::after { background-color: var(--ds-blue); }
-#landingpage-edukrein .service-card-3::after { background-color: var(--ds-red); }
-#landingpage-edukrein .service-card-4::after { background-color: var(--ds-purple); }
-
-#landingpage-edukrein .service-card .card-header {
-  background-color: var(--ds-dark, #0f172a);
+.service-card .card-header {
+  background-color: transparent;
   border-bottom: none;
   padding: 1.5rem;
 }
 
-#landingpage-edukrein .service-icon {
+.service-icon {
   width: 60px;
   height: 60px;
-  border-radius: 0.5rem;
+  border-radius: var(--ek-border-radius);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--ek-white);
   font-size: 1.75rem;
+  background-color: var(--ek-accent);
 }
 
-#landingpage-edukrein .service-icon.bg-blue { background-color: var(--ds-blue); }
-#landingpage-edukrein .service-icon.bg-red { background-color: var(--ds-red); }
-#landingpage-edukrein .service-icon.bg-purple { background-color: var(--ds-purple); }
-
-#landingpage-edukrein .service-card .card-title {
-  color: var(--ds-white);
-}
-
-
-/*=============================================
-=             CTA / QUOTE SECTION             =
-=============================================*/
-
-#landingpage-edukrein .cta-section {
-  padding: 5rem 0;
-}
-
-
-/*=============================================
-=                PRODUK SECTION               =
-=============================================*/
-
-#landingpage-edukrein .produk-section {
-  padding: 5rem 0;
-  background-color: var(--ds-tertiary-bg, #f8f9fa);
-}
-
-#landingpage-edukrein .swiper-produk .card {
-  border: none;
-  transition: all 0.3s ease;
-}
-
-#landingpage-edukrein .swiper-produk .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.15);
-}
-
-#landingpage-edukrein .swiper-produk .card-img-top {
+.swiper-produk .card-img-top {
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
-#landingpage-edukrein .swiper-button-next,
-#landingpage-edukrein .swiper-button-prev {
-  color: var(--ds-primary);
-  background-color: rgba(255, 255, 255, 0.9);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  top: 45%;
-}
-
-#landingpage-edukrein .swiper-button-next:after,
-#landingpage-edukrein .swiper-button-prev:after {
-  font-size: 1.2rem;
-}
-
-@media (max-width: 767.98px) {
-  #landingpage-edukrein .swiper-button-next,
-  #landingpage-edukrein .swiper-button-prev {
-    display: none;
-  }
-}
-
 
 /*=============================================
-=                ALASAN SECTION               =
+=               ALASAN & TESTIMONI SECTION      =
 =============================================*/
-
-#landingpage-edukrein .alasan-section {
+#landingpage-edukrein .alasan-section,
+#landingpage-edukrein .testimoni-section {
   padding: 5rem 0;
-  background-color: var(--ds-primary, #04202c);
-  color: var(--ds-white, #ffffff);
+  background-color: var(--ek-primary);
 }
 
 #landingpage-edukrein .alasan-section .section-title {
-  color: var(--ds-secondary, #e67e22);
+  color: var(--ek-accent);
 }
 
-#landingpage-edukrein .alasan-list li {
+.alasan-list li {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   padding-bottom: 2rem;
   margin-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--ek-border-color);
 }
-
-#landingpage-edukrein .alasan-list li:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-}
-
-#landingpage-edukrein .alasan-icon {
+.alasan-icon {
   font-size: 1.5rem;
-  color: var(--ds-secondary, #e67e22);
+  color: var(--ek-accent);
 }
-
-#landingpage-edukrein .alasan-text h5 {
-  color: var(--ds-white, #ffffff);
-  font-family: 'Nunito';
+.alasan-text h5 {
+  font-family: var(--ek-font-nunito);
   font-weight: 700;
   font-size: 1.2rem;
 }
 
-#landingpage-edukrein .alasan-text p {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.95rem;
-}
-
-
-/*=============================================
-=                 HARGA SECTION               =
-=============================================*/
-
-#landingpage-edukrein .harga-section {
-  padding: 5rem 0;
-  background-color: var(--ds-tertiary-bg, #f8f9fa);
-}
-
-#landingpage-edukrein .price-card {
-  border: none;
-  border-radius: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-}
-
-#landingpage-edukrein .price-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important;
-}
-
-#landingpage-edukrein .price-card .card-header {
-  color: var(--ds-white);
-  border-bottom-width: 4px;
-}
-#landingpage-edukrein .price-card.popular .card-header {
-  background-color: var(--ds-green);
-  border-bottom-color: var(--ds-yellow);
-}
-
-#landingpage-edukrein .price-tag .price-original {
-  display: block;
-  text-decoration: line-through;
-  opacity: 0.7;
-}
-
-#landingpage-edukrein .price-tag .price {
-  font-size: 2.5rem;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900; /* Dibuat lebih tebal agar menonjol */
-  line-height: 1;
-}
-
-#landingpage-edukrein .price-tag .price-off {
-  background-color: var(--ds-red-bg-subtle);
-  color: var(--ds-red-text-emphasis);
-}
-
-#landingpage-edukrein .price-features li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-
-/*=============================================
-=               TESTIMONI SECTION             =
-=============================================*/
-
-#landingpage-edukrein .testimoni-section {
-  padding: 5rem 0;
-  overflow: hidden;
-}
-
-#landingpage-edukrein .testi-card {
-  background-color: var(--ds-primary);
-  color: var(--ds-white);
-  border-radius: 1rem;
+.testi-card {
+  background-color: var(--ek-dark);
+  border-radius: var(--ek-border-radius-lg);
   padding: 2.5rem;
+  border: 1px solid var(--ek-border-color);
 }
 
-#landingpage-edukrein .testi-quote {
-  font-size: clamp(1.1rem, 1.5vw + 0.8rem, 1.25rem);
+.testi-quote {
   font-style: italic;
   position: relative;
   padding-left: 2rem;
+  color: var(--ek-body-color);
 }
 
-#landingpage-edukrein .testi-quote::before {
+.testi-quote::before {
   content: '“';
   position: absolute;
   left: 0;
   top: -0.2rem;
   font-size: 2.5rem;
-  color: var(--ds-secondary);
-  font-family: 'Nunito', sans-serif;
-}
-
-#landingpage-edukrein .testi-user img {
-  width: 50px;
-  height: 50px;
-}
-
-#landingpage-edukrein .testi-job {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-}
-
-#landingpage-edukrein .testi-nav .swiper-button-prev,
-#landingpage-edukrein .testi-nav .swiper-button-next {
-  position: static !important;
-  transform: none !important;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-}
-
-#landingpage-edukrein .testi-nav i {
-  font-size: 1.2rem;
-  color: #fff;
+  color: var(--ek-accent);
 }
 
 
 /*=============================================
-=             TESTIMONI MARQUEE             =
+=                 HARGA SECTION                 =
 =============================================*/
-
-#landingpage-edukrein .testimoni-marquee-section {
-  padding: 2rem 0;
-  background-color: var(--ds-primary, #04202c);
-}
-
-#landingpage-edukrein .testi-card-marquee {
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-}
-
-
-/*=============================================
-=            FAQ & KONTAK SECTION             =
-=============================================*/
-
-#landingpage-edukrein .faq-kontak-section {
+#landingpage-edukrein .harga-section {
   padding: 5rem 0;
-  background-color: var(--ds-tertiary-bg);
+  background-color: var(--ek-secondary);
 }
 
-#landingpage-edukrein .accordion-button {
-  font-family: 'Nunito', sans-serif;
+.price-card {
+  border: 1px solid var(--ek-border-color);
+  border-radius: var(--ek-border-radius-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  background-color: var(--ek-primary);
+}
+
+.price-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--ek-box-shadow-lg) !important;
+  border-color: var(--ek-accent);
+}
+
+.price-card .card-header {
+  border-bottom: 1px solid var(--ek-border-color);
+}
+
+.price-tag .price {
+  font-family: var(--ek-font-nunito);
+  font-weight: 900;
+  font-size: 2.75rem;
+}
+
+.price-features .fa-check { color: #28a745; }
+.price-features .fa-times { color: #dc3545; }
+
+
+/*=============================================
+=            FAQ, KONTAK, STATISTIK             =
+=============================================*/
+#landingpage-edukrein .faq-kontak-section,
+#landingpage-edukrein .statistik-section {
+  padding: 5rem 0;
+  background-color: var(--ek-dark);
+}
+
+.accordion-item {
+  border: 1px solid var(--ek-border-color);
+  border-radius: var(--ek-border-radius);
+  margin-bottom: 1rem;
+  background-color: var(--ek-primary);
+}
+
+.accordion-button {
   font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--ds-heading-color);
+  color: var(--ek-body-color);
   background-color: transparent;
   box-shadow: none;
 }
-
-#landingpage-edukrein .accordion-button:not(.collapsed) {
-  color: var(--ds-primary);
+.accordion-button:not(.collapsed) {
+  color: var(--ek-accent);
 }
 
-
-/*=============================================
-=               STATISTIK SECTION             =
-=============================================*/
-
-#landingpage-edukrein .statistik-section {
-  padding: 4rem 0;
-  background-color: var(--ds-dark, #0f172a);
-  color: var(--ds-white, #ffffff);
+#waForm .form-control {
+  border-radius: var(--ek-border-radius);
+  border: 1px solid var(--ek-border-color);
+  background-color: var(--ek-secondary);
+  color: var(--ek-white);
+}
+#waForm .form-control:focus {
+  border-color: var(--ek-accent);
+  box-shadow: 0 0 0 0.25rem rgba(233, 69, 96, 0.25);
 }
 
-#landingpage-edukrein .stat-item {
+#waForm .btn-success {
+  background-color: #25d366;
+  color: var(--ek-white);
+}
+
+.stat-item {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-
-#landingpage-edukrein .statistik-section.is-visible .stat-item {
+.statistik-section.is-visible .stat-item {
   opacity: 1;
   transform: translateY(0);
 }
-
-#landingpage-edukrein .stat-icon {
+.stat-icon {
   font-size: 2.25rem;
-  color: var(--ds-secondary, #7c3aed);
-  margin-bottom: 0.8rem;
+  color: var(--ek-accent);
 }
-
-#landingpage-edukrein .stat-number {
-  font-weight: 900; /* Dibuat lebih tebal */
+.stat-number {
+  font-weight: 900;
   font-size: clamp(2rem, 5vw, 2.5rem);
-}
-
-#landingpage-edukrein .typing-effect {
-  border-right: 2px solid rgba(255, 255, 255, 0.85);
 }
