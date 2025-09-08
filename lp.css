@@ -239,7 +239,7 @@ body {
 .swiper-logo-slider img {
   max-height: 64px;
   width: auto;
-  filter: grayscale(50%) opacity(0.6);
+  filter: grayscale(0%) opacity(1);
   transition: filter 0.3s ease-in-out;
 }
 .swiper-logo-slider .swiper-slide:hover img {
