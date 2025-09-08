@@ -174,8 +174,19 @@ body {
 /* BARU: Override untuk Tombol FAQ Bawaan Template */
 /* ============================================= */
 #landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"] {
-  /* ...properti reset... */
+ background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
+
+#landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"]:hover {
+  color: var(--ds-secondary, #e67e22) !important;
+  background: transparent !important; /* Pastikan tidak ada background saat di-hover */
+}
+
 #landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"] svg {
   display: none !important;
 }
