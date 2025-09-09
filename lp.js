@@ -95,10 +95,39 @@ new Swiper('.swiper-produk-2', { // Menargetkan kelas baru .swiper-produk-2
     }
   });
 
+/* =================================================================== */
+/* LOGIKA FORMULIR PEMBAYARAN (DENGAN OPTIMASI & PERBAIKAN) V5         */
+/* =================================================================== */
 
-  /* ============================================= */
-/* LOGIKA FORMULIR PEMBAYARAN (REVISI FINAL V3)  */
-/* ============================================= */
+function compressImage(file, maxWidth = 1000, quality = 0.8) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let { width, height } = img;
+
+        if (width > maxWidth) {
+          height *= maxWidth / width;
+          width = maxWidth;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+        resolve(compressedBase64);
+      };
+      img.onerror = reject;
+      img.src = event.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
 
 const configPESANAN = {
   appsScript: 'https://script.google.com/macros/s/AKfycbx_jEuMMuXkeZPb7HdIdKoJvcx6W1svCqqdeAnGdwBBZsgOD-648x5g1D3Ql1G52N1b/exec',
@@ -160,18 +189,23 @@ function validateStep1() {
   const inputs = document.querySelectorAll('.form-step[data-step="1"] [required]');
   for (const input of inputs) {
     if (!input.value.trim()) {
-      const labelText = input.labels && input.labels.length > 0 ? input.labels[0].textContent : 'Bukti Pembayaran';
+      const labelText = input.labels?.[0]?.textContent || 'Input';
       alert(`Harap isi kolom: ${labelText}`);
       isValid = false;
       break;
+    }
+    if (input.type === 'file' && input.files.length === 0) {
+        alert('Harap unggah bukti pembayaran.');
+        isValid = false;
+        break;
     }
     if (input.type === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
       alert('Format email tidak valid.');
       isValid = false;
       break;
     }
-    if (input.type === 'file' && input.files[0] && input.files[0].size > 2 * 1024 * 1024) {
-      alert('Ukuran file bukti pembayaran tidak boleh lebih dari 2MB.');
+    if (input.type === 'file' && input.files[0] && input.files[0].size > 5 * 1024 * 1024) {
+      alert('Ukuran file bukti pembayaran tidak boleh lebih dari 5MB.');
       isValid = false;
       break;
     }
@@ -182,14 +216,14 @@ function validateStep1() {
 function collectStep1Data() {
   collectedData = {
     'PAKET': selectedPackage,
-    'NAMA_LENGKAP': document.getElementById('nama-lengkap').value,
-    'NO_WHATSAPP': document.getElementById('no-whatsapp').value,
-    'ALAMAT_EMAIL': document.getElementById('email').value,
-    'PROFESI': document.getElementById('profesi').value,
+    'NAMA_LENGKAP': document.getElementById('nama-lengkap').value.trim(),
+    'NO_WHATSAPP': document.getElementById('no-whatsapp').value.trim(),
+    'ALAMAT_EMAIL': document.getElementById('email').value.trim(),
+    'PROFESI': document.getElementById('profesi').value.trim(),
   };
 }
 
-function buildSummaryTable() {
+async function buildSummaryTable() {
   const table = document.getElementById('summary-table');
   table.innerHTML = '';
   for (const key in collectedData) {
@@ -197,7 +231,7 @@ function buildSummaryTable() {
     const row = `
       <div class="summary-row">
         <div class="summary-label">${friendlyKey}</div>
-        <div class="summary-value">: ${collectedData[key]}</div>
+        <div class="summary-value">${collectedData[key]}</div>
       </div>
     `;
     table.innerHTML += row;
@@ -206,27 +240,27 @@ function buildSummaryTable() {
   const fileInput = document.getElementById('bukti-pembayaran');
   if (fileInput.files.length > 0) {
     const file = fileInput.files[0];
-    const reader = new FileReader();
-    
     const summaryRow = document.createElement('div');
     summaryRow.className = 'summary-row';
     summaryRow.innerHTML = `
         <div class="summary-label">BUKTI PEMBAYARAN</div>
         <div class="summary-value" id="summary-image-preview">
-            : <span class="text-muted" style="font-size: 0.8rem;">Memuat gambar...</span>
+            <span class="text-muted" style="font-size: 0.8rem;">Memuat preview...</span>
         </div>
     `;
     table.appendChild(summaryRow);
 
-    reader.onload = function(e) {
+    try {
+        const compressedImage = await compressImage(file, 200, 0.7); // Kompres untuk preview
         const imagePreviewContainer = document.getElementById('summary-image-preview');
-        imagePreviewContainer.innerHTML = `: ${file.name} <br> <img src="${e.target.result}" alt="Preview Bukti" style="max-width: 100px; border-radius: 5px; margin-top: 5px; border: 1px solid #ddd;" />`;
-    };
-    reader.readAsDataURL(file);
+        imagePreviewContainer.innerHTML = `${file.name} <br> <img src="${compressedImage}" alt="Preview" style="max-width: 100px; border-radius: 5px; margin-top: 5px; border: 1px solid #ddd;" />`;
+    } catch (error) {
+        document.getElementById('summary-image-preview').textContent = 'Gagal memuat preview.';
+    }
   }
 }
 
-paymentForm.addEventListener('submit', function(e) {
+paymentForm.addEventListener('submit', async function(e) {
   e.preventDefault();
   if (currentStep !== 2) return;
 
@@ -234,13 +268,13 @@ paymentForm.addEventListener('submit', function(e) {
 
   const fileInput = document.getElementById('bukti-pembayaran');
   const file = fileInput.files[0];
-  const reader = new FileReader();
   
-  reader.onload = function(e) {
+  try {
+    const compressedBase64 = await compressImage(file);
     const fileData = {
-      base64: e.target.result.split(',')[1],
-      type: file.type,
-      name: file.name,
+      base64: compressedBase64.split(',')[1],
+      type: 'image/jpeg',
+      name: file.name.replace(/\.[^/.]+$/, "") + ".jpg",
       fieldName: 'BUKTI_PEMBAYARAN'
     };
 
@@ -250,37 +284,24 @@ paymentForm.addEventListener('submit', function(e) {
     }
     fd.append('files', JSON.stringify([fileData]));
     
-    fetch(configPESANAN.appsScript, {
-      method: 'POST',
-      body: fd
-    })
-    .then(res => res.json())
-    .then(data => {
-      formLoader.style.display = 'none';
-      if (data.result === 'success' && data.fileUrl) { // REVISI: Memeriksa apakah fileUrl diterima
-        setupWhatsAppLink(data.fileUrl); // REVISI: Mengirim fileUrl ke fungsi WhatsApp
-        showStep(3);
-      } else {
-        throw new Error(data.error || 'URL bukti pembayaran tidak diterima dari server.');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Terjadi kesalahan saat mengirim data: ' + error.message);
-      formLoader.style.display = 'none';
-    });
-  };
-
-  reader.onerror = function(error) {
-    console.error('Error reading file:', error);
-    alert('Gagal membaca file bukti pembayaran.');
+    const response = await fetch(configPESANAN.appsScript, { method: 'POST', body: fd });
+    const data = await response.json();
+    
     formLoader.style.display = 'none';
-  };
-  
-  reader.readAsDataURL(file);
+    if (data.result === 'success' && data.fileUrl) {
+      setupWhatsAppLink(data.fileUrl);
+      showStep(3);
+    } else {
+      throw new Error(data.error || 'URL bukti pembayaran tidak diterima dari server.');
+    }
+
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Terjadi kesalahan saat mengirim data: ' + error.message);
+    formLoader.style.display = 'none';
+  }
 });
 
-// REVISI: Fungsi ini sekarang menerima fileUrl sebagai argumen
 function setupWhatsAppLink(fileUrl) {
   let message = `Halo, ini adalah data pesanan saya:\n\n`;
   for(const key in collectedData) {
@@ -288,13 +309,11 @@ function setupWhatsAppLink(fileUrl) {
        message += `*${friendlyKey}*: ${collectedData[key]}\n`;
   }
   
-  // REVISI: Menambahkan URL bukti pembayaran ke dalam pesan
   message += `\n*Bukti Pembayaran*:\n${fileUrl}`;
   
   const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
   document.getElementById('btn-confirm-wa').href = waURL;
 }
-
 
   
   /*=============================================
