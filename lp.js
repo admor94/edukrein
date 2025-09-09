@@ -96,9 +96,10 @@ new Swiper('.swiper-produk-2', { // Menargetkan kelas baru .swiper-produk-2
   });
 
 /* =================================================================== */
-/* LOGIKA FORMULIR PEMBAYARAN (DENGAN OPTIMASI & PERBAIKAN) V5         */
+/* LOGIKA FORMULIR PEMBAYARAN (DENGAN VALIDASI BARU) V6                */
 /* =================================================================== */
 
+// --- FUNGSI KOMPRESI GAMBAR ---
 function compressImage(file, maxWidth = 1000, quality = 0.8) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -128,6 +129,7 @@ function compressImage(file, maxWidth = 1000, quality = 0.8) {
     reader.readAsDataURL(file);
   });
 }
+// ------------------------------------
 
 const configPESANAN = {
   appsScript: 'https://script.google.com/macros/s/AKfycbyuefAX9b_PQda4Ch7m_biagqfNya23W-vfAwRBBJYFidWBfqJaOG2X33spHK4OEZgl/exec',
@@ -193,34 +195,56 @@ waConfirmBtn.addEventListener('click', function(e) {
   }, 1000);
 });
 
+// --- REVISI UTAMA DI FUNGSI INI ---
 function validateStep1() {
   let isValid = true;
   const inputs = document.querySelectorAll('.form-step[data-step="1"] [required]');
+  
   for (const input of inputs) {
-    if (!input.value.trim()) {
+    const value = input.value.trim();
+    
+    // 1. Validasi Input Kosong (tetap ada)
+    if (!value) {
       const labelText = input.labels?.[0]?.textContent || 'Input';
       alert(`Harap isi kolom: ${labelText}`);
       isValid = false;
       break;
     }
+    
+    // 2. BARU: Validasi Email Spesifik
+    if (input.id === 'email') {
+      if (!value.toLowerCase().endsWith('@gmail.com')) {
+        alert('Mohon gunakan alamat email Gmail Aktif (@gmail.com).');
+        isValid = false;
+        break;
+      }
+    }
+    
+    // 3. BARU: Validasi Nomor WhatsApp Spesifik
+    if (input.id === 'no-whatsapp') {
+      const waPattern = /^08\d{8,11}$/;
+      if (!waPattern.test(value)) {
+        alert('Format No. WhatsApp tidak valid. Pastikan diawali "08" dan berisi 10-13 digit angka.');
+        isValid = false;
+        break;
+      }
+    }
+
+    // 4. Validasi File (tetap ada)
     if (input.type === 'file' && input.files.length === 0) {
         alert('Harap unggah bukti pembayaran.');
         isValid = false;
         break;
     }
-    if (input.type === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
-      alert('Format email tidak valid.');
-      isValid = false;
-      break;
-    }
-    if (input.type === 'file' && input.files[0] && input.files[0].size > 5 * 1024 * 1024) {
-      alert('Ukuran file bukti pembayaran tidak boleh lebih dari 5MB.');
+    if (input.type === 'file' && input.files[0] && input.files[0].size > 2 * 1024 * 1024) {
+      alert('Ukuran file bukti pembayaran tidak boleh lebih dari 2MB.');
       isValid = false;
       break;
     }
   }
   return isValid;
 }
+// ------------------------------------
 
 function collectStep1Data() {
   collectedData = {
@@ -260,7 +284,7 @@ async function buildSummaryTable() {
     table.appendChild(summaryRow);
 
     try {
-        const compressedImage = await compressImage(file, 200, 0.7); // Kompres untuk preview
+        const compressedImage = await compressImage(file, 200, 0.7);
         const imagePreviewContainer = document.getElementById('summary-image-preview');
         imagePreviewContainer.innerHTML = `${file.name} <br> <img src="${compressedImage}" alt="Preview" style="max-width: 100px; border-radius: 5px; margin-top: 5px; border: 1px solid #ddd;" />`;
     } catch (error) {
@@ -293,7 +317,6 @@ paymentForm.addEventListener('submit', async function(e) {
     }
     fd.append('files', JSON.stringify([fileData]));
     
-    // REVISI: Menambahkan opsi redirect: 'follow'
     const response = await fetch(configPESANAN.appsScript, { 
       method: 'POST', 
       body: fd,
@@ -328,6 +351,7 @@ function setupWhatsAppLink(fileUrl) {
   const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
   document.getElementById('btn-confirm-wa').href = waURL;
 }
+
   
   /*=============================================
   =            FORM KONTAK WHATSAPP             =
