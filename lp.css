@@ -894,3 +894,44 @@ body {
 #landingpage-edukrein .typing-effect {
   border-right: 2px solid rgba(255, 255, 255, 0.85);
 }
+
+/* ============================================= */
+/* BARU: ANIMASI UNTUK IKON (VERSI LEBIH KUAT)   */
+/* ============================================= */
+@-webkit-keyframes bounce-down {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  60% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+}
+
+@keyframes bounce-down {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  60% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+}
+
+/* Selector dibuat lebih spesifik untuk mengalahkan gaya template */
+#landingpage-edukrein .icon-bounce-down {
+  display: inline-block !important; /* Wajib ada agar transform bekerja */
+  -webkit-animation: bounce-down 2s infinite !important;
+  animation: bounce-down 2s infinite !important;
+}
+
