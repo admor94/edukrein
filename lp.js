@@ -26,10 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
 // 1. Swiper untuk Logo Slider (Efek Marquee)
 new Swiper('.swiper-logo-slider', {
   loop: true,
-  autoplay: {
-    delay: 0, // Dibiarkan 0 untuk gerakan tanpa henti
-    disableOnInteraction: false,
-  },
   speed: 8000, // DIPERBARUI: Nilai dinaikkan (misal: 8000ms) agar gerakan lebih lambat
   slidesPerView: 'auto', // Ini sudah benar untuk menampilkan banyak logo
   spaceBetween: 60,
