@@ -96,7 +96,7 @@ new Swiper('.swiper-produk-2', { // Menargetkan kelas baru .swiper-produk-2
   });
 
 /* =================================================================== */
-/* LOGIKA FORMULIR PEMBAYARAN (DENGAN VALIDASI BARU) V6                */
+/* LOGIKA ALUR FAKTUR & PEMBAYARAN (FINAL V8)                          */
 /* =================================================================== */
 
 // --- FUNGSI KOMPRESI GAMBAR ---
@@ -129,29 +129,34 @@ function compressImage(file, maxWidth = 1000, quality = 0.8) {
     reader.readAsDataURL(file);
   });
 }
-// ------------------------------------
 
+// --- KONFIGURASI ---
 const configPESANAN = {
   appsScript: 'https://script.google.com/macros/s/AKfycbyuefAX9b_PQda4Ch7m_biagqfNya23W-vfAwRBBJYFidWBfqJaOG2X33spHK4OEZgl/exec',
   nomorWhatsapp: '628999897979',
+  discountCodes: {
+    'DISKON10': { type: 'percent', value: 10 },
+    'POTONG50K': { type: 'fixed', value: 50000 }
+  }
 };
 
+// --- DEKLARASI ELEMEN DOM ---
 const allPackageButtons = document.querySelectorAll('.btn-pilih-paket');
-const formContainer = document.getElementById('payment-form-container');
+const formContainer = document.getElementById('payment-flow-container');
 const paymentForm = document.getElementById('payment-form');
 const formLoader = document.querySelector('.payment-form-loader');
-const formSteps = document.querySelectorAll('.form-step');
-const nextBtn = document.querySelector('.btn-next');
-const prevBtn = document.querySelector('.btn-prev');
+const allFormSteps = document.querySelectorAll('.form-step');
 const closeFormBtn = document.getElementById('close-form-btn');
-const waConfirmBtn = document.getElementById('btn-confirm-wa');
+const btnCekKode = document.getElementById('btn-cek-kode');
+const kodeDiskonInput = document.getElementById('kode-diskon');
 
+// --- STATE MANAGEMENT ---
 let currentStep = 1;
-let selectedPackage = '';
-let collectedData = {};
+let orderData = {};
 
+// --- FUNGSI UTILITAS ---
 function showStep(stepNumber) {
-  formSteps.forEach(step => step.classList.remove('active'));
+  allFormSteps.forEach(step => step.classList.remove('active'));
   const targetStep = document.querySelector(`.form-step[data-step="${stepNumber}"]`);
   if (targetStep) {
     targetStep.classList.add('active');
@@ -159,14 +164,133 @@ function showStep(stepNumber) {
   currentStep = stepNumber;
 }
 
+function formatRupiah(number) {
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+}
+
+function generateUniqueCode() {
+  return Math.floor(Math.random() * (999 - 100 + 1) + 100);
+}
+
+// --- FUNGSI KALKULASI & UI ---
+function calculateTotal() {
+  let harga = orderData.harga || 0;
+  let diskon = orderData.diskon || 0;
+  let subtotal = harga - diskon;
+  subtotal = subtotal < 0 ? 0 : subtotal; // Pastikan subtotal tidak negatif
+  let kodeUnik = orderData.kodeUnik || 0;
+  let total = subtotal + kodeUnik;
+
+  // Update UI Faktur (Step 1)
+  document.getElementById('calc-harga').textContent = formatRupiah(harga);
+  document.getElementById('calc-diskon').textContent = `- ${formatRupiah(diskon)}`;
+  document.getElementById('calc-subtotal').textContent = formatRupiah(subtotal);
+  document.getElementById('calc-kode-unik').textContent = `+ ${formatRupiah(kodeUnik)}`;
+  document.getElementById('calc-total').textContent = formatRupiah(total);
+  
+  // Update UI di step lain
+  document.getElementById('payment-total').textContent = formatRupiah(total);
+  document.getElementById('data-total').textContent = formatRupiah(total);
+
+  orderData.totalPembayaran = total;
+}
+
+function resetForm() {
+    paymentForm.reset();
+    orderData = {};
+    const feedbackEl = document.getElementById('discount-feedback');
+    feedbackEl.textContent = '';
+    feedbackEl.className = 'discount-feedback';
+    showStep(1);
+}
+
+function validateDiscountCode() {
+  const code = kodeDiskonInput.value.trim().toUpperCase();
+  const feedbackEl = document.getElementById('discount-feedback');
+  
+  if (configPESANAN.discountCodes[code]) {
+    const discount = configPESANAN.discountCodes[code];
+    if (discount.type === 'percent') {
+      orderData.diskon = (orderData.harga * discount.value) / 100;
+    } else if (discount.type === 'fixed') {
+      orderData.diskon = discount.value;
+    }
+    orderData.kodeDiskon = code;
+    feedbackEl.textContent = `Kode "${code}" berhasil diterapkan!`;
+    feedbackEl.className = 'discount-feedback success';
+  } else {
+    orderData.diskon = 0;
+    orderData.kodeDiskon = '';
+    feedbackEl.textContent = 'Maaf, kode yang Anda masukkan salah.';
+    feedbackEl.className = 'discount-feedback error';
+  }
+  calculateTotal();
+}
+
+function buildFinalSummary() {
+    const table = document.getElementById('final-summary-table');
+    table.innerHTML = '';
+    const dataToShow = {
+        'PAKET': orderData.paket,
+        'TOTAL_PEMBAYARAN': formatRupiah(orderData.totalPembayaran),
+        'NAMA_LENGKAP': orderData.namaLengkap,
+        'NO_WHATSAPP': orderData.noWhatsapp,
+        'ALAMAT_EMAIL': orderData.email,
+        'METODE_PEMBAYARAN': orderData.metodePembayaran,
+    };
+
+    for (const key in dataToShow) {
+        const friendlyKey = key.replace(/_/g, ' ');
+        const row = `<div class="summary-row"><div class="summary-label">${friendlyKey}</div><div class="summary-value">${dataToShow[key]}</div></div>`;
+        table.innerHTML += row;
+    }
+}
+
+
+// --- VALIDASI ---
+function validateStep(step) {
+    let isValid = true;
+    let inputs;
+    if (step === 3) {
+        inputs = document.querySelectorAll('.form-step[data-step="3"] [required]');
+        for (const input of inputs) {
+            const value = input.value.trim();
+            if (!value) {
+                alert(`Harap isi kolom: ${input.labels?.[0]?.textContent || 'Input'}`);
+                isValid = false;
+                break;
+            }
+            if (input.type === 'file' && input.files.length === 0) {
+                alert('Harap unggah bukti pembayaran.');
+                isValid = false;
+                break;
+            }
+        }
+    }
+    return isValid;
+}
+
+
+// --- EVENT LISTENERS ---
 allPackageButtons.forEach(button => {
   button.addEventListener('click', () => {
-    selectedPackage = button.getAttribute('data-paket');
-    document.getElementById('paket-dipilih').textContent = selectedPackage;
-    document.getElementById('paket-sukses').textContent = selectedPackage;
+    resetForm();
     
-    paymentForm.reset();
-    showStep(1);
+    orderData = {
+      paket: button.dataset.paket,
+      harga: parseInt(button.dataset.harga),
+      hargaAwal: parseInt(button.dataset.hargaAwal),
+      kodeUnik: generateUniqueCode(),
+      diskon: 0,
+      kodeDiskon: ''
+    };
+
+    document.getElementById('invoice-paket').textContent = orderData.paket;
+    document.getElementById('invoice-harga-awal').textContent = formatRupiah(orderData.hargaAwal);
+    
+    calculateTotal();
+    
+    document.getElementById('price-cards-container').style.display = 'none';
     formContainer.style.display = 'block';
     formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
@@ -174,128 +298,34 @@ allPackageButtons.forEach(button => {
 
 closeFormBtn.addEventListener('click', () => {
   formContainer.style.display = 'none';
-  document.getElementById('harga').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('price-cards-container').style.display = 'flex';
 });
 
-nextBtn.addEventListener('click', () => {
-  if (validateStep1()) {
-    collectStep1Data();
-    buildSummaryTable();
-    showStep(2);
-  }
+btnCekKode.addEventListener('click', validateDiscountCode);
+
+// Navigasi Antar Step
+paymentForm.addEventListener('click', function(e) {
+    if (e.target.matches('.btn-next')) {
+        if (currentStep === 3) {
+            if (!validateStep(3)) return;
+            // Kumpulkan data dari step 3 sebelum ke preview
+            orderData.namaLengkap = document.getElementById('nama-lengkap').value.trim();
+            orderData.noWhatsapp = document.getElementById('no-whatsapp').value.trim();
+            orderData.email = document.getElementById('email').value.trim();
+            orderData.metodePembayaran = document.getElementById('metode-pembayaran').value;
+            buildFinalSummary();
+        }
+        showStep(currentStep + 1);
+    }
+    if (e.target.matches('.btn-prev')) {
+        showStep(currentStep - 1);
+    }
 });
 
-prevBtn.addEventListener('click', () => showStep(1));
-
-waConfirmBtn.addEventListener('click', function(e) {
-  e.preventDefault();
-  window.open(this.href, '_blank');
-  setTimeout(function() {
-    location.reload();
-  }, 1000);
-});
-
-// --- REVISI UTAMA DI FUNGSI INI ---
-function validateStep1() {
-  let isValid = true;
-  const inputs = document.querySelectorAll('.form-step[data-step="1"] [required]');
-  
-  for (const input of inputs) {
-    const value = input.value.trim();
-    
-    // 1. Validasi Input Kosong (tetap ada)
-    if (!value) {
-      const labelText = input.labels?.[0]?.textContent || 'Input';
-      alert(`Harap isi kolom: ${labelText}`);
-      isValid = false;
-      break;
-    }
-    
-    // 2. BARU: Validasi Email Spesifik
-    if (input.id === 'email') {
-      if (!value.toLowerCase().endsWith('@gmail.com')) {
-        alert('Mohon gunakan alamat email Gmail Aktif (@gmail.com).');
-        isValid = false;
-        break;
-      }
-    }
-    
-    // 3. BARU: Validasi Nomor WhatsApp Spesifik
-    if (input.id === 'no-whatsapp') {
-      const waPattern = /^08\d{8,11}$/;
-      if (!waPattern.test(value)) {
-        alert('Format No. WhatsApp tidak valid. Pastikan diawali "08" dan berisi 10-13 digit angka.');
-        isValid = false;
-        break;
-      }
-    }
-
-    // 4. Validasi File (tetap ada)
-    if (input.type === 'file' && input.files.length === 0) {
-        alert('Harap unggah bukti pembayaran.');
-        isValid = false;
-        break;
-    }
-    if (input.type === 'file' && input.files[0] && input.files[0].size > 2 * 1024 * 1024) {
-      alert('Ukuran file bukti pembayaran tidak boleh lebih dari 2MB.');
-      isValid = false;
-      break;
-    }
-  }
-  return isValid;
-}
-// ------------------------------------
-
-function collectStep1Data() {
-  collectedData = {
-    'PAKET': selectedPackage,
-    'NAMA_LENGKAP': document.getElementById('nama-lengkap').value.trim(),
-    'NO_WHATSAPP': document.getElementById('no-whatsapp').value.trim(),
-    'ALAMAT_EMAIL': document.getElementById('email').value.trim(),
-    'PROFESI': document.getElementById('profesi').value.trim(),
-  };
-}
-
-async function buildSummaryTable() {
-  const table = document.getElementById('summary-table');
-  table.innerHTML = '';
-  for (const key in collectedData) {
-    const friendlyKey = key.replace(/_/g, ' ');
-    const row = `
-      <div class="summary-row">
-        <div class="summary-label">${friendlyKey}</div>
-        <div class="summary-value">${collectedData[key]}</div>
-      </div>
-    `;
-    table.innerHTML += row;
-  }
-
-  const fileInput = document.getElementById('bukti-pembayaran');
-  if (fileInput.files.length > 0) {
-    const file = fileInput.files[0];
-    const summaryRow = document.createElement('div');
-    summaryRow.className = 'summary-row';
-    summaryRow.innerHTML = `
-        <div class="summary-label">BUKTI PEMBAYARAN</div>
-        <div class="summary-value" id="summary-image-preview">
-            <span class="text-muted" style="font-size: 0.8rem;">Memuat preview...</span>
-        </div>
-    `;
-    table.appendChild(summaryRow);
-
-    try {
-        const compressedImage = await compressImage(file, 200, 0.7);
-        const imagePreviewContainer = document.getElementById('summary-image-preview');
-        imagePreviewContainer.innerHTML = `${file.name} <br> <img src="${compressedImage}" alt="Preview" style="max-width: 100px; border-radius: 5px; margin-top: 5px; border: 1px solid #ddd;" />`;
-    } catch (error) {
-        document.getElementById('summary-image-preview').textContent = 'Gagal memuat preview.';
-    }
-  }
-}
-
+// Submit Form
 paymentForm.addEventListener('submit', async function(e) {
   e.preventDefault();
-  if (currentStep !== 2) return;
+  if (currentStep !== 4) return;
 
   formLoader.style.display = 'flex';
 
@@ -312,26 +342,27 @@ paymentForm.addEventListener('submit', async function(e) {
     };
 
     const fd = new FormData();
-    for (const key in collectedData) {
-      fd.append(key, collectedData[key]);
-    }
+    fd.append('PAKET', orderData.paket);
+    fd.append('NAMA_LENGKAP', orderData.namaLengkap);
+    fd.append('NO_WHATSAPP', orderData.noWhatsapp);
+    fd.append('ALAMAT_EMAIL', orderData.email);
+    fd.append('METODE_PEMBAYARAN', orderData.metodePembayaran);
+    fd.append('KODE_DISKON', orderData.kodeDiskon);
+    fd.append('KODE_UNIK', orderData.kodeUnik);
+    fd.append('TOTAL_PEMBAYARAN', orderData.totalPembayaran);
     fd.append('files', JSON.stringify([fileData]));
     
-    const response = await fetch(configPESANAN.appsScript, { 
-      method: 'POST', 
-      body: fd,
-      redirect: 'follow' 
-    });
+    const response = await fetch(configPESANAN.appsScript, { method: 'POST', body: fd });
     const data = await response.json();
     
     formLoader.style.display = 'none';
     if (data.result === 'success' && data.fileUrl) {
+      document.getElementById('paket-sukses').textContent = orderData.paket;
       setupWhatsAppLink(data.fileUrl);
-      showStep(3);
+      showStep(5);
     } else {
-      throw new Error(data.error || 'URL bukti pembayaran tidak diterima dari server.');
+      throw new Error(data.error || 'Terjadi kesalahan di server.');
     }
-
   } catch (error) {
     console.error('Error:', error);
     alert('Terjadi kesalahan saat mengirim data: ' + error.message);
@@ -340,13 +371,16 @@ paymentForm.addEventListener('submit', async function(e) {
 });
 
 function setupWhatsAppLink(fileUrl) {
-  let message = `Halo, ini adalah data pesanan saya:\n\n`;
-  for(const key in collectedData) {
-       const friendlyKey = key.replace(/_/g, ' ');
-       message += `*${friendlyKey}*: ${collectedData[key]}\n`;
-  }
-  
-  message += `\n*Bukti Pembayaran*:\n${fileUrl}`;
+  let message = `*KONFIRMASI PESANAN - EDUKREIN*\n\n`;
+  message += `Halo, saya sudah melakukan pembayaran untuk pesanan berikut:\n\n`;
+  message += `*Paket:* ${orderData.paket}\n`;
+  message += `*Nama:* ${orderData.namaLengkap}\n`;
+  message += `*No. WhatsApp:* ${orderData.noWhatsapp}\n`;
+  message += `*Email:* ${orderData.email}\n`;
+  message += `*Metode Pembayaran:* ${orderData.metodePembayaran}\n`;
+  message += `*Total Transfer:* ${formatRupiah(orderData.totalPembayaran)}\n\n`;
+  message += `Berikut adalah bukti pembayarannya:\n${fileUrl}\n\n`;
+  message += `Mohon segera diproses. Terima kasih!`;
   
   const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
   document.getElementById('btn-confirm-wa').href = waURL;
