@@ -96,11 +96,11 @@ new Swiper('.swiper-produk-2', { // Menargetkan kelas baru .swiper-produk-2
   });
 
 /* ============================================= */
-/* LOGIKA FORMULIR PEMBAYARAN            */
+/* LOGIKA FORMULIR PEMBAYARAN (REVISI FINAL)     */
 /* ============================================= */
-// Konfigurasi Anda (WAJIB DIISI SETELAH DEPLOY APPS SCRIPT)
+
 const configPESANAN = {
-  appsScript: '', // <-- ISI DENGAN URL WEB APP ANDA
+  appsScript: 'https://script.google.com/macros/s/AKfycbx_jEuMMuXkeZPb7HdIdKoJvcx6W1svCqqdeAnGdwBBZsgOD-648x5g1D3Ql1G52N1b/exec', // <-- ISI DENGAN URL WEB APP ANDA SETELAH DEPLOY
   nomorWhatsapp: '628999897979',
 };
 
@@ -114,16 +114,14 @@ const prevBtn = document.querySelector('.btn-prev');
 
 let currentStep = 1;
 let selectedPackage = '';
-let formData = {};
+let collectedData = {};
 
-// Fungsi untuk menampilkan langkah formulir
 function showStep(stepNumber) {
   formSteps.forEach(step => step.classList.remove('active'));
   document.querySelector(`.form-step[data-step="${stepNumber}"]`).classList.add('active');
   currentStep = stepNumber;
 }
 
-// Event listener untuk semua tombol "Pilih Paket"
 allPackageButtons.forEach(button => {
   button.addEventListener('click', () => {
     selectedPackage = button.getAttribute('data-paket');
@@ -137,9 +135,7 @@ allPackageButtons.forEach(button => {
   });
 });
 
-// Tombol Lanjut
 nextBtn.addEventListener('click', () => {
-  // Validasi Step 1
   if (validateStep1()) {
     collectStep1Data();
     buildSummaryTable();
@@ -147,123 +143,119 @@ nextBtn.addEventListener('click', () => {
   }
 });
 
-// Tombol Kembali
-prevBtn.addEventListener('click', () => {
-  showStep(1);
-});
+prevBtn.addEventListener('click', () => showStep(1));
 
-// Fungsi Validasi Step 1
 function validateStep1() {
   let isValid = true;
   const inputs = document.querySelectorAll('.form-step[data-step="1"] [required]');
-  inputs.forEach(input => {
+  for (const input of inputs) {
     if (!input.value.trim()) {
-      alert(`Harap isi kolom: ${input.previousElementSibling.textContent}`);
+      alert(`Harap isi kolom: ${input.labels[0].textContent}`);
       isValid = false;
-      return;
+      break;
     }
     if (input.type === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
-        alert('Format email tidak valid.');
-        isValid = false;
-        return;
+      alert('Format email tidak valid.');
+      isValid = false;
+      break;
     }
     if (input.type === 'file' && input.files[0] && input.files[0].size > 2 * 1024 * 1024) {
-        alert('Ukuran file bukti pembayaran tidak boleh lebih dari 2MB.');
-        isValid = false;
-        return;
+      alert('Ukuran file bukti pembayaran tidak boleh lebih dari 2MB.');
+      isValid = false;
+      break;
     }
-  });
+  }
   return isValid;
 }
 
-// Fungsi Mengumpulkan Data Step 1
 function collectStep1Data() {
-    formData = {
-        'Paket': selectedPackage,
-        'Nama Lengkap': document.getElementById('nama-lengkap').value,
-        'No. WhatsApp': document.getElementById('no-whatsapp').value,
-        'Email': document.getElementById('email').value,
-        'Profesi': document.getElementById('profesi').value,
-        'Timestamp': new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' })
-    };
+  collectedData = {
+    'PAKET': selectedPackage,
+    'NAMA_LENGKAP': document.getElementById('nama-lengkap').value,
+    'NO_WHATSAPP': document.getElementById('no-whatsapp').value,
+    'ALAMAT_EMAIL': document.getElementById('email').value,
+    'PROFESI': document.getElementById('profesi').value,
+  };
 }
 
-// Fungsi Membangun Tabel Ringkasan
 function buildSummaryTable() {
   const table = document.getElementById('summary-table');
   table.innerHTML = '';
-  for (const key in formData) {
+  for (const key in collectedData) {
+    const friendlyKey = key.replace(/_/g, ' ');
     const row = `
       <div class="summary-row">
-        <div class="summary-label">${key}</div>
-        <div class="summary-value">: ${formData[key]}</div>
+        <div class="summary-label">${friendlyKey}</div>
+        <div class="summary-value">: ${collectedData[key]}</div>
       </div>
     `;
     table.innerHTML += row;
   }
 }
 
-// Fungsi Kirim Data
 paymentForm.addEventListener('submit', function(e) {
   e.preventDefault();
   if (currentStep !== 2) return;
 
   formLoader.style.display = 'flex';
 
-  const file = document.getElementById('bukti-pembayaran').files[0];
+  const fileInput = document.getElementById('bukti-pembayaran');
+  const file = fileInput.files[0];
   const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = function() {
-    const fileData = reader.result.split(',');
-    
-    formData['File Name'] = file.name;
-    formData['Mime Type'] = file.type;
-    formData['File Data'] = fileData[1]; // Base64 data
+  
+  reader.onload = function(e) {
+    const fileData = {
+      base64: e.target.result.split(',')[1],
+      type: file.type,
+      name: file.name,
+      fieldName: 'BUKTI_PEMBAYARAN' // Nama kolom di Spreadsheet
+    };
 
-    // Kirim ke Google Apps Script
-    if (configPESANAN.appsScript) {
-        fetch(configPESANAN.appsScript, {
-            method: 'POST',
-            body: JSON.stringify(formData)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            formLoader.style.display = 'none';
-            setupWhatsAppLink();
-            showStep(3);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Terjadi kesalahan saat mengirim data. Silakan coba lagi.');
-            formLoader.style.display = 'none';
-        });
-    } else {
-        // Fallback jika URL Apps Script kosong
-        console.warn('URL Apps Script tidak diatur. Hanya akan membuka WhatsApp.');
-        formLoader.style.display = 'none';
+    const fd = new FormData();
+    for (const key in collectedData) {
+      fd.append(key, collectedData[key]);
+    }
+    fd.append('files', JSON.stringify([fileData]));
+    
+    fetch(configPESANAN.appsScript, {
+      method: 'POST',
+      body: fd
+    })
+    .then(res => res.json())
+    .then(data => {
+      formLoader.style.display = 'none';
+      if (data.result === 'success') {
         setupWhatsAppLink();
         showStep(3);
-    }
+      } else {
+        throw new Error(data.error);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Terjadi kesalahan saat mengirim data: ' + error.message);
+      formLoader.style.display = 'none';
+    });
   };
+
   reader.onerror = function(error) {
     console.error('Error reading file:', error);
     alert('Gagal membaca file bukti pembayaran.');
     formLoader.style.display = 'none';
   };
+  
+  reader.readAsDataURL(file);
 });
 
-// Fungsi Setup Link WhatsApp
 function setupWhatsAppLink() {
-    let message = `${configPESANAN.messageWhatsapp || 'Halo, ini adalah data pesanan saya:'}\n\n`;
-    for(const key in formData) {
-        if (key !== 'File Name' && key !== 'Mime Type' && key !== 'File Data') {
-             message += `*${key}*: ${formData[key]}\n`;
-        }
-    }
-    
-    const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
-    document.getElementById('btn-confirm-wa').href = waURL;
+  let message = `Halo, ini adalah data pesanan saya:\n\n`;
+  for(const key in collectedData) {
+       const friendlyKey = key.replace(/_/g, ' ');
+       message += `*${friendlyKey}*: ${collectedData[key]}\n`;
+  }
+  
+  const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
+  document.getElementById('btn-confirm-wa').href = waURL;
 }
 
   
