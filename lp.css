@@ -833,6 +833,23 @@ body {
 }
 
 /* --- GAYA BARU UNTUK FAKTUR (STEP 1) --- */
+.price-tag .price-original {
+  font-size: 1rem;
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 0.5rem;
+}
+.invoice-body .price-original {
+  display: block;
+  font-size: 0.9rem;
+  text-decoration: line-through;
+  color: #888;
+}
+.invoice-body .price-invoice {
+  display: block;
+  font-size: 1.1rem;
+}
+
 .invoice-header {
   display: flex;
   align-items: center;
@@ -864,10 +881,20 @@ hr.calc-line {
   border-style: dashed;
   border-color: #E0E0E0;
 }
+
+/* REVISI: Mengubah HR menjadi garis solid */
+.invoice-calculation hr {
+  margin: 0.25rem 0;
+  border: none;
+  border-top: 1px solid #E0E0E0; /* Garis solid tipis */
+  opacity: 1;
+}
+
 .calc-total {
   font-size: 1.25rem;
   padding-top: 0.75rem;
 }
+
 
 /* --- GAYA BARU UNTUK METODE PEMBAYARAN (STEP 2) --- */
 .payment-header {
