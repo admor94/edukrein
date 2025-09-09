@@ -130,10 +130,10 @@ function compressImage(file, maxWidth = 1000, quality = 0.8) {
 }
 
 const configPESANAN = {
-  appsScript: 'https://script.google.com/macros/s/AKfycbwv2dwO85ltRIexoSLBbCI-qUugPsqV7kzXVbwcWXiG_yWK7u_ryne7eUDMz8y7N1pQ/exec',
+  appsScript: 'https://script.google.com/macros/s/AKfycbyuefAX9b_PQda4Ch7m_biagqfNya23W-vfAwRBBJYFidWBfqJaOG2X33spHK4OEZgl/exec',
   nomorWhatsapp: '628999897979',
 };
-
+  
 const allPackageButtons = document.querySelectorAll('.btn-pilih-paket');
 const formContainer = document.getElementById('payment-form-container');
 const paymentForm = document.getElementById('payment-form');
