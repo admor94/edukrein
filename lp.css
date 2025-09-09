@@ -226,24 +226,54 @@ body {
 
 
 /*=============================================
-=            SOCIAL PROOF SECTION             =
+=            SOCIAL PROOF SECTION (REVISI)      =
 =============================================*/
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Bergerak sejauh 1 set logo */
+  }
+}
+
 #social-proof-section {
-  padding: 6rem 0; /* Spasi diseragamkan */
+  padding: 4rem 0;
   background-color: #ffffff;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  overflow: hidden; /* Penting untuk menyembunyikan logo duplikat */
 }
+
+.swiper-logo-slider {
+  width: 100%;
+}
+
 .swiper-logo-slider .swiper-wrapper {
-  align-items: center;
-  transition-timing-function: linear !important;
+  display: flex;
+  width: max-content; /* Memastikan wrapper cukup lebar untuk semua logo */
+  animation: scroll 40s linear infinite; /* Terapkan animasi */
 }
+
+/* Bonus: Jeda animasi saat di-hover */
+.swiper-logo-slider:hover .swiper-wrapper {
+  animation-play-state: paused;
+}
+
+.swiper-logo-slider .swiper-slide {
+    width: auto; /* Lebar slide menyesuaikan konten */
+    padding: 0 30px; /* Memberi jarak antar logo */
+}
+
 .swiper-logo-slider img {
-  max-height: 64px;
+  max-height: 48px;
   width: auto;
-  filter: grayscale(0%) opacity(1);
+  filter: grayscale(100%) opacity(0.6);
   transition: filter 0.3s ease-in-out;
 }
+
 .swiper-logo-slider .swiper-slide:hover img {
-  filter: grayscale(50%) opacity(1);
+  filter: grayscale(0%) opacity(1);
 }
 
 
