@@ -844,6 +844,119 @@ body {
   border-radius: 0.75rem;
 }
 
+/* ============================================= */
+/* STYLING SECTION KELAS LENGKAP         */
+/* ============================================= */
+#kelas-section {
+  padding: 6rem 0;
+  background-color: var(--ek-white, #FFFFFF);
+}
+
+.kelas-grid {
+  display: grid;
+  /* Membuat 4 kolom di semua ukuran layar */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.kelas-card {
+  display: block;
+  text-decoration: none;
+  background-color: var(--ek-white, #FFFFFF);
+  border: 1px solid var(--ek-border-color, #E0E0E0);
+  border-radius: var(--ek-border-radius-lg, 0.75rem);
+  box-shadow: var(--ek-box-shadow, 0 4px 12px rgba(0, 0, 0, 0.08));
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kelas-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--ek-box-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
+}
+
+.kelas-card-img {
+  aspect-ratio: 4 / 3; /* Menjaga rasio gambar */
+  overflow: hidden;
+}
+
+.kelas-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
+}
+
+.kelas-card-content {
+  padding: 1rem;
+}
+
+.kelas-card-title {
+  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
+  font-weight: 700 !important;
+  color: var(--ek-text-main, #333333);
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.kelas-card-text {
+  font-size: 0.85rem;
+  color: var(--ek-text-body, #4F4F4F);
+  margin-bottom: 0;
+}
+
+/* Styling untuk Badge Level */
+.kelas-card .badge {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.3em 0.8em;
+  border-radius: 50px;
+}
+
+.badge.bg-primary-soft { background-color: rgba(47, 128, 237, 0.1); }
+.badge.text-primary { color: #2F80ED !important; }
+
+.badge.bg-accent-soft { background-color: rgba(242, 153, 74, 0.1); }
+.badge.text-accent { color: #F2994A !important; }
+
+.badge.bg-success-soft { background-color: rgba(39, 174, 96, 0.1); }
+.badge.text-success { color: #27AE60 !important; }
+
+.badge.bg-danger-soft { background-color: rgba(235, 87, 87, 0.1); }
+.badge.text-danger { color: #EB5757 !important; }
+
+.badge.bg-info-soft { background-color: rgba(86, 204, 242, 0.1); }
+.badge.text-info { color: #56CCF2 !important; }
+
+.badge.bg-dark-soft { background-color: rgba(51, 51, 51, 0.1); }
+.badge.text-dark { color: #333333 !important; }
+
+
+.kelas-footer-text {
+  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ek-text-body, #4F4F4F);
+}
+
+/* Penyesuaian Responsif */
+@media (max-width: 767.98px) {
+  .kelas-grid {
+    gap: 0.75rem; /* Jarak antar kartu diperkecil */
+  }
+  .kelas-card-content {
+    padding: 0.75rem; /* Padding internal kartu diperkecil */
+  }
+  .kelas-card-title {
+    font-size: 0.8rem; /* Ukuran judul diperkecil */
+  }
+  .kelas-card-text {
+    font-size: 0.7rem; /* Ukuran teks diperkecil */
+  }
+  .kelas-card .badge {
+    font-size: 0.6rem;
+  }
+}
+
 
 /*=============================================
 =            FAQ & KONTAK SECTION             =
