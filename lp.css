@@ -726,6 +726,135 @@ body {
   margin-bottom: 0.75rem;
 }
 
+/* ============================================= */
+/* STYLING FORMULIR PEMBAYARAN           */
+/* ============================================= */
+.payment-form-container {
+  background-color: var(--ek-bg-soft, #F9FAFB);
+  padding: 2rem;
+  border-radius: var(--ek-border-radius-lg, 0.75rem);
+  border: 1px solid var(--ek-border-color, #E0E0E0);
+}
+
+.payment-form-box {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+  background-color: var(--ek-white, #FFFFFF);
+  padding: 2rem;
+  border-radius: var(--ek-border-radius, 0.75rem);
+  box-shadow: var(--ek-box-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
+}
+
+.payment-form-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: var(--ek-border-radius, 0.75rem);
+  display: none; /* Awalnya disembunyikan */
+}
+
+.form-step {
+  display: none;
+}
+.form-step.active {
+  display: block;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-title {
+  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
+  font-weight: 700 !important;
+  color: var(--ek-text-main, #333333);
+  margin-bottom: 0.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--ek-text-main, #333333);
+}
+
+.form-control, .form-select {
+  border-radius: var(--ek-border-radius, 0.75rem) !important;
+  border: 1px solid var(--ek-border-color, #E0E0E0);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--ek-primary, #2F80ED);
+  box-shadow: 0 0 0 0.25rem rgba(47, 128, 237, 0.25);
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  border-top: 1px solid var(--ek-border-color, #E0E0E0);
+  padding-top: 1.5rem;
+}
+/* Tombol Next hanya di kanan */
+.form-step[data-step="1"] .form-navigation {
+  justify-content: flex-end;
+}
+
+/* Tabel Konfirmasi */
+.summary-table {
+  border: 1px solid var(--ek-border-color, #E0E0E0);
+  border-radius: var(--ek-border-radius, 0.75rem);
+  overflow: hidden;
+}
+.summary-table .summary-row {
+  display: flex;
+  padding: 0.75rem 1rem;
+}
+.summary-table .summary-row:not(:last-child) {
+  border-bottom: 1px solid var(--ek-border-color, #E0E0E0);
+}
+.summary-table .summary-label {
+  flex: 0 0 150px;
+  font-weight: 500;
+  color: var(--ek-text-body, #4F4F4F);
+}
+.summary-table .summary-value {
+  flex-grow: 1;
+  color: var(--ek-text-main, #333333);
+  word-break: break-all;
+}
+
+/* Tampilan Sukses */
+.form-success {
+  text-align: center;
+}
+.success-icon {
+  font-size: 5rem;
+  color: #27AE60; /* Success Green */
+  margin: 1.5rem 0;
+}
+.form-success .form-navigation {
+  justify-content: center;
+}
+.btn-success {
+  background-color: #25d366 !important;
+  border-color: #25d366 !important;
+}
+
 
 /*=============================================
 =            STANDARISASI GAYA TOMBOL (BUTTON)          =
