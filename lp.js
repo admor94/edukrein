@@ -23,48 +23,50 @@ document.addEventListener("DOMContentLoaded", function() {
   =            INISIALISASI SWIPER SLIDERS      =
   =============================================*/
 
-  // 1. Swiper untuk Logo Slider (Efek Marquee)
-  new Swiper('.swiper-logo-slider', {
-    loop: true,
-    autoplay: {
-      delay: 0,
-      disableOnInteraction: false,
-    },
-    speed: 4000,
-    slidesPerView: 'auto',
-    spaceBetween: 60,
-    grabCursor: false,
-    allowTouchMove: false,
-  });
+// 1. Swiper untuk Logo Slider (Efek Marquee)
+new Swiper('.swiper-logo-slider', {
+  loop: true,
+  autoplay: {
+    delay: 0, // Dibiarkan 0 untuk gerakan tanpa henti
+    disableOnInteraction: false,
+  },
+  speed: 8000, // DIPERBARUI: Nilai dinaikkan (misal: 8000ms) agar gerakan lebih lambat
+  slidesPerView: 'auto', // Ini sudah benar untuk menampilkan banyak logo
+  spaceBetween: 60,
+  grabCursor: false,
+  allowTouchMove: false,
+});
 
-  // 2. Swiper untuk Produk
-  new Swiper('.swiper-produk', {
-    loop: true,
-    spaceBetween: 20,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-    breakpoints: {
-      0: {
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20
-      },
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 30
-      }
-    }
-  });
+  // 2. Swiper untuk Produk (ORIGINAL)
+new Swiper('.swiper-produk', {
+  loop: true,
+  spaceBetween: 20,
+  pagination: { el: '.swiper-pagination', clickable: true },
+  navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+  breakpoints: {
+    0: { slidesPerView: 1, spaceBetween: 20 },
+    640: { slidesPerView: 2, spaceBetween: 20 },
+    1024: { slidesPerView: 4, spaceBetween: 30 }
+  }
+});
 
+// BARU: Inisialisasi untuk Swiper Produk KEDUA
+new Swiper('.swiper-produk-2', { // Menargetkan kelas baru .swiper-produk-2
+  loop: true,
+  spaceBetween: 20,
+  pagination: { el: '.swiper-pagination-2', clickable: true }, // Menggunakan pagination unik
+  navigation: { 
+    nextEl: '.swiper-button-next-2', // Menggunakan tombol navigasi unik
+    prevEl: '.swiper-button-prev-2'  // Menggunakan tombol navigasi unik
+  },
+  breakpoints: {
+    0: { slidesPerView: 1, spaceBetween: 20 },
+    640: { slidesPerView: 2, spaceBetween: 20 },
+    1024: { slidesPerView: 4, spaceBetween: 30 }
+  }
+});
+
+  
   // 3. Swiper untuk Testimoni Utama
   new Swiper('.swiper-testimoni-main', {
     loop: true,
