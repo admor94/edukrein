@@ -1069,6 +1069,21 @@ body {
 }
 
 /* ============================================= */
+/* BARU: STYLING FOOTER SECTION STATISTIK        */
+/* ============================================= */
+.statistik-footer-text {
+  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--ek-text-body, #4F4F4F);
+  border-top: 1px solid var(--ek-border-color, #E0E0E0);
+  padding-top: 2rem;
+  margin-top: 1rem;
+}
+
+
+/* ============================================= */
 /* BARU: ANIMASI UNTUK IKON (VERSI LEBIH KUAT)   */
 /* ============================================= */
 @-webkit-keyframes bounce-down {
