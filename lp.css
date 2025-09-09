@@ -727,9 +727,11 @@ body {
 }
 
 /* ============================================= */
-/* STYLING FORMULIR PEMBAYARAN (REVISI)          */
+/* STYLING ALUR FAKTUR & PEMBAYARAN (LENGKAP)    */
 /* ============================================= */
-.payment-form-container {
+
+/* --- DASAR FORMULIR (DARI KODE ANDA) --- */
+.payment-flow-container {
   background-color: #F9FAFB;
   padding: 2rem;
   border-radius: 0.75rem;
@@ -742,54 +744,41 @@ body {
   max-width: 600px;
   margin: auto;
   background-color: #FFFFFF;
-  padding: 2rem;
+  padding: 3rem 2rem 2rem; /* Menambah padding atas untuk tombol close */
   border-radius: 0.75rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .btn-close-form {
   position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: #FFFFFF;
-  border: 1px solid #E0E0E0;
+  top: 15px; /* Disesuaikan agar pas di dalam box */
+  right: 15px;
+  transform: none;
+  width: 32px;
+  height: 32px;
+  background-color: #f1f1f1;
+  border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   z-index: 15;
 }
 .btn-close-form:hover {
-  background-color: #2F80ED;
-  color: #FFFFFF;
-  transform: translateX(-50%) scale(1.1);
+  background-color: #e0e0e0;
+  transform: scale(1.1);
 }
 .btn-close-form i {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 1;
-}
-
-@keyframes bounce-up {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-.icon-bounce-up {
-  animation: bounce-up 1.5s infinite ease-in-out;
 }
 
 .payment-form-loader {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.8);
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.85);
   display: none;
   align-items: center;
   justify-content: center;
@@ -824,7 +813,7 @@ body {
 }
 
 .form-control, .form-select {
-  border-radius: 0.75rem !important;
+  border-radius: 0.5rem !important; /* Disesuaikan */
   border: 1px solid #E0E0E0;
 }
 .form-control:focus, .form-select:focus {
@@ -837,17 +826,96 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
-  border-top: 1px solid #E0E0E0;
   padding-top: 1.5rem;
 }
-.form-step[data-step="1"] .form-navigation {
-  justify-content: flex-end;
+.form-step:not([data-step="5"]) .form-navigation {
+    border-top: 1px solid #E0E0E0;
 }
 
+/* --- GAYA BARU UNTUK FAKTUR (STEP 1) --- */
+.invoice-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #E0E0E0;
+  margin-bottom: 1rem;
+}
+.invoice-logo { height: 40px; }
+.invoice-info { line-height: 1.3; }
+.invoice-item, .calc-item, .calc-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+}
+.invoice-item.discount-row .input-group { max-width: 200px; }
+.discount-feedback {
+  font-size: 0.85rem;
+  text-align: right;
+  min-height: 20px;
+  font-weight: 500;
+}
+.discount-feedback.success { color: #27AE60; }
+.discount-feedback.error { color: #EB5757; }
+hr.calc-line {
+  margin: 0.25rem 0;
+  border-style: dashed;
+  border-color: #E0E0E0;
+}
+.calc-total {
+  font-size: 1.25rem;
+  padding-top: 0.75rem;
+}
+
+/* --- GAYA BARU UNTUK METODE PEMBAYARAN (STEP 2) --- */
+.payment-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #E0E0E0;
+}
+.payment-header span {
+  font-size: 1rem;
+  color: #4F4F4F;
+}
+.payment-header h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900 !important;
+  color: #2F80ED;
+  margin: 0;
+}
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.payment-method {
+  padding: 1rem;
+  border: 1px solid #E0E0E0;
+  border-radius: 0.75rem;
+  text-align: center;
+}
+.payment-method h6 {
+  font-weight: 700;
+  color: #333333;
+}
+.payment-method p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* --- GAYA TABEL PREVIEW (DARI KODE ANDA) --- */
 .summary-table {
   border: 1px solid #E0E0E0;
   border-radius: 0.75rem;
   overflow: hidden;
+  margin-top: 1.5rem;
 }
 .summary-table .summary-row {
   display: flex;
@@ -868,6 +936,7 @@ body {
   word-break: break-all;
 }
 
+/* --- GAYA HALAMAN SUKSES (DARI KODE ANDA) --- */
 .form-success { text-align: center; }
 .success-icon {
   font-size: 5rem;
@@ -880,74 +949,28 @@ body {
   border-color: #25d366 !important;
 }
 
-/* REVISI: Media Query untuk Tabel Konfirmasi Responsif */
+/* --- REVISI RESPONSIVE (MENGGABUNGKAN SEMUA) --- */
 @media (max-width: 576px) {
   .payment-form-box {
-    padding: 1.5rem;
+    padding: 2.5rem 1rem 1rem;
+  }
+  .invoice-item.discount-row .input-group {
+    max-width: 160px;
   }
   .summary-table .summary-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
+    padding: 0.75rem;
   }
   .summary-table .summary-label {
     flex-basis: auto;
     font-weight: 700;
+    font-size: 0.8rem;
   }
   .summary-table .summary-value::before {
     content: ": ";
   }
-}
-
-/*=============================================
-=            STANDARISASI GAYA TOMBOL (BUTTON)          =
-=============================================*/
-#landingpage-edukrein .btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 50px;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-#landingpage-edukrein .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-/* Tombol Utama (Solid) */
-#landingpage-edukrein .hero-section .btn-secondary,
-#landingpage-edukrein .price-card .btn-primary {
-  background-color: var(--ds-secondary, #e67e22);
-  border-color: var(--ds-secondary, #e67e22);
-  color: #000;
-}
-#landingpage-edukrein .hero-section .btn-secondary:hover,
-#landingpage-edukrein .price-card .btn-primary:hover {
-  background-color: #d35400;
-  border-color: #d35400;
-  color: #000;
-  box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
-}
-/* Tombol Sekunder (Outline) */
-#landingpage-edukrein .price-card .btn-outline-primary {
-  background-color: transparent;
-  border-color: var(--ds-secondary, #e67e22);
-  color: var(--ds-secondary, #e67e22);
-}
-#landingpage-edukrein .price-card .btn-outline-primary:hover {
-  background-color: var(--ds-secondary, #e67e22);
-  color: #000;
-}
-/* Tombol Profesional */
-#landingpage-edukrein .price-card.professional .btn-secondary {
-    background-color: #1F287D;
-    border-color: #1F287D;
-    color: #fff;
-}
-#landingpage-edukrein .price-card.professional .btn-secondary:hover {
-    background-color: #151c56;
-    border-color: #151c56;
 }
 
 
