@@ -96,11 +96,11 @@ new Swiper('.swiper-produk-2', { // Menargetkan kelas baru .swiper-produk-2
   });
 
 /* ============================================= */
-/* LOGIKA FORMULIR PEMBAYARAN (REVISI FINAL)     */
+/* LOGIKA FORMULIR PEMBAYARAN (REVISI FINAL V2)  */
 /* ============================================= */
 
 const configPESANAN = {
-  appsScript: 'https://script.google.com/macros/s/AKfycbx_jEuMMuXkeZPb7HdIdKoJvcx6W1svCqqdeAnGdwBBZsgOD-648x5g1D3Ql1G52N1b/exec', // <-- ISI DENGAN URL WEB APP ANDA SETELAH DEPLOY
+  appsScript: 'https://script.google.com/macros/s/AKfycbx_jEuMMuXkeZPb7HdIdKoJvcx6W1svCqqdeAnGdwBBZsgOD-648x5g1D3Ql1G52N1b/exec',
   nomorWhatsapp: '628999897979',
 };
 
@@ -111,7 +111,7 @@ const formLoader = document.querySelector('.payment-form-loader');
 const formSteps = document.querySelectorAll('.form-step');
 const nextBtn = document.querySelector('.btn-next');
 const prevBtn = document.querySelector('.btn-prev');
-const closeFormBtn = document.getElementById('close-form-btn'); // BARU: Deklarasi tombol tutup
+const closeFormBtn = document.getElementById('close-form-btn');
 
 let currentStep = 1;
 let selectedPackage = '';
@@ -136,10 +136,8 @@ allPackageButtons.forEach(button => {
   });
 });
 
-// BARU: Event listener untuk tombol tutup
 closeFormBtn.addEventListener('click', () => {
   formContainer.style.display = 'none';
-  // Scroll kembali ke section harga agar mulus
   document.getElementById('harga').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
@@ -159,7 +157,9 @@ function validateStep1() {
   const inputs = document.querySelectorAll('.form-step[data-step="1"] [required]');
   for (const input of inputs) {
     if (!input.value.trim()) {
-      alert(`Harap isi kolom: ${input.labels[0].textContent}`);
+      // FIX: Menambahkan pengecualian untuk input file yang tidak punya label langsung
+      const labelText = input.labels && input.labels.length > 0 ? input.labels[0].textContent : 'Bukti Pembayaran';
+      alert(`Harap isi kolom: ${labelText}`);
       isValid = false;
       break;
     }
@@ -190,6 +190,7 @@ function collectStep1Data() {
 function buildSummaryTable() {
   const table = document.getElementById('summary-table');
   table.innerHTML = '';
+  // Menampilkan data teks
   for (const key in collectedData) {
     const friendlyKey = key.replace(/_/g, ' ');
     const row = `
@@ -199,6 +200,31 @@ function buildSummaryTable() {
       </div>
     `;
     table.innerHTML += row;
+  }
+
+  // FIX: Menampilkan preview gambar
+  const fileInput = document.getElementById('bukti-pembayaran');
+  if (fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    
+    // Buat elemen untuk preview gambar
+    const summaryRow = document.createElement('div');
+    summaryRow.className = 'summary-row';
+    summaryRow.innerHTML = `
+        <div class="summary-label">BUKTI PEMBAYARAN</div>
+        <div class="summary-value" id="summary-image-preview">
+            : <span class="text-muted" style="font-size: 0.8rem;">Memuat gambar...</span>
+        </div>
+    `;
+    table.appendChild(summaryRow);
+
+    reader.onload = function(e) {
+        const imagePreviewContainer = document.getElementById('summary-image-preview');
+        // Menambahkan nama file dan preview gambar
+        imagePreviewContainer.innerHTML = `: ${file.name} <br> <img src="${e.target.result}" alt="Preview Bukti" style="max-width: 100px; border-radius: 5px; margin-top: 5px; border: 1px solid #ddd;" />`;
+    };
+    reader.readAsDataURL(file);
   }
 }
 
@@ -266,6 +292,7 @@ function setupWhatsAppLink() {
   const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
   document.getElementById('btn-confirm-wa').href = waURL;
 }
+
   
   /*=============================================
   =            FORM KONTAK WHATSAPP             =
