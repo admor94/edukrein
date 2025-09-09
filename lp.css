@@ -734,6 +734,7 @@ body {
   padding: 2rem;
   border-radius: var(--ek-border-radius-lg, 0.75rem);
   border: 1px solid var(--ek-border-color, #E0E0E0);
+  transition: all 0.5s ease-in-out; /* Menambah transisi untuk efek hide/show */
 }
 
 .payment-form-box {
@@ -745,6 +746,49 @@ body {
   border-radius: var(--ek-border-radius, 0.75rem);
   box-shadow: var(--ek-box-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
 }
+
+/* BARU: Styling untuk Tombol Tutup */
+.btn-close-form {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: var(--ek-white, #FFFFFF);
+  border: 1px solid var(--ek-border-color, #E0E0E0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--ek-box-shadow, 0 4px 12px rgba(0, 0, 0, 0.08));
+  transition: all 0.3s ease;
+  z-index: 15;
+}
+.btn-close-form:hover {
+  background-color: var(--ek-primary, #2F80ED);
+  color: var(--ek-white, #FFFFFF);
+  transform: translateX(-50%) scale(1.1);
+}
+.btn-close-form i {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* BARU: Animasi bounce ke atas (karena ikonnya panah ke atas) */
+@keyframes bounce-up {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.icon-bounce-up {
+  animation: bounce-up 1.5s infinite ease-in-out;
+}
+
 
 .payment-form-loader {
   position: absolute;
@@ -854,7 +898,6 @@ body {
   background-color: #25d366 !important;
   border-color: #25d366 !important;
 }
-
 
 /*=============================================
 =            STANDARISASI GAYA TOMBOL (BUTTON)          =
