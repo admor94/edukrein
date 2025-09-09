@@ -130,10 +130,10 @@ function compressImage(file, maxWidth = 1000, quality = 0.8) {
 }
 
 const configPESANAN = {
-  appsScript: 'https://script.google.com/macros/s/AKfycbyuefAX9b_PQda4Ch7m_biagqfNya23W-vfAwRBBJYFidWBfqJaOG2X33spHK4OEZgl/exec',
+  appsScript: 'https://script.google.com/macros/s/AKfycbx_jEuMMuXkeZPb7HdIdKoJvcx6W1svCqqdeAnGdwBBZsgOD-648x5g1D3Ql1G52N1b/exec',
   nomorWhatsapp: '628999897979',
 };
-  
+
 const allPackageButtons = document.querySelectorAll('.btn-pilih-paket');
 const formContainer = document.getElementById('payment-form-container');
 const paymentForm = document.getElementById('payment-form');
@@ -142,6 +142,7 @@ const formSteps = document.querySelectorAll('.form-step');
 const nextBtn = document.querySelector('.btn-next');
 const prevBtn = document.querySelector('.btn-prev');
 const closeFormBtn = document.getElementById('close-form-btn');
+const waConfirmBtn = document.getElementById('btn-confirm-wa'); // BARU: Deklarasi Tombol WA
 
 let currentStep = 1;
 let selectedPackage = '';
@@ -183,6 +184,20 @@ nextBtn.addEventListener('click', () => {
 });
 
 prevBtn.addEventListener('click', () => showStep(1));
+
+// BARU: Event listener untuk tombol konfirmasi WhatsApp
+waConfirmBtn.addEventListener('click', function(e) {
+  e.preventDefault(); // Mencegah aksi default link
+  
+  // Membuka link WhatsApp di tab baru
+  window.open(this.href, '_blank');
+  
+  // Memberi jeda 1 detik agar tab baru sempat terbuka, lalu refresh halaman
+  setTimeout(function() {
+    location.reload();
+  }, 1000);
+});
+
 
 function validateStep1() {
   let isValid = true;
@@ -314,7 +329,6 @@ function setupWhatsAppLink(fileUrl) {
   const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
   document.getElementById('btn-confirm-wa').href = waURL;
 }
-
   
   /*=============================================
   =            FORM KONTAK WHATSAPP             =
