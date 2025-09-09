@@ -398,12 +398,51 @@ body {
 }
 
 
-/*=============================================
-=             CTA / QUOTE SECTION             =
-=============================================*/
-#landingpage-edukrein .cta-section {
-  padding: 6rem 0; /* Spasi diseragamkan */
+/* ============================================= */
+/* STYLING REVISI: SECTION SOLUSI (CTA)    */
+/* ============================================= */
+
+.cta-section {
+  padding: 6rem 0;
+  background-color: var(--ek-bg-soft, #F9FAFB); /* Latar belakang abu terang */
+  overflow: hidden; /* Mencegah elemen keluar dari section */
 }
+
+/* Teks kecil di atas judul utama */
+.cta-subtitle {
+  font-family: var(--ek-font-roboto, 'Roboto', sans-serif);
+  font-weight: 500;
+  color: var(--ek-primary, #2F80ED); /* Warna biru elektrik */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+/* Judul utama di kolom kiri */
+.cta-title {
+  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
+  font-weight: 900 !important;
+  color: var(--ek-text-main, #333333);
+  font-size: clamp(2.25rem, 5vw, 3rem); /* Ukuran font responsif */
+  line-height: 1.2;
+}
+
+/* Styling untuk blok narasi di kolom kanan */
+.cta-narasi p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ek-text-body, #4F4F4F);
+}
+
+.cta-narasi p:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+/* Tombol Aksi */
+.cta-narasi .btn-accent {
+  /* Menggunakan gaya tombol yang sudah ada */
+}
+
 
 
 /*=============================================
