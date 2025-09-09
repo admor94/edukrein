@@ -467,6 +467,13 @@ body {
 .cta-narasi p:not(:last-child) {
   margin-bottom: 1rem;
 }
+/* Menyesuaikan ukuran gambar di section CTA */
+.cta-image-resized {
+  width: 75%; /* Mengatur lebar gambar menjadi 75% dari kolomnya */
+  height: auto; /* Menjaga rasio aspek gambar */
+  display: block;
+  margin: 0 auto; /* Memastikan gambar tetap di tengah kolom */
+}
 
 /* Tombol Aksi */
 .cta-narasi .btn-accent {
