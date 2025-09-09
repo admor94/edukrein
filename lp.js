@@ -95,6 +95,178 @@ new Swiper('.swiper-produk-2', { // Menargetkan kelas baru .swiper-produk-2
     }
   });
 
+/* ============================================= */
+/* LOGIKA FORMULIR PEMBAYARAN            */
+/* ============================================= */
+// Konfigurasi Anda (WAJIB DIISI SETELAH DEPLOY APPS SCRIPT)
+const configPESANAN = {
+  appsScript: '', // <-- ISI DENGAN URL WEB APP ANDA
+  nomorWhatsapp: '628999897979',
+};
+
+const allPackageButtons = document.querySelectorAll('.btn-pilih-paket');
+const formContainer = document.getElementById('payment-form-container');
+const paymentForm = document.getElementById('payment-form');
+const formLoader = document.querySelector('.payment-form-loader');
+const formSteps = document.querySelectorAll('.form-step');
+const nextBtn = document.querySelector('.btn-next');
+const prevBtn = document.querySelector('.btn-prev');
+
+let currentStep = 1;
+let selectedPackage = '';
+let formData = {};
+
+// Fungsi untuk menampilkan langkah formulir
+function showStep(stepNumber) {
+  formSteps.forEach(step => step.classList.remove('active'));
+  document.querySelector(`.form-step[data-step="${stepNumber}"]`).classList.add('active');
+  currentStep = stepNumber;
+}
+
+// Event listener untuk semua tombol "Pilih Paket"
+allPackageButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    selectedPackage = button.getAttribute('data-paket');
+    document.getElementById('paket-dipilih').textContent = selectedPackage;
+    document.getElementById('paket-sukses').textContent = selectedPackage;
+    
+    paymentForm.reset();
+    showStep(1);
+    formContainer.style.display = 'block';
+    formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Tombol Lanjut
+nextBtn.addEventListener('click', () => {
+  // Validasi Step 1
+  if (validateStep1()) {
+    collectStep1Data();
+    buildSummaryTable();
+    showStep(2);
+  }
+});
+
+// Tombol Kembali
+prevBtn.addEventListener('click', () => {
+  showStep(1);
+});
+
+// Fungsi Validasi Step 1
+function validateStep1() {
+  let isValid = true;
+  const inputs = document.querySelectorAll('.form-step[data-step="1"] [required]');
+  inputs.forEach(input => {
+    if (!input.value.trim()) {
+      alert(`Harap isi kolom: ${input.previousElementSibling.textContent}`);
+      isValid = false;
+      return;
+    }
+    if (input.type === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
+        alert('Format email tidak valid.');
+        isValid = false;
+        return;
+    }
+    if (input.type === 'file' && input.files[0] && input.files[0].size > 2 * 1024 * 1024) {
+        alert('Ukuran file bukti pembayaran tidak boleh lebih dari 2MB.');
+        isValid = false;
+        return;
+    }
+  });
+  return isValid;
+}
+
+// Fungsi Mengumpulkan Data Step 1
+function collectStep1Data() {
+    formData = {
+        'Paket': selectedPackage,
+        'Nama Lengkap': document.getElementById('nama-lengkap').value,
+        'No. WhatsApp': document.getElementById('no-whatsapp').value,
+        'Email': document.getElementById('email').value,
+        'Profesi': document.getElementById('profesi').value,
+        'Timestamp': new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' })
+    };
+}
+
+// Fungsi Membangun Tabel Ringkasan
+function buildSummaryTable() {
+  const table = document.getElementById('summary-table');
+  table.innerHTML = '';
+  for (const key in formData) {
+    const row = `
+      <div class="summary-row">
+        <div class="summary-label">${key}</div>
+        <div class="summary-value">: ${formData[key]}</div>
+      </div>
+    `;
+    table.innerHTML += row;
+  }
+}
+
+// Fungsi Kirim Data
+paymentForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (currentStep !== 2) return;
+
+  formLoader.style.display = 'flex';
+
+  const file = document.getElementById('bukti-pembayaran').files[0];
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function() {
+    const fileData = reader.result.split(',');
+    
+    formData['File Name'] = file.name;
+    formData['Mime Type'] = file.type;
+    formData['File Data'] = fileData[1]; // Base64 data
+
+    // Kirim ke Google Apps Script
+    if (configPESANAN.appsScript) {
+        fetch(configPESANAN.appsScript, {
+            method: 'POST',
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            formLoader.style.display = 'none';
+            setupWhatsAppLink();
+            showStep(3);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat mengirim data. Silakan coba lagi.');
+            formLoader.style.display = 'none';
+        });
+    } else {
+        // Fallback jika URL Apps Script kosong
+        console.warn('URL Apps Script tidak diatur. Hanya akan membuka WhatsApp.');
+        formLoader.style.display = 'none';
+        setupWhatsAppLink();
+        showStep(3);
+    }
+  };
+  reader.onerror = function(error) {
+    console.error('Error reading file:', error);
+    alert('Gagal membaca file bukti pembayaran.');
+    formLoader.style.display = 'none';
+  };
+});
+
+// Fungsi Setup Link WhatsApp
+function setupWhatsAppLink() {
+    let message = `${configPESANAN.messageWhatsapp || 'Halo, ini adalah data pesanan saya:'}\n\n`;
+    for(const key in formData) {
+        if (key !== 'File Name' && key !== 'Mime Type' && key !== 'File Data') {
+             message += `*${key}*: ${formData[key]}\n`;
+        }
+    }
+    
+    const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
+    document.getElementById('btn-confirm-wa').href = waURL;
+}
+
+  
   /*=============================================
   =            FORM KONTAK WHATSAPP             =
   =============================================*/
