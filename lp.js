@@ -130,7 +130,7 @@ function compressImage(file, maxWidth = 1000, quality = 0.8) {
 }
 
 const configPESANAN = {
-  appsScript: 'https://script.google.com/macros/s/AKfycbx_jEuMMuXkeZPb7HdIdKoJvcx6W1svCqqdeAnGdwBBZsgOD-648x5g1D3Ql1G52N1b/exec',
+  appsScript: 'https://script.google.com/macros/s/AKfycbwv2dwO85ltRIexoSLBbCI-qUugPsqV7kzXVbwcWXiG_yWK7u_ryne7eUDMz8y7N1pQ/exec',
   nomorWhatsapp: '628999897979',
 };
 
