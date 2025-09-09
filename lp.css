@@ -523,6 +523,115 @@ body {
   }
 }
 
+/* ============================================= */
+/* REVISI: STYLING PRODUK SECTION              */
+/* ============================================= */
+
+/* 1. Perbaikan Tombol Navigasi Slider yang Tidak Terlihat */
+#produk .swiper-button-next,
+#produk .swiper-button-prev {
+  background-color: var(--ek-white, #FFFFFF);
+  color: var(--ek-primary, #2F80ED); /* Menggunakan warna biru untuk ikon */
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: var(--ek-box-shadow, 0 4px 12px rgba(0, 0, 0, 0.08));
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#produk .swiper-button-next:hover,
+#produk .swiper-button-prev:hover {
+  background-color: var(--ek-primary, #2F80ED);
+  color: var(--ek-white, #FFFFFF);
+}
+
+/* Mengatur ukuran ikon di dalam tombol */
+#produk .swiper-button-next i,
+#produk .swiper-button-prev i {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Menghilangkan panah default dari Swiper */
+#produk .swiper-button-next::after,
+#produk .swiper-button-prev::after {
+  display: none;
+}
+
+
+/* 2. Styling untuk Bagian Puzzle Baru */
+@keyframes puzzle-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.puzzle-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.puzzle-piece {
+  border-radius: var(--ek-border-radius-lg, 0.75rem);
+  overflow: hidden;
+  box-shadow: var(--ek-box-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
+  /* Terapkan animasi */
+  opacity: 0;
+  animation: puzzle-fade-in 0.6s ease-out forwards;
+}
+
+.puzzle-piece img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Membuat animasi muncul satu per satu */
+.puzzle-piece:nth-child(1) { animation-delay: 0.1s; }
+.puzzle-piece:nth-child(2) { animation-delay: 0.2s; }
+.puzzle-piece:nth-child(3) { animation-delay: 0.3s; }
+.puzzle-piece:nth-child(4) { animation-delay: 0.4s; }
+.puzzle-piece:nth-child(5) { animation-delay: 0.5s; }
+.puzzle-piece:nth-child(6) { animation-delay: 0.6s; }
+
+.puzzle-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding-left: 2rem;
+}
+
+.puzzle-info h3 {
+  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
+  font-weight: 700 !important;
+  color: var(--ek-text-main, #333333);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.4;
+}
+
+/* Penyesuaian untuk layar kecil */
+@media (max-width: 991.98px) {
+  .puzzle-info {
+    text-align: center;
+    padding-left: 0;
+    margin-top: 2rem;
+  }
+  .puzzle-container {
+    grid-template-columns: repeat(2, 1fr); /* Tampil 2 kolom di HP */
+  }
+}
+
 
 /*=============================================
 =                ALASAN SECTION               =
