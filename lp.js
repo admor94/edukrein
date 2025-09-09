@@ -292,7 +292,6 @@ function setupWhatsAppLink() {
   const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
   document.getElementById('btn-confirm-wa').href = waURL;
 }
-
   
   /*=============================================
   =            FORM KONTAK WHATSAPP             =
