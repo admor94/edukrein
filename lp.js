@@ -111,6 +111,7 @@ const formLoader = document.querySelector('.payment-form-loader');
 const formSteps = document.querySelectorAll('.form-step');
 const nextBtn = document.querySelector('.btn-next');
 const prevBtn = document.querySelector('.btn-prev');
+const closeFormBtn = document.getElementById('close-form-btn'); // BARU: Deklarasi tombol tutup
 
 let currentStep = 1;
 let selectedPackage = '';
@@ -134,6 +135,14 @@ allPackageButtons.forEach(button => {
     formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+
+// BARU: Event listener untuk tombol tutup
+closeFormBtn.addEventListener('click', () => {
+  formContainer.style.display = 'none';
+  // Scroll kembali ke section harga agar mulus
+  document.getElementById('harga').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
 
 nextBtn.addEventListener('click', () => {
   if (validateStep1()) {
@@ -257,7 +266,6 @@ function setupWhatsAppLink() {
   const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
   document.getElementById('btn-confirm-wa').href = waURL;
 }
-
   
   /*=============================================
   =            FORM KONTAK WHATSAPP             =
