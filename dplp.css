@@ -1,10 +1,7 @@
 /*=============================================
 =            IMPORT & PENGATURAN DASAR            =
 =============================================*/
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Roboto:wght@400;500&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
-
-/* Sembunyikan Elemen Bawaan Tema */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 #header,
 #navfloat,
 #chat,
@@ -15,118 +12,6 @@
 
 body {
   overflow-x: hidden;
-}
-
-/* Wadah Utama Landing Page */
-#landingpage-edukrein {
-  padding-top: 80px;
-  color: var(--ds-body-color, #0f172a);
-  background-color: var(--ds-primary, #04202c);
-  line-height: 1.6;
-  width: 100%;
-  overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-}
-
-/*=============================================
-=            SISTEM TIPOGRAFI GLOBAL (REVISI)            =
-=============================================*/
-/* --- Aturan Dasar untuk Semua Judul --- */
-#landingpage-edukrein h1,
-#landingpage-edukrein h2,
-#landingpage-edukrein h3,
-#landingpage-edukrein h4,
-#landingpage-edukrein h5,
-#landingpage-edukrein h6,
-#landingpage-edukrein .section-title,
-#landingpage-edukrein .price-title,
-#landingpage-edukrein .stat-number {
-  font-family: 'Nunito', sans-serif;
-  line-height: 1.3;
-}
-/* --- Hierarki Ukuran & Berat Judul --- */
-#landingpage-edukrein h1,
-#landingpage-edukrein .display-3 {
-  font-weight: 900 !important;
-  font-size: clamp(2.5rem, 5vw + 1rem, 3.75rem);
-}
-#landingpage-edukrein h2,
-#landingpage-edukrein .section-title {
-  font-weight: 700 !important;
-  font-size: clamp(2rem, 4vw + 1rem, 3rem);
-}
-#landingpage-edukrein h3 {
-  font-weight: 400 !important;
-  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2rem);
-}
-#landingpage-edukrein h4,
-#landingpage-edukrein .card-title {
-  font-weight: 400 !important;
-  font-size: clamp(1.2rem, 2vw + 0.5rem, 1.5rem);
-}
-#landingpage-edukrein h5 {
-    font-weight: 700 !important;
-    font-size: clamp(1.1rem, 1.5vw + 0.5rem, 1.25rem);
-}
-#landingpage-edukrein h6 {
-    font-weight: 700 !important;
-    font-size: clamp(1rem, 1.2vw + 0.5rem, 1.1rem);
-}
-/* --- Aturan untuk Paragraf & Teks Isi --- */
-#landingpage-edukrein p,
-#landingpage-edukrein .lead,
-#landingpage-edukrein .card-text,
-#landingpage-edukrein .accordion-body {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  line-height: 1.7;
-}
-#landingpage-edukrein .lead {
-  font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
-}
-/* --- Aturan untuk Elemen Lainnya (Interaktif & Detail) --- */
-#landingpage-edukrein a,
-#landingpage-edukrein .btn,
-#landingpage-edukrein .nav-link,
-#landingpage-edukrein .badge,
-#landingpage-edukrein label,
-#landingpage-edukrein small,
-#landingpage-edukrein .testi-name,
-#landingpage-edukrein .testi-job {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-}
-
-
-/*=============================================
-=            HERO NO-CODE SECTION             =
-=============================================*/
-.hero-no-code-section {
-  padding: 120px 0;
-  background-color: #10061e;
-  text-align: center;
-}
-.hero-highlight-purple {
-  font-size: clamp(2.5rem, 5vw + 1rem, 3.75rem); /* Dibuat lebih besar untuk penekanan visual */
-  font-weight: 900;
-  color: #a855f7;
-  text-transform: none; /* Dikembalikan ke uppercase untuk dampak maksimal */
-  letter-spacing: 1.5px;
-}
-.btn-gradient-purple {
-  background-image: linear-gradient(to right, #a855f7, #6d28d9);
-  color: white;
-  border: none;
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  transition: all 0.3s ease-in-out;
-  font-size: 1rem;
-}
-.btn-gradient-purple:hover {
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3) !important;
 }
 
 
@@ -176,1153 +61,256 @@ body {
   align-items: justify;
 }
 
-/* ============================================= */
-/* REVISI: Override untuk Tombol FAQ Bawaan Template */
-/* ============================================= */
-
-/* Menargetkan link FAQ secara spesifik menggunakan atribut href-nya */
-#landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"] {
-  /* Reset semua gaya tombol */
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  padding: 0 0 0 1rem !important; /* Hapus padding vertikal & padding kiri, sesuaikan jika perlu */
-  margin: 0 !important;
-  
-  /* Kembalikan warna teks seperti link lain */
-  color: rgba(255, 255, 255, 0.8) !important;
-  
-  /* Pastikan tidak ada dekorasi teks lain yang tersisa */
-  text-decoration: none !important;
-  display: flex !important; /* Menggunakan flex untuk mengontrol ikon jika muncul */
-  align-items: center !important;
-  gap: 0.25rem !important; /* Memberikan sedikit jarak jika ada teks atau elemen lain */
-}
-
-/* Mengembalikan gaya hover-nya juga */
-#landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"]:hover {
-  color: var(--ds-secondary, #e67e22) !important;
-  background: transparent !important; /* Pastikan tidak ada background saat di-hover */
-}
-
-/* Menyembunyikan ikon SVG yang ditambahkan oleh skrip dengan lebih kuat */
-#landingpage-edukrein .navbar-nav a.nav-link[href="#faq-kontak"] svg.svg-icon {
-  display: none !important; /* Targetkan class svg-icon secara spesifik */
-  width: 0 !important; /* Pastikan tidak memakan ruang */
-  height: 0 !important; /* Pastikan tidak memakan ruang */
-  visibility: hidden !important; /* Tambahan untuk memastikan tersembunyi */
-}
-
-/* Penyesuaian untuk nav-item terakhir agar tidak ada margin ekstra */
-#landingpage-edukrein .navbar-nav .nav-item:last-child {
-  margin-left: 0 !important; /* Hapus margin kiri bawaan jika ada */
-  padding-left: 0 !important; /* Hapus padding kiri bawaan jika ada */
-}
-
-/* Pastikan semua nav-item memiliki jarak yang konsisten antar menu */
-#landingpage-edukrein .navbar-nav .nav-item {
-  margin-left: 1rem; /* Sesuaikan jarak antar menu jika diperlukan */
-}
-
-
 /*=============================================
-=            SOCIAL PROOF SECTION (REVISI)      =
+=                START HERE!                =
 =============================================*/
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%); /* Bergerak sejauh 1 set logo */
-  }
+
+/* 1. Pengaturan Dasar & Variabel */
+.lp-digital-product {
+    --lp-bg-dark: #0D1117;
+    --lp-bg-soft: #161B22;
+    --lp-border-color: #30363D;
+    --lp-primary-blue: #2F81F7;
+    --lp-text-primary: #C9D1D9;
+    --lp-text-secondary: #8B949E;
+    --lp-font-main: 'Inter', sans-serif;
+    
+    background-color: var(--lp-bg-dark);
+    font-family: var(--lp-font-main);
+    color: var(--lp-text-primary);
+    line-height: 1.6;
 }
 
-#social-proof-section {
-  padding: 4rem 0;
-  background-color: #ffffff;
-  border-top: 1px solid #f0f0f0;
-  border-bottom: 1px solid #f0f0f0;
-  overflow: hidden; /* Penting untuk menyembunyikan logo duplikat */
+.lp-digital-product *,
+.lp-digital-product *::before,
+.lp-digital-product *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.swiper-logo-slider {
-  width: 100%;
+.lp-digital-product .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.swiper-logo-slider .swiper-wrapper {
-  display: flex;
-  width: max-content; /* Memastikan wrapper cukup lebar untuk semua logo */
-  animation: scroll 40s linear infinite; /* Terapkan animasi */
+.lp-digital-product section {
+    padding: 80px 0;
 }
 
-/* Bonus: Jeda animasi saat di-hover */
-.swiper-logo-slider:hover .swiper-wrapper {
-  animation-play-state: paused;
-}
-
-.swiper-logo-slider .swiper-slide {
-    width: auto; /* Lebar slide menyesuaikan konten */
-    padding: 0 30px; /* Memberi jarak antar logo */
-}
-
-.swiper-logo-slider img {
-  max-height: 48px;
-  width: auto;
-  filter: grayscale(100%) opacity(0.6);
-  transition: filter 0.3s ease-in-out;
-}
-
-.swiper-logo-slider .swiper-slide:hover img {
-  filter: grayscale(0%) opacity(1);
-}
-
-
-/* ============================================= */
-/* STYLING SECTION PROFESI             */
-/* ============================================= */
-#profesi-section {
-  padding: 6rem 0;
-  background-color: var(--ek-bg-soft, #F9FAFB); /* Menggunakan warna abu terang */
-}
-
-#profesi-section .highlight-accent {
-  color: var(--ek-accent, #F2994A); /* Warna oranye untuk highlight */
-  font-weight: 700;
-}
-
-.profession-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem; /* Jarak antar item profesi */
-}
-
-.profession-item {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  background-color: var(--ek-white, #FFFFFF);
-  padding: 1.5rem;
-  border-radius: var(--ek-border-radius-lg, 0.75rem);
-  border: 1px solid var(--ek-border-color, #E0E0E0);
-  box-shadow: var(--ek-box-shadow, 0 4px 12px rgba(0, 0, 0, 0.08));
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.profession-item:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--ek-box-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
-}
-
-.profession-icon {
-  flex-shrink: 0;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%; /* Membuat ikon menjadi bulat */
-  background-color: rgba(47, 128, 237, 0.1); /* Latar belakang biru transparan */
-  color: var(--ek-primary, #2F80ED); /* Warna ikon biru */
-}
-
-.profession-icon i {
-  font-size: 1.75rem; /* Ukuran ikon */
-  line-height: 1;
-}
-
-.profession-text h5 {
-  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
-  font-weight: 700 !important;
-  color: var(--ek-text-main, #333333);
-  margin-bottom: 0.5rem;
-}
-
-.profession-text ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin-bottom: 0;
-  color: var(--ek-text-body, #4F4F4F);
-}
-
-.profession-text ul li {
-  position: relative;
-  padding-left: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.profession-text ul li:not(:last-child) {
-  margin-bottom: 0.25rem;
-}
-
-/* Menambahkan ikon centang kecil sebelum list */
-.profession-text ul li::before {
-  content: '\2713'; /* Kode untuk ikon centang */
-  position: absolute;
-  left: 0;
-  top: 1px;
-  color: var(--ek-primary, #2F80ED);
-  font-weight: 700;
-}
-
-/*=============================================
-=                 HERO SECTION                  =
-=============================================*/
-#landingpage-edukrein .hero-section {
-  background-image: linear-gradient(45deg, var(--ds-primary, #04202c), #1f287d);
-  color: var(--ds-white, #ffffff);
-  padding: 6rem 0;
-}
-#landingpage-edukrein .hero-image {
-  animation: float-animation 4s ease-in-out infinite;
-}
-@keyframes float-animation {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-
-/*=============================================
-=               LAYANAN SECTION               =
-=============================================*/
-#landingpage-edukrein .layanan-section {
-  padding: 6rem 0; /* Spasi diseragamkan */
-  background-color: var(--ds-tertiary-bg, #f8f9fa);
-}
-#landingpage-edukrein .service-card {
-  border: none;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-#landingpage-edukrein .service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 1rem 3rem rgba(0,0,0,0.1);
-}
-#landingpage-edukrein .service-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background-color: var(--ds-secondary, #e67e22); /* KONSISTENSI WARNA */
-}
-#landingpage-edukrein .service-card .card-header {
-  background-color: var(--ds-dark, #0f172a);
-  border-bottom: none;
-  padding: 1.5rem;
-}
-#landingpage-edukrein .service-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.75rem;
-  background-color: var(--ds-secondary, #e67e22); /* KONSISTENSI WARNA */
-}
-#landingpage-edukrein .service-card .card-title {
-  color: var(--ds-white);
-}
-
-
-/* ============================================= */
-/* STYLING REVISI: SECTION SOLUSI (CTA)    */
-/* ============================================= */
-
-.cta-section {
-  padding: 6rem 0;
-  background-color: var(--ek-bg-soft, #F9FAFB); /* Latar belakang abu terang */
-  overflow: hidden; /* Mencegah elemen keluar dari section */
-}
-
-/* Teks kecil di atas judul utama */
-.cta-subtitle {
-  font-family: var(--ek-font-roboto, 'Roboto', sans-serif);
-  font-weight: 500;
-  color: var(--ek-primary, #2F80ED); /* Warna biru elektrik */
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
-}
-
-/* Judul utama di kolom kiri */
-.cta-title {
-  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
-  font-weight: 900 !important;
-  color: var(--ek-text-main, #333333);
-  font-size: clamp(2.25rem, 5vw, 3rem); /* Ukuran font responsif */
-  line-height: 1.2;
-}
-
-/* Styling untuk blok narasi di kolom kanan */
-.cta-narasi p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--ek-text-body, #4F4F4F);
-}
-
-.cta-narasi p:not(:last-child) {
-  margin-bottom: 1rem;
-}
-/* Menyesuaikan ukuran gambar di section CTA */
-.cta-image-resized {
-  width: 75%; /* Mengatur lebar gambar menjadi 75% dari kolomnya */
-  height: auto; /* Menjaga rasio aspek gambar */
-  display: block;
-  margin: 0 auto; /* Memastikan gambar tetap di tengah kolom */
-}
-
-/* Tombol Aksi */
-.cta-narasi .btn-accent {
-  /* Menggunakan gaya tombol yang sudah ada */
-}
-
-
-
-/*=============================================
-=                PRODUK SECTION               =
-=============================================*/
-#landingpage-edukrein .produk-section {
-  padding: 6rem 0; /* Spasi diseragamkan */
-  background-color: var(--ds-tertiary-bg, #f8f9fa);
-}
-#landingpage-edukrein .swiper-produk .card {
-  border: none;
-  transition: all 0.3s ease;
-  border-radius: 0.75rem; /* Konsistensi radius */
-}
-#landingpage-edukrein .swiper-produk .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.15);
-}
-#landingpage-edukrein .swiper-produk .card-img-top {
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
-#landingpage-edukrein .swiper-button-next,
-#landingpage-edukrein .swiper-button-prev {
-  color: var(--ds-primary);
-  background-color: rgba(255, 255, 255, 0.9);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  top: 45%;
-}
-#landingpage-edukrein .swiper-button-next:after,
-#landingpage-edukrein .swiper-button-prev:after {
-  font-size: 1.2rem;
-}
-@media (max-width: 767.98px) {
-  #landingpage-edukrein .swiper-button-next,
-  #landingpage-edukrein .swiper-button-prev {
-    display: none;
-  }
-}
-
-/* ============================================= */
-/* REVISI: STYLING PRODUK SECTION              */
-/* ============================================= */
-
-/* 1. Perbaikan Tombol Navigasi Slider yang Tidak Terlihat */
-#produk .swiper-button-next,
-#produk .swiper-button-prev {
-  background-color: var(--ek-white, #FFFFFF);
-  color: var(--ek-primary, #2F80ED); /* Menggunakan warna biru untuk ikon */
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  box-shadow: var(--ek-box-shadow, 0 4px 12px rgba(0, 0, 0, 0.08));
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#produk .swiper-button-next:hover,
-#produk .swiper-button-prev:hover {
-  background-color: var(--ek-primary, #2F80ED);
-  color: var(--ek-white, #FFFFFF);
-}
-
-/* Mengatur ukuran ikon di dalam tombol */
-#produk .swiper-button-next i,
-#produk .swiper-button-prev i {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-/* Menghilangkan panah default dari Swiper */
-#produk .swiper-button-next::after,
-#produk .swiper-button-prev::after {
-  display: none;
-}
-
-
-/* 2. Styling untuk Bagian Puzzle Baru */
-@keyframes puzzle-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.puzzle-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.puzzle-piece {
-  border-radius: var(--ek-border-radius-lg, 0.75rem);
-  overflow: hidden;
-  box-shadow: var(--ek-box-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
-  /* Terapkan animasi */
-  opacity: 0;
-  animation: puzzle-fade-in 0.6s ease-out forwards;
-}
-
-.puzzle-piece img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Membuat animasi muncul satu per satu */
-.puzzle-piece:nth-child(1) { animation-delay: 0.1s; }
-.puzzle-piece:nth-child(2) { animation-delay: 0.2s; }
-.puzzle-piece:nth-child(3) { animation-delay: 0.3s; }
-.puzzle-piece:nth-child(4) { animation-delay: 0.4s; }
-.puzzle-piece:nth-child(5) { animation-delay: 0.5s; }
-.puzzle-piece:nth-child(6) { animation-delay: 0.6s; }
-
-.puzzle-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  padding-left: 2rem;
-}
-
-.puzzle-info h3 {
-  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
-  font-weight: 700 !important;
-  color: var(--ek-text-main, #333333);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  line-height: 1.4;
-}
-
-/* Penyesuaian untuk layar kecil */
-@media (max-width: 991.98px) {
-  .puzzle-info {
-    text-align: center;
-    padding-left: 0;
-    margin-top: 2rem;
-  }
-  .puzzle-container {
-    grid-template-columns: repeat(2, 1fr); /* Tampil 2 kolom di HP */
-  }
-}
-
-
-/*=============================================
-=                ALASAN SECTION               =
-=============================================*/
-#landingpage-edukrein .alasan-section {
-  padding: 6rem 0; /* Spasi diseragamkan */
-  background-color: var(--ds-primary, #04202c);
-  color: var(--ds-white, #ffffff);
-}
-#landingpage-edukrein .alasan-section .section-title {
-  color: var(--ds-secondary, #e67e22);
-}
-#landingpage-edukrein .alasan-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  padding-bottom: 2rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-#landingpage-edukrein .alasan-list li:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-}
-#landingpage-edukrein .alasan-icon {
-  font-size: 1.5rem;
-  color: var(--ds-secondary, #e67e22);
-}
-#landingpage-edukrein .alasan-text h5 {
-  color: var(--ds-white, #ffffff);
-  font-family: 'Nunito';
-  font-weight: 700;
-  font-size: 1.2rem;
-}
-#landingpage-edukrein .alasan-text p {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.95rem;
-}
-
-
-/*=============================================
-=                 HARGA SECTION               =
-=============================================*/
-#landingpage-edukrein .harga-section {
-  padding: 6rem 0; /* Spasi diseragamkan */
-  background-color: var(--ds-tertiary-bg, #f8f9fa);
-}
-#landingpage-edukrein .price-card {
-  border: 2px solid transparent;
-  border-radius: 0.75rem; /* Konsistensi radius */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  overflow: hidden;
-}
-#landingpage-edukrein .price-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important;
-}
-#landingpage-edukrein .price-card.popular {
-  border-color: var(--ds-secondary, #e67e22);
-  transform: scale(1.03);
-}
-#landingpage-edukrein .price-card.popular:hover {
-  transform: scale(1.05) translateY(-10px);
-}
-#landingpage-edukrein .price-card .card-header {
-  color: var(--ds-white);
-  border-bottom-width: 4px;
-}
-#landingpage-edukrein .price-card.popular .card-header {
-  background-color: var(--ds-green);
-  border-bottom-color: var(--ds-yellow);
-}
-#landingpage-edukrein .price-tag .price-original {
-  display: block;
-  text-decoration: line-through;
-  opacity: 0.7;
-}
-#landingpage-edukrein .price-tag .price {
-  font-size: 2.5rem;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900;
-  line-height: 1;
-}
-#landingpage-edukrein .price-tag .price-off {
-  background-color: var(--ds-red-bg-subtle);
-  color: var(--ds-red-text-emphasis);
-}
-#landingpage-edukrein .price-features li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-/* ============================================= */
-/* STYLING ALUR FAKTUR & PEMBAYARAN (LENGKAP)    */
-/* ============================================= */
-.payment-flow-container {
-  background-color: #F9FAFB;
-  padding: 2rem;
-  border-radius: 0.75rem;
-  border: 1px solid #E0E0E0;
-}
-.payment-form-box {
-  position: relative;
-  max-width: 600px;
-  margin: auto;
-  background-color: #FFFFFF;
-  padding: 3rem 2rem 2rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-.btn-close-form {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  transform: none;
-  width: 32px; height: 32px;
-  background-color: #f1f1f1;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 15;
-}
-.btn-close-form:hover {
-  background-color: #e0e0e0;
-  transform: scale(1.1);
-}
-.btn-close-form i {
-  font-size: 1.2rem;
-  line-height: 1;
-}
-.payment-form-loader {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(255, 255, 255, 0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  border-radius: 0.75rem;
-}
-.form-step { display: none; }
-.form-step.active {
-  display: block;
-  animation: fadeIn 0.5s ease-in-out;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.form-title {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700 !important;
-  color: #333333;
-  margin-bottom: 0.5rem;
-}
-.form-group { margin-bottom: 1.5rem; }
-.form-group label {
-  display: block;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: #333333;
-}
-.form-control, .form-select {
-  border-radius: 0.5rem !important;
-  border: 1px solid #E0E0E0;
-}
-.form-control:focus, .form-select:focus {
-  border-color: #2F80ED;
-  box-shadow: 0 0 0 0.25rem rgba(47, 128, 237, 0.25);
-}
-.form-navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-}
-.form-step:not([data-step="5"]) .form-navigation {
-    border-top: 1px solid #E0E0E0;
-}
-
-/* --- GAYA BARU & REVISI --- */
-/* POIN 1 & 3: Gaya untuk harga coret di kartu dan faktur */
-.price-tag .price-original, .invoice-body .price-original {
-  font-size: 1rem;
-  text-decoration: line-through;
-  color: #888;
-  margin-right: 0.5rem;
-  display: block;
-}
-.invoice-body .price-invoice {
-  font-size: 1.1rem;
-  font-weight: 700;
-  display: block;
-}
-.invoice-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #E0E0E0;
-  margin-bottom: 1rem;
-}
-.invoice-logo { height: 40px; }
-.invoice-info { line-height: 1.3; }
-.invoice-item, .calc-item, .calc-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  font-size: 0.95rem;
-}
-.invoice-item.discount-row .input-group { max-width: 200px; }
-.discount-feedback {
-  font-size: 0.85rem;
-  text-align: right;
-  min-height: 20px;
-  font-weight: 500;
-}
-.discount-feedback.success { color: #27AE60; }
-.discount-feedback.error { color: #EB5757; }
-/* POIN 5: Mengganti <hr> menjadi garis solid */
-.invoice-calculation .calc-divider {
-  height: 1px;
-  background-color: #E0E0E0;
-  margin: 0.5rem 0;
-}
-.calc-total {
-  font-size: 1.25rem;
-  padding-top: 0.75rem;
-}
-
-/* --- GAYA METODE PEMBAYARAN --- */
-.payment-header {
-  text-align: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #E0E0E0;
-}
-.payment-header span { font-size: 1rem; color: #4F4F4F; }
-.payment-header h2 {
-  font-family: 'Nunito', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 900 !important;
-  color: #2F80ED;
-  margin: 0;
-}
-.payment-methods { display: flex; flex-direction: column; gap: 1rem; }
-.payment-method {
-  padding: 1rem;
-  border: 1px solid #E0E0E0;
-  border-radius: 0.75rem;
-  text-align: center;
-}
-.payment-method h6 { font-weight: 700; color: #333333; }
-.payment-method p {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-/* --- GAYA TABEL PREVIEW --- */
-.summary-table {
-  border: 1px solid #E0E0E0;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  margin-top: 1.5rem;
-}
-.summary-table .summary-row { display: flex; padding: 0.75rem 1rem; }
-.summary-table .summary-row:not(:last-child) { border-bottom: 1px solid #E0E0E0; }
-.summary-table .summary-label {
-  flex: 0 0 150px;
-  font-weight: 500;
-  color: #4F4F4F;
-  text-transform: capitalize;
-}
-.summary-table .summary-value {
-  flex-grow: 1;
-  color: #333333;
-  word-break: break-all;
-}
-
-/* --- GAYA HALAMAN SUKSES --- */
-.form-success { text-align: center; }
-.success-icon { font-size: 5rem; color: #27AE60; margin: 1.5rem 0; }
-.form-success .form-navigation { justify-content: center; }
-.btn-success {
-  background-color: #25d366 !important;
-  border-color: #25d366 !important;
-}
-
-/* --- REVISI RESPONSIVE --- */
-@media (max-width: 576px) {
-  .payment-form-box { padding: 2.5rem 1rem 1rem; }
-  .invoice-item.discount-row .input-group { max-width: 160px; }
-  .summary-table .summary-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-    padding: 0.75rem;
-  }
-  .summary-table .summary-label {
-    flex-basis: auto;
+.lp-digital-product h1, 
+.lp-digital-product h2, 
+.lp-digital-product h3 {
     font-weight: 700;
-    font-size: 0.8rem;
-  }
-  .summary-table .summary-value::before { content: ": "; }
+    line-height: 1.2;
+    color: var(--lp-text-primary);
 }
 
-/*=============================================
-=               TESTIMONI SECTION             =
-=============================================*/
-#landingpage-edukrein .testimoni-section {
-  padding: 6rem 0; /* Spasi diseragamkan */
-  overflow: hidden;
-}
-#landingpage-edukrein .testi-card {
-  background-color: var(--ds-primary);
-  color: var(--ds-white);
-  border-radius: 0.75rem; /* Konsistensi radius */
-  padding: 2.5rem;
-}
-#landingpage-edukrein .testi-quote {
-  font-size: clamp(1.1rem, 1.5vw + 0.8rem, 1.25rem);
-  font-style: italic;
-  position: relative;
-  padding-left: 2rem;
-}
-#landingpage-edukrein .testi-quote::before {
-  content: '“';
-  position: absolute;
-  left: 0;
-  top: -0.2rem;
-  font-size: 2.5rem;
-  color: var(--ds-secondary);
-  font-family: 'Nunito', sans-serif;
-}
-#landingpage-edukrein .testi-user img {
-  width: 50px;
-  height: 50px;
-}
-#landingpage-edukrein .testi-job {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-}
-#landingpage-edukrein .testi-nav .swiper-button-prev,
-#landingpage-edukrein .testi-nav .swiper-button-next {
-  position: static !important;
-  transform: none !important;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-}
-#landingpage-edukrein .testi-nav i {
-  font-size: 1.2rem;
-  color: #fff;
+.lp-digital-product p {
+    color: var(--lp-text-secondary);
 }
 
-
-/*=============================================
-=             TESTIMONI MARQUEE             =
-=============================================*/
-#landingpage-edukrein .testimoni-marquee-section {
-  padding: 3rem 0; /* Spasi disesuaikan untuk section minor */
-  background-color: var(--ds-primary, #04202c);
-}
-#landingpage-edukrein .testi-card-marquee {
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
+.lp-digital-product .section-title {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-/* ============================================= */
-/* STYLING SECTION KELAS LENGKAP         */
-/* ============================================= */
-#kelas-section {
-  padding: 6rem 0;
-  background-color: var(--ek-white, #FFFFFF);
+.lp-digital-product .section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-.kelas-grid {
-  display: grid;
-  /* Membuat 4 kolom di semua ukuran layar */
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+.lp-digital-product .section-title p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.kelas-card {
-  display: block;
-  text-decoration: none;
-  background-color: var(--ek-white, #FFFFFF);
-  border: 1px solid var(--ek-border-color, #E0E0E0);
-  border-radius: var(--ek-border-radius-lg, 0.75rem);
-  box-shadow: var(--ek-box-shadow, 0 4px 12px rgba(0, 0, 0, 0.08));
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.lp-digital-product .btn {
+    display: inline-block;
+    background-color: var(--lp-primary-blue);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
 }
 
-.kelas-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--ek-box-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
+.lp-digital-product .btn:hover {
+    background-color: #1A73E8;
+    color: white; /* Ensure text color stays white on hover */
 }
 
-.kelas-card-img {
-  aspect-ratio: 4 / 3; /* Menjaga rasio gambar */
-  overflow: hidden;
+/* 2. Hero Section */
+.lp-digital-product .hero-section {
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
-.kelas-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
+.lp-digital-product .hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: -webkit-linear-gradient(45deg, #3B82F6, #A855F7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
 }
 
-.kelas-card-content {
-  padding: 1rem;
+.lp-digital-product .hero-section .subtitle {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    color: var(--lp-text-secondary);
 }
 
-.kelas-card-title {
-  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
-  font-weight: 700 !important;
-  color: var(--ek-text-main, #333333);
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
+.lp-digital-product .hero-section .social-proof {
+    margin-top: 20px;
+    color: var(--lp-text-secondary);
 }
 
-.kelas-card-text {
-  font-size: 0.85rem;
-  color: var(--ek-text-body, #4F4F4F);
-  margin-bottom: 0;
+/* 3. Products Section */
+.lp-digital-product .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
-/* Styling untuk Badge Level */
-.kelas-card .badge {
-  font-size: 0.7rem;
-  font-weight: 500;
-  padding: 0.3em 0.8em;
-  border-radius: 50px;
+.lp-digital-product .product-card {
+    background-color: var(--lp-bg-soft);
+    border: 1px solid var(--lp-border-color);
+    padding: 25px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.badge.bg-primary-soft { background-color: rgba(47, 128, 237, 0.1); }
-.badge.text-primary { color: #2F80ED !important; }
-
-.badge.bg-accent-soft { background-color: rgba(242, 153, 74, 0.1); }
-.badge.text-accent { color: #F2994A !important; }
-
-.badge.bg-success-soft { background-color: rgba(39, 174, 96, 0.1); }
-.badge.text-success { color: #27AE60 !important; }
-
-.badge.bg-danger-soft { background-color: rgba(235, 87, 87, 0.1); }
-.badge.text-danger { color: #EB5757 !important; }
-
-.badge.bg-info-soft { background-color: rgba(86, 204, 242, 0.1); }
-.badge.text-info { color: #56CCF2 !important; }
-
-.badge.bg-dark-soft { background-color: rgba(51, 51, 51, 0.1); }
-.badge.text-dark { color: #333333 !important; }
-
-
-.kelas-footer-text {
-  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--ek-text-body, #4F4F4F);
+.lp-digital-product .product-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--lp-primary-blue);
 }
 
-/* Penyesuaian Responsif */
-@media (max-width: 767.98px) {
-  .kelas-grid {
-    gap: 0.75rem; /* Jarak antar kartu diperkecil */
-  }
-  .kelas-card-content {
-    padding: 0.75rem; /* Padding internal kartu diperkecil */
-  }
-  .kelas-card-title {
-    font-size: 0.8rem; /* Ukuran judul diperkecil */
-  }
-  .kelas-card-text {
-    font-size: 0.7rem; /* Ukuran teks diperkecil */
-  }
-  .kelas-card .badge {
-    font-size: 0.6rem;
-  }
+.lp-digital-product .product-card .icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    line-height: 1;
 }
 
-/* ============================================= */
-/* STYLING SECTION CTA DENGAN TIMER              */
-/* ============================================= */
-.promo-cta-section {
-  padding: 0 1rem;
-  margin: 6rem 0;
+.lp-digital-product .product-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
 }
 
-.promo-cta-content {
-  position: relative;
-  padding: 4rem 2rem;
-  background: #ffffff;
-  border: 1px solid var(--ek-border-color, #E0E0E0);
-  border-radius: var(--ek-border-radius-lg, 0.75rem);
-  text-align: center;
-  box-shadow: var(--ek-box-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
+/* 4. Pricing Section */
+.lp-digital-product .pricing-box {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--lp-bg-soft);
+    border: 1px solid var(--lp-primary-blue);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(47, 129, 247, 0.2);
 }
 
-.promo-main-title {
-  color: var(--ek-text-main, #333333);
-  font-weight: 900 !important;
-  margin-bottom: 2rem;
+.lp-digital-product .pricing-box h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
 
-.promo-timing {
-  margin-bottom: 1.5rem;
+.lp-digital-product .pricing-box .price {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: var(--lp-text-primary);
 }
 
-#promo-date {
-  color: var(--ek-text-body, #4F4F4F);
-  margin-bottom: 1rem;
-  font-weight: 500;
+.lp-digital-product .pricing-box .price small {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--lp-text-secondary);
 }
 
-.countdown-timer {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+.lp-digital-product .pricing-box .features {
+    list-style: none;
+    text-align: left;
+    margin: 30px 0;
+    padding-left: 0;
 }
 
-.timer-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 90px;
-  height: 90px;
-  background-color: var(--ek-bg-soft, #F9FAFB);
-  border-radius: var(--ek-border-radius, 0.75rem);
-  border: 1px solid var(--ek-border-color, #E0E0E0);
+.lp-digital-product .pricing-box .features li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    color: var(--lp-text-secondary);
 }
 
-.timer-box span:first-child {
-  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--ek-primary, #2F80ED);
-  line-height: 1;
+.lp-digital-product .pricing-box .features li::before {
+    content: '✓';
+    color: #34D399;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
-.timer-box .timer-label {
-  font-size: 0.8rem;
-  color: var(--ek-text-body, #4F4F4F);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.lp-digital-product .pricing-box .btn {
+    width: 100%;
 }
 
-.promo-note {
-  font-size: 0.9rem;
-  color: var(--ek-text-muted, #828282);
-  margin-bottom: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--ek-border-color, #E0E0E0);
+/* 5. FAQ Section */
+.lp-digital-product .faq-container {
+    max-width: 700px;
+    margin: 0 auto;
 }
 
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+.lp-digital-product .faq-item {
+    border-bottom: 1px solid var(--lp-border-color);
+    padding: 20px 0;
 }
 
-.cta-buttons .btn {
-  min-width: 150px;
+.lp-digital-product .faq-question {
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Tombol Skip dibuat kurang menonjol */
-.cta-buttons #skip-btn {
-  background-color: var(--ek-bg-soft, #F9FAFB);
-  color: var(--ek-text-body, #4F4F4F);
-  border-color: var(--ek-border-color, #E0E0E0);
-}
-.cta-buttons #skip-btn:hover {
-  background-color: #e0e0e0;
+.lp-digital-product .faq-question::after {
+    content: '+';
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
 }
 
-/*=============================================
-=            FAQ & KONTAK SECTION             =
-=============================================*/
-#landingpage-edukrein .faq-kontak-section {
-  padding: 6rem 0; /* Spasi diseragamkan */
-  background-color: var(--ds-tertiary-bg);
-}
-#landingpage-edukrein .accordion-button {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--ds-heading-color);
-  background-color: transparent;
-  box-shadow: none;
-}
-#landingpage-edukrein .accordion-button:not(.collapsed) {
-  color: var(--ds-primary);
+.lp-digital-product .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    padding-top: 0;
 }
 
-
-/*=============================================
-=               STATISTIK SECTION             =
-=============================================*/
-#landingpage-edukrein .statistik-section {
-  padding: 6rem 0; /* Spasi diseragamkan */
-  background-color: var(--ds-dark, #0f172a);
-  color: var(--ds-white, #ffffff);
-}
-#landingpage-edukrein .stat-item {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-#landingpage-edukrein .statistik-section.is-visible .stat-item {
-  opacity: 1;
-  transform: translateY(0);
-}
-#landingpage-edukrein .stat-icon {
-  font-size: 2.25rem;
-  color: var(--ds-secondary, #7c3aed);
-  margin-bottom: 0.8rem;
-}
-#landingpage-edukrein .stat-number {
-  font-weight: 900;
-  font-size: clamp(2rem, 5vw, 2.5rem);
-}
-#landingpage-edukrein .typing-effect {
-  border-right: 2px solid rgba(255, 255, 255, 0.85);
+.lp-digital-product .faq-item.active .faq-answer {
+    max-height: 200px; 
+    padding-top: 15px;
 }
 
-/* ============================================= */
-/* BARU: STYLING FOOTER SECTION STATISTIK        */
-/* ============================================= */
-.statistik-footer-text {
-  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
-  font-size: 1.1rem;
-  font-weight: 500;
-  line-height: 1.6;
-  color: var(--ek-text-body, #4F4F4F);
-  border-top: 1px solid var(--ek-border-color, #E0E0E0);
-  padding-top: 2rem;
-  margin-top: 1rem;
+.lp-digital-product .faq-item.active .faq-question::after {
+    transform: rotate(45deg);
 }
 
-
-/* ============================================= */
-/* BARU: ANIMASI UNTUK IKON (VERSI LEBIH KUAT)   */
-/* ============================================= */
-@-webkit-keyframes bounce-down {
-  0%, 20%, 50%, 80%, 100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  40% {
-    -webkit-transform: translateY(8px);
-    transform: translateY(8px);
-  }
-  60% {
-    -webkit-transform: translateY(4px);
-    transform: translateY(4px);
-  }
+/* 6. Footer */
+.lp-digital-product .footer-section {
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--lp-border-color);
+    color: var(--lp-text-secondary);
 }
 
-@keyframes bounce-down {
-  0%, 20%, 50%, 80%, 100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  40% {
-    -webkit-transform: translateY(8px);
-    transform: translateY(8px);
-  }
-  60% {
-    -webkit-transform: translateY(4px);
-    transform: translateY(4px);
-  }
-}
-
-/* Selector dibuat lebih spesifik untuk mengalahkan gaya template */
-#landingpage-edukrein .icon-bounce-down {
-  display: inline-block !important; /* Wajib ada agar transform bekerja */
-  -webkit-animation: bounce-down 2s infinite !important;
-  animation: bounce-down 2s infinite !important;
+/* 7. Responsive Design */
+@media (max-width: 768px) {
+    .lp-digital-product .hero-section h1 { font-size: 2.8rem; }
+    .lp-digital-product .section-title h2 { font-size: 2rem; }
+    .lp-digital-product section { padding: 60px 0; }
 }
