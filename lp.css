@@ -729,8 +729,6 @@ body {
 /* ============================================= */
 /* STYLING ALUR FAKTUR & PEMBAYARAN (LENGKAP)    */
 /* ============================================= */
-
-/* --- DASAR FORMULIR --- */
 .payment-flow-container {
   background-color: #F9FAFB;
   padding: 2rem;
@@ -861,12 +859,11 @@ body {
 }
 .discount-feedback.success { color: #27AE60; }
 .discount-feedback.error { color: #EB5757; }
-/* POIN 5: Mengubah HR menjadi garis solid */
-.invoice-body hr {
+/* POIN 5: Mengganti <hr> menjadi garis solid */
+.invoice-calculation .calc-divider {
+  height: 1px;
+  background-color: #E0E0E0;
   margin: 0.5rem 0;
-  border: none;
-  border-top: 1px solid #E0E0E0;
-  opacity: 1;
 }
 .calc-total {
   font-size: 1.25rem;
@@ -951,7 +948,6 @@ body {
   }
   .summary-table .summary-value::before { content: ": "; }
 }
-
 
 /*=============================================
 =               TESTIMONI SECTION             =
