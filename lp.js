@@ -96,7 +96,7 @@ new Swiper('.swiper-produk-2', { // Menargetkan kelas baru .swiper-produk-2
   });
 
 /* =================================================================== */
-/* LOGIKA ALUR FAKTUR & PEMBAYARAN (FINAL V8)                          */
+/* LOGIKA ALUR FAKTUR & PEMBAYARAN (FINAL V9 - DENGAN SEMUA PERBAIKAN) */
 /* =================================================================== */
 function compressImage(file, maxWidth = 1000, quality = 0.8) {
   return new Promise((resolve, reject) => {
@@ -132,7 +132,7 @@ const configPESANAN = {
   discountCodes: {
     'DISKON10': { type: 'percent', value: 10 },
     'POTONG50K': { type: 'fixed', value: 50000 },
-    'PAKET25': {type: 'percent', value: 25} // Tambah atau hapus kode di sini
+    'EDUKREIN2025': {type: 'percent', value: 25} // Tambah atau hapus kode di sini
   }
 };
 
@@ -168,6 +168,7 @@ function generateUniqueCode() {
 }
 
 function calculateTotal() {
+  let hargaAwal = orderData.hargaAwal || 0;
   let harga = orderData.harga || 0;
   let diskon = orderData.diskon || 0;
   let subtotal = harga - diskon;
@@ -176,7 +177,10 @@ function calculateTotal() {
   let total = subtotal + kodeUnik;
 
   // Update UI Faktur
+  document.getElementById('invoice-harga-awal').textContent = formatRupiah(hargaAwal);
   document.getElementById('invoice-harga-berlaku').textContent = formatRupiah(harga);
+  document.getElementById('calc-harga-awal').textContent = formatRupiah(harga);
+  document.getElementById('calc-diskon').textContent = `- ${formatRupiah(diskon)}`;
   document.getElementById('calc-subtotal').textContent = formatRupiah(subtotal);
   document.getElementById('calc-kode-unik').textContent = `+ ${formatRupiah(kodeUnik)}`;
   document.getElementById('calc-total').textContent = formatRupiah(total);
@@ -259,7 +263,6 @@ async function buildFinalSummary() {
 
 // POIN 6: Validasi email dan WA dikembalikan
 function validateStep(step) {
-    let isValid = true;
     if (step === 3) {
         const inputs = document.querySelectorAll('.form-step[data-step="3"] [required]');
         for (const input of inputs) {
@@ -282,7 +285,7 @@ function validateStep(step) {
             }
         }
     }
-    return isValid;
+    return true;
 }
 
 // --- EVENT LISTENERS ---
@@ -337,7 +340,7 @@ waConfirmBtn.addEventListener('click', function(e) {
   setTimeout(() => { location.reload(); }, 1000);
 });
 
-// Submit Form
+// Submit Form (Logika Pengiriman Data)
 paymentForm.addEventListener('submit', async function(e) {
   e.preventDefault();
   if (currentStep !== 4) return;
@@ -367,7 +370,7 @@ paymentForm.addEventListener('submit', async function(e) {
     fd.append('TOTAL_PEMBAYARAN', orderData.totalPembayaran);
     fd.append('files', JSON.stringify([fileData]));
     
-    const response = await fetch(configPESANAN.appsScript, { method: 'POST', body: fd });
+    const response = await fetch(configPESANAN.appsScript, { method: 'POST', body: fd, redirect: 'follow' });
     const data = await response.json();
     
     formLoader.style.display = 'none';
@@ -400,7 +403,6 @@ function setupWhatsAppLink(fileUrl) {
   const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
   document.getElementById('btn-confirm-wa').href = waURL;
 }
-
   
   /*=============================================
   =            FORM KONTAK WHATSAPP             =
