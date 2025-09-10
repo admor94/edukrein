@@ -407,6 +407,72 @@ function setupWhatsAppLink(fileUrl) {
   const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
   document.getElementById('btn-confirm-wa').href = waURL;
 }
+
+
+/* ============================================= */
+/* LOGIKA COUNTDOWN TIMER & TOMBOL AKSI          */
+/* ============================================= */
+  // --- KONFIGURASI TIMER ---
+  // Atur tanggal berakhirnya promo di sini (Tahun, Bulan-1, Hari, Jam, Menit, Detik)
+  const countdownDate = new Date(2025, 8, 14, 23, 59, 59).getTime();
+
+  const timerInterval = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    // Kalkulasi waktu
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Tampilkan di elemen
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    
+    if(daysEl && hoursEl && minutesEl && secondsEl) {
+        daysEl.innerHTML = String(days).padStart(2, '0');
+        hoursEl.innerHTML = String(hours).padStart(2, '0');
+        minutesEl.innerHTML = String(minutes).padStart(2, '0');
+        secondsEl.innerHTML = String(seconds).padStart(2, '0');
+    }
+
+    // Jika waktu habis
+    if (distance < 0) {
+      clearInterval(timerInterval);
+      const timerEl = document.getElementById('countdown-timer');
+      if (timerEl) {
+          timerEl.innerHTML = "<p class='promo-ended'>Promo Telah Berakhir!</p>";
+      }
+    }
+  }, 1000);
+
+  // --- LOGIKA TOMBOL ---
+  const skipBtn = document.getElementById('skip-btn');
+  const lanjutBtn = document.getElementById('lanjut-btn');
+
+  if (skipBtn) {
+    skipBtn.addEventListener('click', () => {
+      // Mengalihkan tab saat ini ke Google.
+      // Catatan: window.close() tidak akan berfungsi karena tab tidak dibuka oleh skrip.
+      window.location.href = 'https://www.google.com';
+    });
+  }
+
+  if (lanjutBtn) {
+    lanjutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const hargaSection = document.getElementById('harga');
+      if (hargaSection) {
+        hargaSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+});
+
+
   
   /*=============================================
   =            FORM KONTAK WHATSAPP             =
