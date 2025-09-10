@@ -2,7 +2,7 @@
 /* KODE JAVASCRIPT LANDING PAGE (FINAL LENGKAP)                        */
 /* =================================================================== */
 
-// --- FUNGSI UTILITAS (ditempatkan di luar agar bisa diakses global jika perlu) ---
+// --- FUNGSI UTILITAS (ditempatkan di luar agar bisa diakses global) ---
 function compressImage(file, maxWidth = 1000, quality = 0.8) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -54,32 +54,29 @@ document.addEventListener("DOMContentLoaded", function() {
   =============================================*/
   new Swiper('.swiper-logo-slider', {
     loop: true,
+    autoplay: { delay: 0, disableOnInteraction: false },
     speed: 8000,
     slidesPerView: 'auto',
     spaceBetween: 60,
     grabCursor: false,
     allowTouchMove: false,
   });
-
   new Swiper('.swiper-produk', {
     loop: true,
     spaceBetween: 20,
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    navigation: { nextEl: '.swiper-produk-wrapper .swiper-button-next', prevEl: '.swiper-produk-wrapper .swiper-button-prev' },
     breakpoints: { 0: { slidesPerView: 1 }, 640: { slidesPerView: 2 }, 1024: { slidesPerView: 4 } }
   });
-
   new Swiper('.swiper-produk-2', {
     loop: true,
     spaceBetween: 20,
-    navigation: { nextEl: '.swiper-button-next-2', prevEl: '.swiper-button-prev-2' },
+    navigation: { nextEl: '.swiper-produk-wrapper-2 .swiper-button-next-2', prevEl: '.swiper-produk-wrapper-2 .swiper-button-prev-2' },
     breakpoints: { 0: { slidesPerView: 1 }, 640: { slidesPerView: 2 }, 1024: { slidesPerView: 4 } }
   });
-  
   new Swiper('.swiper-testimoni-main', {
     loop: true,
     navigation: { nextEl: '.swiper-testimoni-main .swiper-button-next', prevEl: '.swiper-testimoni-main .swiper-button-prev' }
   });
-
   new Swiper('.swiper-testimoni-marquee', {
     loop: true,
     spaceBetween: 20,
@@ -115,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let orderData = {};
 
   function showStep(stepNumber) {
+    if(!allFormSteps.length) return;
     allFormSteps.forEach(step => step.classList.remove('active'));
     const targetStep = document.querySelector(`.form-step[data-step="${stepNumber}"]`);
     if (targetStep) targetStep.classList.add('active');
@@ -137,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function() {
     subtotal = subtotal < 0 ? 0 : subtotal;
     let kodeUnik = orderData.kodeUnik || 0;
     let total = subtotal + kodeUnik;
-
     document.getElementById('invoice-harga-awal').textContent = formatRupiah(hargaAwal);
     document.getElementById('invoice-harga-berlaku').textContent = formatRupiah(harga);
     document.getElementById('calc-harga-awal').textContent = formatRupiah(harga);
@@ -151,12 +148,12 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function resetForm() {
-    if(paymentForm) paymentForm.reset();
+    if (paymentForm) paymentForm.reset();
     orderData = {};
     const feedbackEl = document.getElementById('discount-feedback');
-    if(feedbackEl) {
-        feedbackEl.textContent = '';
-        feedbackEl.className = 'discount-feedback';
+    if (feedbackEl) {
+      feedbackEl.textContent = '';
+      feedbackEl.className = 'discount-feedback';
     }
     showStep(1);
   }
@@ -241,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function() {
     return true;
   }
 
-  if (allPackageButtons.length > 0) {
+  if (allPackageButtons.length > 0 && formContainer) {
     allPackageButtons.forEach(button => {
       button.addEventListener('click', () => {
         resetForm();
@@ -369,16 +366,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     const elements = {
-        days: document.getElementById('days'),
-        hours: document.getElementById('hours'),
-        minutes: document.getElementById('minutes'),
-        seconds: document.getElementById('seconds'),
+      days: document.getElementById('days'),
+      hours: document.getElementById('hours'),
+      minutes: document.getElementById('minutes'),
+      seconds: document.getElementById('seconds'),
     };
     if (elements.days && elements.hours && elements.minutes && elements.seconds) {
-        elements.days.innerHTML = String(days).padStart(2, '0');
-        elements.hours.innerHTML = String(hours).padStart(2, '0');
-        elements.minutes.innerHTML = String(minutes).padStart(2, '0');
-        elements.seconds.innerHTML = String(seconds).padStart(2, '0');
+      elements.days.innerHTML = String(days).padStart(2, '0');
+      elements.hours.innerHTML = String(hours).padStart(2, '0');
+      elements.minutes.innerHTML = String(minutes).padStart(2, '0');
+      elements.seconds.innerHTML = String(seconds).padStart(2, '0');
     }
     if (distance < 0) {
       clearInterval(timerInterval);
@@ -401,8 +398,96 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   /*=============================================
-  =            LOGIKA LAINNYA                     =
+  =         DIKEMBALIKAN: ANIMASI STATISTIK       =
   =============================================*/
-  // ... (Logika statistik, penutup navbar, perbaikan FAQ, dll.)
+  const statistikSection = document.getElementById('statistik');
+  if (statistikSection) {
+    function animateCounter(element) {
+      const target = +element.getAttribute('data-target');
+      const duration = 2000;
+      const frameRate = 1000 / 60;
+      const totalFrames = Math.round(duration / frameRate);
+      let currentFrame = 0;
+      const counter = () => {
+        currentFrame++;
+        const progress = currentFrame / totalFrames;
+        const currentValue = Math.round(target * progress);
+        element.textContent = currentValue.toLocaleString('id-ID');
+        if (currentFrame < totalFrames) {
+          requestAnimationFrame(counter);
+        } else {
+          element.textContent = target.toLocaleString('id-ID');
+        }
+      };
+      requestAnimationFrame(counter);
+    }
+    function animateTyping(element) {
+      const text = element.textContent.trim();
+      element.textContent = '';
+      element.classList.add('typing-effect');
+      let i = 0;
+      const typing = setInterval(() => {
+        if (i < text.length) {
+          element.innerHTML += (text[i] === ' ') ? '&nbsp;' : text[i];
+          i++;
+        } else {
+          clearInterval(typing);
+          setTimeout(() => {
+            element.classList.remove('typing-effect');
+          }, 1000);
+        }
+      }, 75);
+    }
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          statistikSection.classList.add('is-visible');
+          statistikSection.querySelectorAll('.stat-number').forEach(num => animateCounter(num));
+          statistikSection.querySelectorAll('.stat-text').forEach(text => animateTyping(text));
+          obs.unobserve(statistikSection);
+        }
+      });
+    }, { threshold: 0.4 });
+    observer.observe(statistikSection);
+  }
+
+  /*=============================================
+  =         DIKEMBALIKAN: PENUTUP NAVBAR         =
+  =============================================*/
+  const landingNav = document.getElementById('landingNav');
+  const navToggler = document.querySelector('.navbar-toggler');
+  if (landingNav && navToggler) {
+    document.addEventListener('click', function (event) {
+      const isNavOpen = landingNav.classList.contains('show');
+      const targetElement = event.target;
+      const isClickOutside = !landingNav.contains(targetElement) && !navToggler.contains(targetElement);
+      if (isNavOpen && isClickOutside) {
+        navToggler.click();
+      }
+    });
+  }
+
+  /* =================================================================== */
+  /* DIKEMBALIKAN: Perbaikan Tombol & Link FAQ di Navbar (Versi Kuat)    */
+  /* =================================================================== */
+  window.addEventListener('load', function() {
+    let attempts = 0;
+    const maxAttempts = 50;
+    const fixTheFaqLink = setInterval(function() {
+      attempts++;
+      const faqLink = document.querySelector('#landingpage-edukrein .navbar-nav a.btn[href="#faq-kontak"]');
+      if (faqLink) {
+        faqLink.removeAttribute('target');
+        faqLink.classList.remove('btn');
+        faqLink.removeAttribute('role');
+        const svgIcon = faqLink.querySelector('svg');
+        if (svgIcon) svgIcon.remove();
+        clearInterval(fixTheFaqLink);
+      }
+      if (attempts >= maxAttempts) {
+        clearInterval(fixTheFaqLink);
+      }
+    }, 100);
+  });
   
 }); // --- AKHIR DARI DOMCONTENTLOADED ---
