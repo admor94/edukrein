@@ -62,7 +62,7 @@ new Swiper('.swiper-produk-2', { // Menargetkan kelas baru .swiper-produk-2
   }
 });
 
-  
+
   // 3. Swiper untuk Testimoni Utama
   new Swiper('.swiper-testimoni-main', {
     loop: true,
@@ -351,7 +351,7 @@ paymentForm.addEventListener('submit', async function(e) {
 
   const fileInput = document.getElementById('bukti-pembayaran');
   const file = fileInput.files[0];
-  
+
   try {
     const compressedBase64 = await compressImage(file);
     const fileData = {
@@ -372,10 +372,10 @@ paymentForm.addEventListener('submit', async function(e) {
     fd.append('KODE_UNIK', orderData.kodeUnik);
     fd.append('TOTAL_PEMBAYARAN', orderData.totalPembayaran);
     fd.append('files', JSON.stringify([fileData]));
-    
+
     const response = await fetch(configPESANAN.appsScript, { method: 'POST', body: fd, redirect: 'follow' });
     const data = await response.json();
-    
+
     formLoader.style.display = 'none';
     if (data.result === 'success' && data.fileUrl) {
       document.getElementById('paket-sukses').textContent = orderData.paket;
@@ -403,77 +403,11 @@ function setupWhatsAppLink(fileUrl) {
   message += `*Total Transfer:* ${formatRupiah(orderData.totalPembayaran)}\n\n`;
   message += `Berikut adalah bukti pembayarannya:\n${fileUrl}\n\n`;
   message += `Mohon segera diproses. Terima kasih!`;
-  
+
   const waURL = `https://api.whatsapp.com/send?phone=${configPESANAN.nomorWhatsapp}&text=${encodeURIComponent(message)}`;
   document.getElementById('btn-confirm-wa').href = waURL;
 }
 
-
-/* ============================================= */
-/* LOGIKA COUNTDOWN TIMER & TOMBOL AKSI          */
-/* ============================================= */
-  // --- KONFIGURASI TIMER ---
-  // Atur tanggal berakhirnya promo di sini (Tahun, Bulan-1, Hari, Jam, Menit, Detik)
-  const countdownDate = new Date(2025, 8, 14, 23, 59, 59).getTime();
-
-  const timerInterval = setInterval(function() {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-
-    // Kalkulasi waktu
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Tampilkan di elemen
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
-    
-    if(daysEl && hoursEl && minutesEl && secondsEl) {
-        daysEl.innerHTML = String(days).padStart(2, '0');
-        hoursEl.innerHTML = String(hours).padStart(2, '0');
-        minutesEl.innerHTML = String(minutes).padStart(2, '0');
-        secondsEl.innerHTML = String(seconds).padStart(2, '0');
-    }
-
-    // Jika waktu habis
-    if (distance < 0) {
-      clearInterval(timerInterval);
-      const timerEl = document.getElementById('countdown-timer');
-      if (timerEl) {
-          timerEl.innerHTML = "<p class='promo-ended'>Promo Telah Berakhir!</p>";
-      }
-    }
-  }, 1000);
-
-  // --- LOGIKA TOMBOL ---
-  const skipBtn = document.getElementById('skip-btn');
-  const lanjutBtn = document.getElementById('lanjut-btn');
-
-  if (skipBtn) {
-    skipBtn.addEventListener('click', () => {
-      // Mengalihkan tab saat ini ke Google.
-      // Catatan: window.close() tidak akan berfungsi karena tab tidak dibuka oleh skrip.
-      window.location.href = 'https://www.google.com';
-    });
-  }
-
-  if (lanjutBtn) {
-    lanjutBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const hargaSection = document.getElementById('harga');
-      if (hargaSection) {
-        hargaSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
-});
-
-
-  
   /*=============================================
   =            FORM KONTAK WHATSAPP             =
   =============================================*/
@@ -580,7 +514,7 @@ const navToggler = document.querySelector('.navbar-toggler');
 document.addEventListener('click', function (event) {
   // Cek apakah menu sedang terbuka
   const isNavOpen = landingNav.classList.contains('show');
-  
+
   // Target elemen yang di-klik
   const targetElement = event.target;
 
@@ -621,7 +555,7 @@ window.addEventListener('load', function() {
       if (svgIcon) {
         svgIcon.remove();
       }
-      
+
       // 4. HENTIKAN PENCARIAN KARENA SUDAH BERHASIL
       clearInterval(fixTheFaqLink);
     }
@@ -632,5 +566,5 @@ window.addEventListener('load', function() {
     }
   }, 100); // Interval pengecekan
 });
-  
+
 });
