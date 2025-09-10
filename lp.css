@@ -890,6 +890,14 @@ hr.calc-line {
   opacity: 1;
 }
 
+/* REVISI: Mengubah HR menjadi garis solid (selector lebih umum) */
+.invoice-body hr {
+  margin: 0.5rem 0;
+  border: none;
+  border-top: 1px solid #E0E0E0; /* Garis solid tipis */
+  opacity: 1;
+}
+
 .calc-total {
   font-size: 1.25rem;
   padding-top: 0.75rem;
