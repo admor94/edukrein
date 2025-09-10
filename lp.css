@@ -1127,66 +1127,107 @@ body {
   }
 }
 
-/* ======================================================== */
-/* REVISI FINAL: STYLING UNTUK SIMPLE CTA SECTION (LEBIH BAIK) */
-/* ======================================================== */
-.simple-cta-section {
+/* ============================================= */
+/* STYLING SECTION CTA DENGAN TIMER              */
+/* ============================================= */
+.promo-cta-section {
   padding: 0 1rem;
-  margin: 6rem 0; /* Memberi jarak atas dan bawah */
+  margin: 6rem 0;
 }
 
-.simple-cta-content {
+.promo-cta-content {
   position: relative;
-  padding: 5rem 2rem;
-  background: linear-gradient(135deg, #1D2B64 0%, #3b5a9b 100%); /* Gradien Biru Tua yang Elegan */
-  color: var(--ek-white, #FFFFFF);
+  padding: 4rem 2rem;
+  background: #ffffff;
+  border: 1px solid var(--ek-border-color, #E0E0E0);
   border-radius: var(--ek-border-radius-lg, 0.75rem);
   text-align: center;
-  overflow: hidden; /* Penting untuk efek ornamen */
+  box-shadow: var(--ek-box-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
 }
 
-/* Menambahkan ornamen halus di latar belakang */
-.simple-cta-content::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -20%;
-  width: 100%;
-  height: 200%;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.5;
-  transform: rotate(-30deg);
-}
-
-.simple-cta-title {
-  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
+.promo-main-title {
+  color: var(--ek-text-main, #333333);
   font-weight: 900 !important;
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  line-height: 1.3;
-  color: var(--ek-white, #FFFFFF);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  position: relative; /* Agar berada di atas ornamen */
-  z-index: 1;
+  margin-bottom: 2rem;
 }
 
-/* Tombol CTA yang baru */
-.simple-cta-content .btn.btn-cta-special {
-  background-color: var(--ek-accent, #F2994A);
-  color: var(--ek-white, #FFFFFF);
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 20px rgba(242, 153, 74, 0.4);
-  position: relative; /* Agar berada di atas ornamen */
-  z-index: 1;
+.promo-timing {
+  margin-bottom: 1.5rem;
 }
 
-.simple-cta-content .btn.btn-cta-special:hover {
-  background-color: #ffad6a; /* Warna hover oranye lebih terang */
-  box-shadow: 0 6px 25px rgba(242, 153, 74, 0.5);
+#promo-date {
+  color: var(--ek-text-body, #4F4F4F);
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
 
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
 
+.timer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  background-color: var(--ek-bg-soft, #F9FAFB);
+  border-radius: var(--ek-border-radius, 0.75rem);
+  border: 1px solid var(--ek-border-color, #E0E0E0);
+}
+
+.timer-box span:first-child {
+  font-family: var(--ek-font-nunito, 'Nunito', sans-serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--ek-primary, #2F80ED);
+  line-height: 1;
+}
+
+.timer-box .timer-label {
+  font-size: 0.8rem;
+  color: var(--ek-text-body, #4F4F4F);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.promo-note {
+  font-size: 0.9rem;
+  color: var(--ek-text-muted, #828282);
+  margin-bottom: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ek-border-color, #E0E0E0);
+}
+
+.cta-final-prompt {
+  font-size: 1.5rem;
+  color: var(--ek-text-main, #333333);
+  font-weight: 700 !important;
+  margin-bottom: 1.5rem;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cta-buttons .btn {
+  min-width: 150px;
+}
+
+/* Tombol Skip dibuat kurang menonjol */
+.cta-buttons #skip-btn {
+  background-color: var(--ek-bg-soft, #F9FAFB);
+  color: var(--ek-text-body, #4F4F4F);
+  border-color: var(--ek-border-color, #E0E0E0);
+}
+.cta-buttons #skip-btn:hover {
+  background-color: #e0e0e0;
+}
 
 /*=============================================
 =            FAQ & KONTAK SECTION             =
