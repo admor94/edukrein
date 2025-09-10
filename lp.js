@@ -230,6 +230,7 @@ async function buildFinalSummary() {
         'Nama Lengkap': orderData.namaLengkap,
         'No WhatsApp': orderData.noWhatsapp,
         'Alamat Email': orderData.email,
+        'Profesi': orderData.profesi,
         'Metode Pembayaran': orderData.metodePembayaran,
     };
 
@@ -323,6 +324,7 @@ paymentForm.addEventListener('click', function(e) {
             orderData.namaLengkap = document.getElementById('nama-lengkap').value.trim();
             orderData.noWhatsapp = document.getElementById('no-whatsapp').value.trim();
             orderData.email = document.getElementById('email').value.trim();
+            orderData.profesi = document.getElementById('profesi').value;
             orderData.metodePembayaran = document.getElementById('metode-pembayaran').value;
             buildFinalSummary();
         }
@@ -364,6 +366,7 @@ paymentForm.addEventListener('submit', async function(e) {
     fd.append('NAMA_LENGKAP', orderData.namaLengkap);
     fd.append('NO_WHATSAPP', orderData.noWhatsapp);
     fd.append('ALAMAT_EMAIL', orderData.email);
+    fd.append('PROFESI', orderData.profesi);
     fd.append('METODE_PEMBAYARAN', orderData.metodePembayaran);
     fd.append('KODE_DISKON', orderData.kodeDiskon);
     fd.append('KODE_UNIK', orderData.kodeUnik);
@@ -395,6 +398,7 @@ function setupWhatsAppLink(fileUrl) {
   message += `*Nama:* ${orderData.namaLengkap}\n`;
   message += `*No. WhatsApp:* ${orderData.noWhatsapp}\n`;
   message += `*Email:* ${orderData.email}\n`;
+  message += `*Profesi:* ${orderData.profesi}\n`;
   message += `*Metode Pembayaran:* ${orderData.metodePembayaran}\n`;
   message += `*Total Transfer:* ${formatRupiah(orderData.totalPembayaran)}\n\n`;
   message += `Berikut adalah bukti pembayarannya:\n${fileUrl}\n\n`;
