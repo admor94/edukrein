@@ -1,9 +1,3 @@
-/*
-  ===================================================================
-  KODE JAVASCRIPT UNTUK HALAMAN STATIS BLOGGER
-  Tempel kode ini di dalam tag <script>...</script> setelah CSS.
-  ===================================================================
-*/
 document.addEventListener('DOMContentLoaded', function() {
     
     // Fungsionalitas untuk Navbar saat scroll
