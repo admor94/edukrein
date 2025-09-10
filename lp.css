@@ -1202,13 +1202,6 @@ body {
   border-top: 1px solid var(--ek-border-color, #E0E0E0);
 }
 
-.cta-final-prompt {
-  font-size: 1.5rem;
-  color: var(--ek-text-main, #333333);
-  font-weight: 700 !important;
-  margin-bottom: 1.5rem;
-}
-
 .cta-buttons {
   display: flex;
   justify-content: center;
