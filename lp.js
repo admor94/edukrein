@@ -126,7 +126,7 @@ function compressImage(file, maxWidth = 1000, quality = 0.8) {
 }
 
 const configPESANAN = {
-  appsScript: 'URL_APLIKASI_WEB_ANDA_DI_SINI',
+  appsScript: 'https://script.google.com/macros/s/AKfycbyuefAX9b_PQda4Ch7m_biagqfNya23W-vfAwRBBJYFidWBfqJaOG2X33spHK4OEZgl/exec',
   nomorWhatsapp: '628999897979',
   // POIN 4: Di sinilah Anda mengelola kode diskon
   discountCodes: {
