@@ -1,42 +1,50 @@
 /*
   File: statis.css
-  Versi: 3.0 (Selective Hide)
-  Fungsi: Menyembunyikan elemen layout tema secara selektif saat halaman statis
-          diberi penanda khusus.
+  Versi: 3.1 (High Specificity Fix)
+  Fungsi: Menyembunyikan elemen layout tema secara selektif dengan
+          aturan yang lebih kuat untuk mengatasi override dari tema.
 */
 
-/* --- Sembunyikan elemen-elemen layout utama --- */
-body.static-clean-mode #contact,
-body.static-clean-mode #header,
-body.static-clean-mode #navfloat,
-body.static-clean-mode #searchCanv,
-body.static-clean-mode #chat,
-body.static-clean-mode #footer,
-body.static-clean-mode #article-headline, /* Sembunyikan judul default dari tema */
-body.static-clean-mode #article-related, /* Sembunyikan artikel terkait default dari tema */
-body.static-clean-mode .main-wrapper > .py-5.bg-light, /* Sembunyikan latar belakang abu-abu */
-body.static-clean-mode .main-wrapper > .wrapper-x.py-5 > .mw-lg.mx-auto > section:not(#article-content):not(#article-share):not(#article-comments) {
-  /* Sembunyikan semua section di dalam konten kecuali konten artikel, share, dan komentar */
+/* --- Sembunyikan elemen-elemen layout utama DENGAN SPESIFISITAS TINGGI --- */
+/* Menambahkan .staticpage agar lebih kuat dari aturan tema default */
+body.staticpage.static-clean-mode #contact,
+body.staticpage.static-clean-mode #header,
+body.staticpage.static-clean-mode #navfloat,
+body.staticpage.static-clean-mode #searchCanv,
+body.staticpage.static-clean-mode #chat,
+body.staticpage.static-clean-mode #footer {
   display: none !important;
 }
 
+/* Sembunyikan judul & artikel terkait dari tema di dalam <main> */
+body.staticpage.static-clean-mode main #article-headline,
+body.staticpage.static-clean-mode main #article-related {
+    display: none !important;
+}
 
 /* --- Atur ulang padding/margin dari kontainer utama --- */
-body.static-clean-mode #main {
+body.staticpage.static-clean-mode main {
   padding: 0 !important;
+  margin: 0 !important;
 }
 
-body.static-clean-mode #main > .wrapper-x.py-5 {
+/* Targetkan wrapper yang ada di dalam <main> dan atur latar belakangnya */
+body.staticpage.static-clean-mode main .wrapper-x.py-5 {
   padding-top: 40px !important;
   padding-bottom: 40px !important;
-  max-width: 100%; /* Lebarkan kontainer utama */
+  background-color: #f8f9fa; /* Latar belakang abu-abu muda */
 }
 
-/* Beri gaya pada kontainer artikel di dalamnya agar rapi */
+/* Hilangkan pembatas lebar default agar kontainer kustom kita bisa mengontrolnya */
+body.staticpage.static-clean-mode main .wrapper-x.py-5 > .mw-lg.mx-auto {
+    max-width: none !important;
+}
+
+/* Gaya kontainer artikel kustom kita */
 .static-article-container {
   max-width: 980px; /* Lebar konten seperti postingan biasa */
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px;
   background-color: #ffffff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   border-radius: 8px;
@@ -71,7 +79,7 @@ body.static-clean-mode #main > .wrapper-x.py-5 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5px;
+  gap: 5px 10px; /* Memberi jarak antar item meta */
 }
 
 /* --- Gaya untuk konten artikel agar tetap konsisten --- */
@@ -94,8 +102,8 @@ body.static-clean-mode #main > .wrapper-x.py-5 {
 }
 
 /* --- Atur ulang styling untuk bagian share dan komentar bawaan tema --- */
-body.static-clean-mode #article-share,
-body.static-clean-mode #article-comments {
+body.staticpage.static-clean-mode #article-share,
+body.staticpage.static-clean-mode #article-comments {
     margin-top: 3rem;
     padding-top: 2rem;
     border-top: 1px solid #dee2e6;
