@@ -1,10 +1,50 @@
-#contact, #header, #navfloat, #main, #footer, #chat, .main-wrapper, .post-body, #Blog1 {
-    display: none !important;
-  }
-  
-  body {
-    background: #fff !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-  }
+/* [AWAL] KODE UNTUK statis.css */
+
+/* 1. Sembunyikan semua elemen tema utama */
+/* Gunakan !important untuk memastikan aturan ini menimpa CSS tema */
+#contact, 
+#header, 
+#navfloat, 
+#main, 
+#footer, 
+#chat,
+.main-wrapper,
+#Blog1 {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* 2. Reset tampilan body agar bersih */
+body.staticpage, body {
+  background: #fff !important; /* Latar belakang putih bersih */
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow-y: auto !important; /* Izinkan scroll jika konten lebih panjang dari layar */
+  overflow-x: hidden !important;
+}
+
+/* 3. Atur wadah konten statis */
+/* Ini akan memberikan padding dan membatasi lebar konten agar nyaman dibaca */
+.statis-container {
+  max-width: 800px;  /* Lebar maksimal konten */
+  margin: 0 auto;     /* Posisikan di tengah */
+  padding: 40px 20px; /* Jarak atas/bawah dan kiri/kanan */
+  font-family: 'Exo 2', sans-serif; /* Menggunakan font yang sudah Anda pilih */
+  font-size: 16px;    /* Ukuran font dasar untuk halaman ini */
+  line-height: 1.7;   /* Jarak antar baris agar mudah dibaca */
+  color: #333;
+}
+
+/* Gaya tambahan untuk judul dan paragraf di dalam halaman statis */
+.statis-container h3 {
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.statis-container p {
+  margin-bottom: 1em;
+}
+
+
+/* [AKHIR] KODE UNTUK statis.css */
