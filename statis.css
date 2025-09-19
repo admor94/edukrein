@@ -1,12 +1,10 @@
-/* Sembunyikan Elemen Bawaan Tema */
-#header,
-#navfloat,
-#chat,
-#footer,
-#main {
-  display: none !important;
-}
-
-body {
-  overflow-x: hidden;
-}
+#contact, #header, #navfloat, #main, #footer, #chat, .main-wrapper, .post-body, #Blog1 {
+    display: none !important;
+  }
+  
+  body {
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
