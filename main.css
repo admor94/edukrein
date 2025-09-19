@@ -1,1 +1,12 @@
+/* Sembunyikan Elemen Bawaan Tema */
+#header,
+#navfloat,
+#chat,
+#footer,
+#main {
+  display: none !important;
+}
 
+body {
+  overflow-x: hidden;
+}
