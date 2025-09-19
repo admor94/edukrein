@@ -15,7 +15,7 @@
     // Periksa apakah di dalam konten terdapat komentar pemicu kita
     if (postBody && postBody.innerHTML.includes('<!-- static-clean-page -->')) {
       document.body.classList.add('static-clean-mode');
-      console.log('Mode halaman statis bersih (v3.0) diaktifkan.');
+      console.log('Mode halaman statis bersih diaktifkan.');
     }
   });
 })();
