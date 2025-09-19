@@ -1,28 +1,66 @@
 /*
   File: statis.js
-  Fungsi: Menambahkan class khusus ke body untuk mengaktifkan CSS pembersih.
+  Versi: 2.1 (Otomatisasi Metadata)
+  Fungsi: Mendeteksi halaman statis, menambahkan class ke body,
+          dan memformat metadata tanggal secara otomatis.
 */
 
 (function() {
-  // Tunggu hingga seluruh struktur halaman dimuat
+  'use strict';
+
+  /**
+   * Mengubah tanggal format ISO (misal: 2025-09-19T08:08:00Z) menjadi format yang mudah dibaca.
+   * @param {string} isoString - String tanggal dalam format ISO 8601.
+   * @returns {string} Tanggal yang sudah diformat (misal: 19 September 2025).
+   */
+  function formatDate(isoString) {
+    if (!isoString) return '';
+    const date = new Date(isoString);
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+    // Menggunakan lokal 'id-ID' untuk format tanggal bahasa Indonesia.
+    return date.toLocaleDateString('id-ID', options);
+  }
+
+  // Jalankan setelah semua elemen HTML dimuat
   document.addEventListener('DOMContentLoaded', function() {
     
-    // Cari kontainer halaman statis khusus kita
-    const staticPageContainer = document.getElementById('clean-static-page');
+    const staticPageContainer = document.getElementById('static-page-wrapper');
 
-    // Jika kontainer tersebut ada di halaman ini, jalankan proses pembersihan
+    // Hanya jalankan jika ini adalah halaman statis khusus kita
     if (staticPageContainer) {
-      
-      // Tambahkan class 'clean-page-active' ke tag <body>.
-      // CSS akan menggunakan class ini untuk menyembunyikan elemen tema lainnya.
-      document.body.classList.add('clean-page-active');
-      
-      // Untuk memastikan semua elemen lain tersembunyi dengan andal,
-      // pindahkan kontainer kita menjadi anak langsung dari <body>.
-      // Ini mengeluarkannya dari struktur postingan default Blogger.
+      // 1. Aktifkan mode halaman bersih dengan menambahkan class ke body
+      document.body.classList.add('static-page-active');
       document.body.appendChild(staticPageContainer);
       
-      console.log('Mode halaman statis bersih diaktifkan.');
+      // 2. Proses dan format metadata tanggal secara otomatis
+      const publishedEl = staticPageContainer.querySelector('.published-date');
+      const updatedEl = staticPageContainer.querySelector('.updated-date');
+
+      const publishedISO = publishedEl ? publishedEl.dataset.isoDate : null;
+      const updatedISO = updatedEl ? updatedEl.dataset.isoDate : null;
+
+      if (publishedEl && publishedISO) {
+        publishedEl.textContent = ` | Diterbitkan: ${formatDate(publishedISO)}`;
+      }
+
+      if (updatedEl && updatedISO && publishedISO) {
+        // Hanya tampilkan tanggal pembaruan jika berbeda hari dengan tanggal terbit
+        if (updatedISO.substring(0, 10) !== publishedISO.substring(0, 10)) {
+           updatedEl.textContent = ` | Diperbarui: ${formatDate(updatedISO)}`;
+        } else {
+           updatedEl.style.display = 'none'; // Sembunyikan jika sama
+        }
+      } else if (updatedEl) {
+        updatedEl.style.display = 'none';
+      }
+      
+      console.log('Mode halaman statis bersih (v2.1) diaktifkan.');
     }
   });
+
 })();
+
