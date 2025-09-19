@@ -1,42 +1,50 @@
 /*
-  File: statis.css
-  Versi: 3.2 (Final Override)
-  Fungsi: Menggunakan metode "hide all, show one" untuk memastikan
-          hanya konten utama yang tampil di halaman statis.
+  File: statis.css (External)
+  Versi: 5.0 (Modular & Robust)
+  Fungsi: Menyembunyikan elemen tema dan menata halaman statis.
+          Bekerja dengan :has() untuk browser modern dan class dari JS sebagai fallback.
 */
 
-/* --- LANGKAH 1: Sembunyikan SEMUA anak langsung dari <body> --- */
-body.static-clean-mode > * {
+/* --- LANGKAH 1: Sembunyikan elemen tema (Metode :has() & Fallback .static-clean-mode) --- */
+body:has(#static-page-trigger) #contact,
+body.static-clean-mode #contact,
+body:has(#static-page-trigger) #header,
+body.static-clean-mode #header,
+body:has(#static-page-trigger) #navfloat,
+body.static-clean-mode #navfloat,
+body:has(#static-page-trigger) #searchCanv,
+body.static-clean-mode #searchCanv,
+body:has(#static-page-trigger) #chat,
+body.static-clean-mode #chat,
+body:has(#static-page-trigger) #footer,
+body.static-clean-mode #footer,
+body:has(#static-page-trigger) .custom-section,
+body.static-clean-mode .custom-section {
   display: none !important;
 }
 
-/* --- LANGKAH 2: KECUALIKAN dan tampilkan HANYA <main> dan skrip --- */
-body.static-clean-mode > main,
-body.static-clean-mode > script {
-  display: block !important;
-}
-
-/* --- Atur ulang padding/margin dari kontainer utama --- */
-body.static-clean-mode main {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-/* Targetkan wrapper yang ada di dalam <main> dan atur latar belakangnya */
-body.static-clean-mode main .wrapper-x.py-5 {
+/* --- LANGKAH 2: Atur ulang <main> agar menjadi kanvas bersih --- */
+body:has(#static-page-trigger) #main,
+body.static-clean-mode #main {
   padding-top: 40px !important;
   padding-bottom: 40px !important;
-  background-color: #f8f9fa; /* Latar belakang abu-abu muda */
+  background-color: #f8f9fa;
 }
 
-/* Hilangkan pembatas lebar default agar kontainer kustom kita bisa mengontrolnya */
-body.static-clean-mode main .wrapper-x.py-5 > .mw-lg.mx-auto {
+body:has(#static-page-trigger) #main .wrapper-x.py-5,
+body.static-clean-mode #main .wrapper-x.py-5 {
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+body:has(#static-page-trigger) #main .wrapper-x.py-5 > .mw-lg.mx-auto,
+body.static-clean-mode #main .wrapper-x.py-5 > .mw-lg.mx-auto {
     max-width: none !important;
 }
 
-/* Gaya kontainer artikel kustom kita */
+/* --- LANGKAH 3: Gaya untuk kontainer dan konten artikel --- */
 .static-article-container {
-  max-width: 980px; /* Lebar konten seperti postingan biasa */
+  max-width: 980px;
   margin: 0 auto;
   padding: 40px;
   background-color: #ffffff;
@@ -44,8 +52,6 @@ body.static-clean-mode main .wrapper-x.py-5 > .mw-lg.mx-auto {
   border-radius: 8px;
 }
 
-
-/* --- Gaya kustom untuk header di dalam konten statis kita --- */
 .static-article-header {
   text-align: center;
   margin-bottom: 40px;
@@ -73,10 +79,9 @@ body.static-clean-mode main .wrapper-x.py-5 > .mw-lg.mx-auto {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5px 10px; /* Memberi jarak antar item meta */
+  gap: 5px 10px;
 }
 
-/* --- Gaya untuk konten artikel agar tetap konsisten --- */
 .static-article-content {
     font-family: 'Lato', 'Roboto', sans-serif;
     color: #212529;
@@ -95,11 +100,38 @@ body.static-clean-mode main .wrapper-x.py-5 > .mw-lg.mx-auto {
   padding-bottom: 0.5rem;
 }
 
-/* --- Atur ulang styling untuk bagian share dan komentar bawaan tema --- */
-body.static-clean-mode #article-share,
-body.static-clean-mode #article-comments {
-    margin-top: 3rem;
-    padding-top: 2rem;
+.static-article-content figure { margin: 2rem 0; }
+.static-article-content figure img { max-width: 100%; height: auto; border-radius: 8px; }
+.static-article-content figure figcaption { text-align: center; font-size: 0.875rem; color: #6c757d; margin-top: 0.5rem; }
+.static-article-content ul, .static-article-content ol { margin-bottom: 1.25rem; padding-left: 25px; }
+
+/* --- LANGKAH 4: Aturan untuk "Berbagi" dan "Komentar" sebagai satu paket --- */
+body:has(#static-page-trigger) #article-share,
+body.static-clean-mode #article-share {
+    display: none;
+}
+
+body:has(#static-page-trigger) #article-share:has(~ #article-comments),
+body.static-clean-mode #article-share:has(~ #article-comments) {
+    display: block !important;
+    max-width: 980px;
+    margin: 3rem auto 0 auto;
+    padding: 2rem 40px 0 40px;
     border-top: 1px solid #dee2e6;
+}
+
+body:has(#static-page-trigger) #article-comments,
+body.static-clean-mode #article-comments {
+    max-width: 980px;
+    margin: 3rem auto 0 auto;
+    padding: 2rem 40px 40px 40px;
+    border-top: 1px solid #dee2e6;
+}
+
+body:has(#static-page-trigger) #article-share + #article-comments,
+body.static-clean-mode #article-share + #article-comments {
+    margin-top: 1rem;
+    padding-top: 0;
+    border-top: none;
 }
 
