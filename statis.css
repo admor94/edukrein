@@ -1,6 +1,6 @@
 /*
   File: statis.css (External)
-  Versi: 5.0 (Modular & Robust)
+  Versi: 5.1 (Hero Banner Layout)
   Fungsi: Menyembunyikan elemen tema dan menata halaman statis.
           Bekerja dengan :has() untuk browser modern dan class dari JS sebagai fallback.
 */
@@ -26,7 +26,7 @@ body.static-clean-mode .custom-section {
 /* --- LANGKAH 2: Atur ulang <main> agar menjadi kanvas bersih --- */
 body:has(#static-page-trigger) #main,
 body.static-clean-mode #main {
-  padding-top: 40px !important;
+  padding-top: 0 !important;
   padding-bottom: 40px !important;
   background-color: #f8f9fa;
 }
@@ -42,16 +42,52 @@ body.static-clean-mode #main .wrapper-x.py-5 > .mw-lg.mx-auto {
     max-width: none !important;
 }
 
-/* --- LANGKAH 3: Gaya untuk kontainer dan konten artikel --- */
-.static-article-container {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 40px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  border-radius: 8px;
+/* --- LANGKAH 3: Gaya untuk Hero Banner, Kontainer, dan Konten Artikel --- */
+
+/* Gaya BARU untuk Hero Banner */
+.static-hero-banner {
+  position: relative;
+  padding: 5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  background-color: #212529;
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  min-height: 40vh;
 }
 
+.static-hero-banner h1 {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  max-width: 800px;
+}
+
+.static-hero-banner .subtitle {
+  font-size: 1.25rem;
+  max-width: 700px;
+  opacity: 0.9;
+}
+
+/* Penyesuaian untuk kontainer utama */
+.static-article-container {
+  max-width: 980px;
+  margin: -80px auto 0 auto; /* Margin negatif untuk efek tumpang tindih */
+  padding: 40px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  position: relative; /* Diperlukan agar berada di atas hero */
+  z-index: 2;
+}
+
+/* Gaya untuk header di dalam kontainer (meta, dll) */
 .static-article-header {
   text-align: center;
   margin-bottom: 40px;
@@ -59,16 +95,8 @@ body.static-clean-mode #main .wrapper-x.py-5 > .mw-lg.mx-auto {
   padding-bottom: 20px;
 }
 
-.static-article-header h1 {
-  font-family: 'Exo 2', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #1f287d;
-}
-
 .static-article-header .subtitle {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: #6c757d;
   margin-bottom: 1rem;
 }
