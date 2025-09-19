@@ -1,22 +1,28 @@
 /*
-  File: statis.js
-  Versi: 3.0 (Selective Hide)
-  Fungsi: Mendeteksi "tag pemicu" di dalam konten halaman statis
-          dan menambahkan class ke body untuk mengaktifkan CSS pembersih.
+  File: statis.js (External)
+  Versi: 5.0 (Modular & Robust)
+  Fungsi: Menambahkan class 'static-clean-mode' ke body jika pemicu ditemukan.
+          Ini berfungsi sebagai fallback untuk browser yang tidak mendukung :has().
 */
-
 (function() {
-  'use strict';
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    // Cari elemen utama yang membungkus konten postingan/halaman
-    const postBody = document.querySelector('.post-body');
+  // Fungsi ini akan berjalan setelah seluruh halaman dimuat
+  function initStaticPageMode() {
+    // Cari elemen pemicu di dalam halaman
+    const trigger = document.getElementById('static-page-trigger');
     
-    // Periksa apakah di dalam konten terdapat komentar pemicu kita
-    if (postBody && postBody.innerHTML.includes('<!-- static-clean-page -->')) {
+    // Jika pemicu ditemukan, tambahkan class ke body
+    if (trigger) {
       document.body.classList.add('static-clean-mode');
-      console.log('Mode halaman statis bersih diaktifkan.');
+      console.log('Static page clean mode activated via JavaScript.');
     }
-  });
+  }
+
+  // Jalankan fungsi setelah DOM siap
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStaticPageMode);
+  } else {
+    // DOM sudah siap
+    initStaticPageMode();
+  }
 })();
 
