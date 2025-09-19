@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var staticWrapper = document.getElementById('statis-wrapper-content');
-    if (staticWrapper) {
-      document.body.appendChild(staticWrapper);
-      document.getElementById('statis-wrapper').remove(); // Hapus div pembungkus awal
+    var staticContent = document.getElementById('statis-content');
+    if (staticContent) {
+      document.body.appendChild(staticContent);
+      var wrapper = document.getElementById('statis-wrapper');
+      if (wrapper) {
+        wrapper.remove();
+      }
     }
   });
