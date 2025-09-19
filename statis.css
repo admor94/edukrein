@@ -1,75 +1,90 @@
-/* File: statis.css
-  Versi: 2.0 (General & Fleksibel)
-  Fungsi: Menyembunyikan elemen tema dan menata ulang konten untuk halaman statis.
+/*
+  File: statis.css
+  Versi: 3.0 (Selective Hide)
+  Fungsi: Menyembunyikan elemen layout tema secara selektif saat halaman statis
+          diberi penanda khusus.
 */
 
-/* --- LANGKAH 1: Sembunyikan semua elemen tema saat halaman statis aktif --- */
-body.static-page-active > *:not(#static-page-wrapper) {
+/* --- Sembunyikan elemen-elemen layout utama --- */
+body.static-clean-mode #contact,
+body.static-clean-mode #header,
+body.static-clean-mode #navfloat,
+body.static-clean-mode #searchCanv,
+body.static-clean-mode #chat,
+body.static-clean-mode #footer,
+body.static-clean-mode #article-headline, /* Sembunyikan judul default dari tema */
+body.static-clean-mode #article-related, /* Sembunyikan artikel terkait default dari tema */
+body.static-clean-mode .main-wrapper > .py-5.bg-light, /* Sembunyikan latar belakang abu-abu */
+body.static-clean-mode .main-wrapper > .wrapper-x.py-5 > .mw-lg.mx-auto > section:not(#article-content):not(#article-share):not(#article-comments) {
+  /* Sembunyikan semua section di dalam konten kecuali konten artikel, share, dan komentar */
   display: none !important;
 }
 
-/* Pastikan kontainer utama halaman statis tetap terlihat */
-#static-page-wrapper {
-  display: block !important;
-  visibility: visible !important;
-  padding: 0;
-  margin: 0;
+
+/* --- Atur ulang padding/margin dari kontainer utama --- */
+body.static-clean-mode #main {
+  padding: 0 !important;
 }
 
-/* --- LANGKAH 2: Gaya dasar untuk halaman bersih --- */
-#static-page-wrapper {
-  font-family: 'Lato', 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background-color: #f0f2f5; /* Latar belakang lebih lembut */
-  color: #333;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body.static-clean-mode #main > .wrapper-x.py-5 {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+  max-width: 100%; /* Lebarkan kontainer utama */
 }
 
+/* Beri gaya pada kontainer artikel di dalamnya agar rapi */
 .static-article-container {
-  max-width: 980px; /* Lebar disesuaikan dengan kontainer postingan tema */
+  max-width: 980px; /* Lebar konten seperti postingan biasa */
   margin: 0 auto;
-  padding: 50px 40px;
+  padding: 40px 20px;
   background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 8px;
 }
 
-@media (max-width: 768px) {
-  .static-article-container {
-    padding: 30px 20px;
-  }
-}
 
-/* --- LANGKAH 3: Tipografi dan gaya konten artikel --- */
+/* --- Gaya kustom untuk header di dalam konten statis kita --- */
 .static-article-header {
   text-align: center;
   margin-bottom: 40px;
-  border-bottom: 1px solid #e9ecef;
-  padding-bottom: 25px;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 20px;
 }
 
 .static-article-header h1 {
   font-family: 'Exo 2', sans-serif;
-  font-size: 2.75rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: #1f287d;
 }
 
 .static-article-header .subtitle {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: #6c757d;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .static-article-header .meta {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: #6c757d;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* --- Gaya untuk konten artikel agar tetap konsisten --- */
+.static-article-content {
+    font-family: 'Lato', 'Roboto', sans-serif;
+    color: #212529;
+    line-height: 1.7;
+    font-size: 1.125rem;
 }
 
 .static-article-content h2 {
   font-family: 'Exo 2', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   font-weight: 600;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
@@ -78,81 +93,11 @@ body.static-page-active > *:not(#static-page-wrapper) {
   padding-bottom: 0.5rem;
 }
 
-.static-article-content p, 
-.static-article-content ul, 
-.static-article-content ol {
-  margin-bottom: 1.25rem;
-  font-size: 1.1rem;
+/* --- Atur ulang styling untuk bagian share dan komentar bawaan tema --- */
+body.static-clean-mode #article-share,
+body.static-clean-mode #article-comments {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #dee2e6;
 }
 
-.static-article-content a {
-  color: #1f287d;
-  text-decoration: none;
-  border-bottom: 1px dotted #1f287d;
-  transition: color 0.2s, border-bottom-color 0.2s;
-}
-
-.static-article-content a:hover {
-  color: #e7b10a;
-  border-bottom-color: #e7b10a;
-}
-
-.static-article-content ul,
-.static-article-content ol {
-  padding-left: 25px;
-}
-
-.static-article-content li {
-  margin-bottom: 0.5rem;
-}
-
-.static-article-content figure {
-  margin: 2.5rem 0;
-}
-
-.static-article-content figure img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.static-article-content figure figcaption {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #6c757d;
-  margin-top: 0.75rem;
-  font-style: italic;
-}
-
-/* --- LANGKAH 4: Gaya untuk bagian opsional (Share & Komentar) --- */
-.static-optional-section {
-  margin-top: 50px;
-  padding-top: 30px;
-  border-top: 1px solid #e9ecef;
-}
-
-.static-optional-section .section-header {
-  margin-bottom: 20px;
-}
-
-.static-optional-section .section-header h3 {
-  font-family: 'Exo 2', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #1f287d;
-  margin: 0;
-}
-
-/* Gaya untuk tombol share */
-#article-share .bg-facebook { background-color: #1877f2; }
-#article-share .bg-whatsapp { background-color: #25d366; }
-#article-share .bg-twitter { background-color: #1da1f2; }
-#article-share .btn { border-radius: 0 !important; }
-
-/* Gaya untuk kontainer komentar */
-.comment-form-container iframe {
-  width: 100%;
-  min-height: 250px;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-}
